@@ -10,7 +10,10 @@
             lat: "#lat",
             lng: "#lng",
             locality: '#locality',
-            country: '#country'
+            country: '#country',
+            administrative_area_level_2: '#administrative_area_level_2',
+            postal_code: '#postal_code'
+            
         }
     });
     var gmarker = addresspickerMap.addresspicker( "marker");
@@ -25,6 +28,8 @@
             lng: "#lng2",
             locality: '#locality2',
             country: '#country2'
+            administrative_area_level_2: '#administrative_area_level_2',
+            postal_code: '#postal_code'
         }
     });
     var gmarker = addresspickerMap2.addresspicker( "marker");

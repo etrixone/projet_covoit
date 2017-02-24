@@ -26,4 +26,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    //Relation user plusieurs trajets 1n
+    public function trajets() 
+    {
+        return $this->hasMany('App\Trajet');
+    }
+    
 }

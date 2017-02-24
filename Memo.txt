@@ -1,1 +1,2 @@
 Creer en Bdd = App\Ville::create(['vil_nom' => 'Toulouse', 'vil_code' => '31000', 'vil_departement' => 'Haute-Garonne']);
+

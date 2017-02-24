@@ -21,7 +21,9 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/home', 'HomeController@home');
 
-Route::post('/', 'HomeController@recherche');
+Route::post('/home', 'HomeController@recherche');
+
+Route::get('/trajet', 'HomeController@trajet');
 
 
 

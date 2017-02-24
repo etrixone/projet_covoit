@@ -40,7 +40,7 @@
                 <br/><br/>
                 
 
-    	<form method="POST" action="{!! url('trajet') !!}" accept-charset="UTF-8">
+    	<form method="POST" action="{!! url('home') !!}" accept-charset="UTF-8">
 		{!! csrf_field() !!}   
 	
            <label>Départ : </label> <input id="addresspicker_map" />  
@@ -51,6 +51,16 @@
             <input id="locality2" name="destination" readonly="true" type="hidden"> <br/>
 
             <input type="submit" value="Rechercher">	
+            
+            @if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
             
         </form>
                 
