@@ -40,9 +40,7 @@ class HomeController extends Controller
         } else {
             return "Désolé votre compte est desactivé contactez l'administrateur.";
         }
-
-
-        
+   
     }
     
         public function home()
@@ -53,12 +51,26 @@ class HomeController extends Controller
     
     public function recherche(Request $request)
     {
-        $recherche = DB::table('trajets')->where('depart','=',$request->input('depart'))->get();
+        
+        $this->validate($request, ['depart' => 'required', 'destination' => 'required']);
+        
+        return "resultat recherche";
+    }
+        
+        //$recherche = DB::table('trajets')->where('depart','=',$request->input('depart'))->get();
         /*foreach ($recherche as $trajet){
             echo 'Trajet : ', $trajet->depart, '->' ,$trajet->destination, '<br/>';
            
         }*/
         
-        return View::make('trajet')->with('depart', $recherche);
+       // return View::make('trajet')->with('depart', $recherche);
+       // 
+    
+          public function trajet()
+    {   
+        return view('proposer-trajet');
+        
     }
-    }
+}
+
+    
