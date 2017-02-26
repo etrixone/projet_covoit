@@ -26,7 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
         //On recupere l'id de l'utilisateur connecté
         $id=Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d');
         
@@ -43,7 +42,7 @@ class HomeController extends Controller
    
     }
     
-        public function home()
+    public function home()
     {   
         return view('home');
     }
@@ -51,7 +50,6 @@ class HomeController extends Controller
     
     public function recherche(Request $request)
     {
-        
         $this->validate($request, ['depart' => 'required', 'destination' => 'required']);
         
         return "resultat recherche";
@@ -66,11 +64,11 @@ class HomeController extends Controller
        // return View::make('trajet')->with('depart', $recherche);
        // 
     
-          public function trajet()
+    public function trajet()
     {   
         return view('proposer-trajet');
-        
     }
+    
 }
 
     

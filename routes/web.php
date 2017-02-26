@@ -25,5 +25,9 @@ Route::post('/home', 'HomeController@recherche');
 
 Route::get('/trajet', 'HomeController@trajet');
 
+//Route qui permet d'accéder à la page d'ajout de membres via fichier CSV
+Route::get('/upload_csv', 'UsersController@showForm');
+//Route qui permet l'upload du fichier CSV à l'aide du formulaire
+Route::post('/upload_csv', 'UsersController@usersList');
 
 
