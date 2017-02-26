@@ -19,7 +19,7 @@ class UsersController extends Controller
     {   
         return view('upload');
     }
-    
+    /*
     public function generer_mot_de_passe()
     {
         $mot_de_passe = "";
@@ -35,7 +35,7 @@ class UsersController extends Controller
 
         return $mot_de_passe;   
     }
-    
+    */
      public function usersList(Request $request)
     {   
         $upload=$request->file('upload_file');
@@ -56,10 +56,14 @@ class UsersController extends Controller
                 $nom = $array[$index][0];
                 $prenom = $array[$index][1];
                 $email = $array[$index][2];
+                $pwd="123";
 
-                //$param = array("name" => $nom, "surname" => $prenom, "email" => $email, "password" => $mdp_hash);
-                //$requete = $conn->prepare("INSERT INTO users VALUES (:name,:surname,:email,:password)");
-                //$requete->execute($param);
+                $user= new User;
+                $user->name=$nom;
+                $user->surname=$prenom;
+                $user->email=$email;
+                $user->password=$pwd;
+                $user->save();
             }
             $index = $index + 1;
         }
