@@ -45,7 +45,7 @@
             margin-top:-175px;
             border-radius:20px;
             background-color:#b42026;
-            opacity: 0.6;
+            opacity: 0.8;
         }
         
         .form img
