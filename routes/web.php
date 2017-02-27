@@ -17,17 +17,30 @@
 */
 Auth::routes();
 
+Route::group(['middleware' => ['enable']], function () {
+    
 Route::get('/', 'HomeController@index');
-
 Route::get('/home', 'HomeController@home');
-
 Route::post('/home', 'HomeController@recherche');
-
 Route::get('/trajet', 'HomeController@trajet');
+Route::post('/trajet', 'HomeController@ajoutTrajet');
+
+
+
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+    
+Route::get('index', 'HomeController@admin');
 
 //Route qui permet d'accéder à la page d'ajout de membres via fichier CSV
-Route::get('/csv_upload', 'UsersController@showForm');
+Route::get('csv_upload', 'UsersController@showForm');
 //Route qui permet l'upload du fichier CSV à l'aide du formulaire
-Route::post('/csv_upload', 'UsersController@usersList');
+Route::post('csv_upload', 'UsersController@usersList');
+
+
+});
+
+
 
 

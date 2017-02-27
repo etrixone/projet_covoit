@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-     <link rel="stylesheet" href="http://localhost/laravel/covoit2/public/css/addresspicker/jquery.ui.all.css">
+     <link rel="stylesheet" href="http://localhost/laravel/covoiturage/public/css/addresspicker/jquery.ui.all.css">
      
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
@@ -26,7 +26,7 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    <script src="http://localhost/laravel/covoit2/public/js/jquery.ui.addresspicker.js"></script>
+    <script src="http://localhost/laravel/covoiturage/public/js/jquery.ui.addresspicker.js"></script>
     
     
     <!--Creation du picker-->
