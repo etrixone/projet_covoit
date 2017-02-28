@@ -34,10 +34,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 Route::get('index', 'HomeController@admin');
 
 //Route qui permet d'accéder à la page d'ajout de membres via fichier CSV
-Route::get('csv_upload', 'UsersController@showForm');
+Route::get('csv_upload', 'UsersController@csvForm');
 //Route qui permet l'upload du fichier CSV à l'aide du formulaire
 Route::post('csv_upload', 'UsersController@usersList');
-
+//Route qui permet d'accéder à la page qui regroupe toutes les info. utilisateurs
+Route::get('all_users', 'UsersController@allUsersForm');
 
 });
 
