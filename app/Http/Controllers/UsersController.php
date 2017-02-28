@@ -19,23 +19,23 @@ class UsersController extends Controller
     {   
         return view('upload');
     }
-    /*
-    public function generer_mot_de_passe()
+    
+    public function password()
     {
-        $mot_de_passe = "";
+        $password = "";
 
-        $chaine = "abcdefghjkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ023456789";
-        $longeur_chaine = strlen($chaine);
+        $string = "abcdefghjkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ023456789";
+        $string_length = strlen($string);
 
         for($i = 1; $i <= 6; $i++)
         {
-            $place_aleatoire = mt_rand(0,($longeur_chaine-1));
-            $mot_de_passe .= $chaine[$place_aleatoire];
+            $rand = mt_rand(0,($string_length-1));
+            $password .= $string[$rand];
         }
 
-        return $mot_de_passe;   
+        return $password;   
     }
-    */
+    
      public function usersList(Request $request)
     {   
         $upload=$request->file('upload_file');
@@ -56,18 +56,17 @@ class UsersController extends Controller
                 $nom = $array[$index][0];
                 $prenom = $array[$index][1];
                 $email = $array[$index][2];
-                $pwd="123";
+                $pwd=self::password();
 
                 $user= new User;
                 $user->name=$nom;
                 $user->surname=$prenom;
                 $user->email=$email;
-                $user->password=$pwd;
+                $user->password=hash('sha256', $pwd);
                 $user->save();
             }
             $index = $index + 1;
         }
         fclose($f);
-        var_dump($array);
     }
 }
