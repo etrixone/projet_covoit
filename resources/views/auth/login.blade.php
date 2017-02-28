@@ -9,8 +9,8 @@
     <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
-    <link href="../../public/css/bootstrap.css" rel="stylesheet">
-    <link href="../../public/css/style.css" rel="stylesheet">
+    <link href="http://localhost/laravel/covoiturage/public/css/bootstrap.css" rel="stylesheet">
+    <link href="http://localhost/laravel/covoiturage/public/css/style.css" rel="stylesheet">
     
     <!-- Import police --> 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
@@ -93,6 +93,11 @@
         {
             color:white;
             width:60%;
+        }
+        
+        input:-webkit-autofill {
+            border: 1px solid green;
+            
         }
         
     </style>

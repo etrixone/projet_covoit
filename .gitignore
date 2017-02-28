@@ -10,3 +10,4 @@ Homestead.yaml
 !/.env
 /Netbeans/
 /covoiturage/
+!/vendor/

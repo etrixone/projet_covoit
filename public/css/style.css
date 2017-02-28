@@ -1,0 +1,95 @@
+body {
+    font-family: "Open Sans Condensed", Arial;
+}
+
+[class*="col-"], footer {
+  text-align: center;
+}
+
+section
+{
+    min-height:500px;
+}
+
+header
+{
+    background: url("../images/header.gif");
+    background-position: center;
+    background-size: cover;
+    min-height:150px;
+}
+
+.barre
+{
+    margin-top:0px;
+    min-height:50px;
+    margin-left:0px;
+    min-width:100%;
+    background-color:#c03644; /* #b42026 rouge plus foncé */
+}
+
+nav
+{
+    
+}
+
+ul
+{
+    list-style-type:none;
+}
+
+li
+{
+    float:left;
+    width:20%;
+}
+
+/* DEGRADE A FAIRE SUR LES BOUTONS MERCI LANDRY*/
+
+.b1
+{
+    background-color:#c03644;
+    min-height:32px;
+}
+
+.b2
+{
+    background-color:#c03644;
+    min-height:32px;
+    border-bottom-right-radius: 10px;
+}
+
+.b3
+{
+    background-color:#cbbfa9;
+    min-height:32px;
+    border-bottom-left-radius: 10px;
+}
+
+.b4
+{
+    background-color:#cbbfa9;
+    min-height:32px;
+    border-bottom-right-radius: 10px;
+}
+
+.b5
+{
+    background-color:#c03644;
+    min-height:32px;
+}
+
+a
+{
+    color:white;
+}
+
+a:hover
+{
+    color:white;
+    text-decoration:none;
+}
+
+
+
+
