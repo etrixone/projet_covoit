@@ -65,6 +65,7 @@ class HomeController extends Controller {
         $depart = $this->ajoutVille($request->depart, $request->departement, $request->longitude, $request->latitude);
         $destination = $this->ajoutVille($request->destination, $request->destination_departement, $request->destination_longitude, $request->destination_latitude);
 
+        
         $trajet = new Trajet;
         $trajet->vil_id_depart = $depart;
         $trajet->vil_id_arrivee = $destination;
@@ -76,10 +77,12 @@ class HomeController extends Controller {
     }
 
     public function ajoutVille($nom, $departement, $longitude, $latitude) {
-        $ville = Ville::where('vil_nom', $nom)->first();
+        $ville = Ville::where('vil_nom', $nom)->select('vil_id')->first();
         $id = null;
         if (isset($ville)) {
             $id = $ville->vil_id;
+           
+            
         } else {
             $tmp = new Ville;
             $tmp->vil_nom = $nom;
