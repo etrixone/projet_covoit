@@ -38,7 +38,7 @@
         {
             position:absolute;
             left:50%;
-            top:50%;
+            top:40%;
             width:300px;
             height:auto;
             margin-left:-150px;

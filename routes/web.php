@@ -24,6 +24,10 @@ Route::get('/home', 'HomeController@home');
 Route::post('/home', 'HomeController@recherche');
 Route::get('/trajet', 'HomeController@trajet');
 Route::post('/trajet', 'HomeController@ajoutTrajet');
+Route::get('/test', function(){
+    return view('test');
+    
+});
 
 
 

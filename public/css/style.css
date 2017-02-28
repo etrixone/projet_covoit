@@ -110,6 +110,14 @@ a:hover
     text-decoration:none;
 }
 
+button {
+    background-color:#c03644;
+    border-radius: 10px;
+
+    width : 100px;
+    color: white;
+    
+}
 
 
 

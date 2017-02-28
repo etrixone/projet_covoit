@@ -1,9 +1,7 @@
-@extends('layouts.app2')
+@extends('layouts.layout')
 
 @section('content')
-</head>
-<body>
-    
+
     
   <script>   
       $(function() {
@@ -44,9 +42,7 @@
    
  
 });
-  
   </script>
-  
   
 <div class="demo">
   <h1>Proposer un trajet</h1>
@@ -72,11 +68,8 @@
 
             <label>Infos : </label>
             <textarea name="info" rows="4" cols="50"/></textarea>
-	  
-	  
-            
-            
-            <p><input type="submit" value="recuperer infos"></p>
+
+        <p><button type="submit" value="recuperer infos">Valider !</button> </p>
             
               @if (count($errors) > 0)
     <div class="alert alert-danger">
