@@ -40,7 +40,7 @@
             left:50%;
             top:50%;
             width:300px;
-            height:350px;
+            height:auto;
             margin-left:-150px;
             margin-top:-175px;
             border-radius:20px;
@@ -95,8 +95,17 @@
             width:60%;
         }
         
-        input:-webkit-autofill {
-            border: 1px solid green;
+        input {
+            padding:3px;
+            outline: none;
+            
+        }
+        
+        button {
+            border-radius: 5px;
+            margin-top: 10px;
+            background-color: white;
+            color: black;
             
         }
         
