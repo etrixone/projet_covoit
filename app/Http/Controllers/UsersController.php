@@ -15,9 +15,16 @@ class UsersController extends Controller
      * @return void
      */
     
-    public function showForm()
+    public function CsvForm()
     {   
         return view('upload');
+    }
+    
+    public function allUsersForm()
+    {
+        $users = DB::table('users')->get();
+
+        return view('all-users', ['users' => $users]);
     }
     
     public function password()
