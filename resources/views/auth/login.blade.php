@@ -9,8 +9,8 @@
     <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
-    <link href="http://localhost/laravel/covoiturage/public/css/bootstrap.css" rel="stylesheet">
-    <link href="http://localhost/laravel/covoiturage/public/css/style.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     
     <!-- Import police --> 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
@@ -25,7 +25,7 @@
     <style type="text/css">
         body
         {
-            background:url("http://localhost/laravel/covoiturage/public/images/back-connexion.jpg") top no-repeat;
+            background:url("{{ asset('images/back-connexion.jpg') }}") top no-repeat;
             background-size:cover;
             width:100%;
             height:100%;
@@ -116,7 +116,7 @@
   
   <div class="container-fluid">
       <div class="form">
-             <img src="http://localhost/laravel/covoiturage/public/images/logo-saliegecovoit.gif">
+             <img src="{{ asset('images/logo-saliegecovoit.gif') }}">
              <form action="{{ route('login') }}" method="POST">
                  {{ csrf_field() }}
              <hr>
@@ -145,7 +145,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="http://localhost/laravel/covoiturage/public/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     
 </body>
 </html>
