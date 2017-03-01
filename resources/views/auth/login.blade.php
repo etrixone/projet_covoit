@@ -25,7 +25,7 @@
     <style type="text/css">
         body
         {
-            background:url("{{ asset('images/back-connexion.jpg') }}") top no-repeat;
+            background:url("{{ asset('images/back-connexion.jpg') }}") no-repeat fixed center center;
             background-size:cover;
             width:100%;
             height:100%;

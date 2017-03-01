@@ -1,4 +1,15 @@
-body {
+html
+{
+    position:relative;
+    min-height:100%;
+}
+
+body
+{
+    margin-bottom: 60px;
+}
+
+#container-fluid {
     font-family: "Open Sans Condensed", Arial;
 }
 
@@ -8,7 +19,7 @@ body {
 
 section
 {
-    min-height:500px;
+    
 }
 
 header
@@ -30,72 +41,128 @@ header
 
 .logo
 {
+    background-color:#b42026;
+    height:130px;
+    width:100px;
     position:absolute;
-    margin-left:5%;
-    width:10%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    left:5%;
 }
 
-.barre-footer
+.logo img
 {
+    width:90%;
+    margin-top:20px;
+    margin-left:5px;
+}
+
+.logo2
+{
+    background-color:white;
+    height:130px;
+    width:100px;
+    position:absolute;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    right:5%;
+    color:grey;
+}
+
+.logo2 img
+{
+    position:absolute;
+    top:20px;
+    left:24px;
+}
+
+.logo2 p
+{
+    position:absolute;
+    bottom:0;
+    text-align:center;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+/*.logo
+{
+    position:absolute;
+    margin-left:5%;
+    min-width:10%;
+    max-width:10%;
+}*/
+
+footer
+{
+    position:absolute;
+    bottom:0;
     min-width:100%;
-    min-height:50px;
-    margin-left:-10%;
-    margin-right:-1%;
+    height:50px;
     background-color:#c03644;
 }
 
-nav
-{
-    
-}
+
 
 ul
 {
     list-style-type:none;
-    margin-left:-5%;
-    margin-right:-1%;
+    padding:0;
+    margin:0;
+    text-align:center;
 }
 
 li
 {
     float:left;
-    width:20%;
+    min-width:20%;
+    padding-top:4px;
 }
 
-/* DEGRADE A FAIRE SUR LES BOUTONS MERCI LANDRY*/
-
-.b1
+li a
 {
-    background-image:linear-gradient(#c03644 50%, #b42026);
-    /*background-color:#c03644;*/
-    min-height:32px;
+    color:black;
 }
 
-.b2
+
+li.b1
 {
-    background-color:#c03644;
-    min-height:32px;
+    background-image:url("../../public/images/bouton.gif");
+    background-position: center;
+    height:30px;
+    border-right: 1px solid black;
+}
+
+li.b2
+{
+    background-image:url("../../public/images/bouton.gif");
+    background-position: center;
+    min-height:30px;
     border-bottom-right-radius: 10px;
 }
 
-.b3
+li.b3
 {
-    background-color:#cbbfa9;
-    min-height:32px;
+    background-image:url("../../public/images/bouton2.gif");
+    background-position: center;
+    min-height:30px;
     border-bottom-left-radius: 10px;
+    border-right: 1px solid black;
 }
 
-.b4
+li.b4
 {
-    background-color:#cbbfa9;
-    min-height:32px;
+    background-image:url("../../public/images/bouton2.gif");
+    background-position: center;
+    min-height:30px;
     border-bottom-right-radius: 10px;
 }
 
-.b5
+li.b5
 {
-    background-color:#c03644;
-    min-height:32px;
+    background-image:url("../../public/images/bouton.gif");
+    background-position: center;
+    min-height:30px;
     border-bottom-left-radius: 10px;
 }
 
@@ -113,7 +180,6 @@ a:hover
 button {
     background-color:#c03644;
     border-radius: 10px;
-
     width : 100px;
     color: white;
     
