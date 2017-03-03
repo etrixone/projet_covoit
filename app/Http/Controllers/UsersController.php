@@ -15,7 +15,7 @@ class UsersController extends Controller
      * @return void
      */
     
-    public function CsvForm()
+    public function csvForm()
     {   
         return view('upload');
     }
@@ -26,6 +26,14 @@ class UsersController extends Controller
 
         return view('all-users', ['users' => $users]);
     }
+    
+    public function deleteUser($id)
+    {
+        $user = User::find($id);    
+        $user->delete();
+        
+        return redirect('admin/all_users');
+    }   
     
     public function password()
     {

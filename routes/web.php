@@ -43,6 +43,8 @@ Route::get('csv_upload', 'UsersController@csvForm');
 Route::post('csv_upload', 'UsersController@usersList');
 //Route qui permet d'accéder à la page qui regroupe toutes les info. utilisateurs
 Route::get('all_users', 'UsersController@allUsersForm');
+//Route qui permet d'accéder à la page qui regroupe toutes les info. utilisateurs
+Route::get('delete/{id}', 'UsersController@deleteUser');
 
 });
 
