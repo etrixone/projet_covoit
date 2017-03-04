@@ -44,7 +44,8 @@
        </div>
        <div class="logo2">
           <img src="http://localhost/laravel/covoiturage/public/images/Utilisateur2.gif">
-           <p>Stacy Boulanger</p>
+           <p class="prenom">Stacy</p>
+           <p class="nom">Boulanger</p>
        </div>
         <!--<img src="http://localhost/laravel/covoiturage/public/images/logo3.gif" class="logo">-->
          <div class="barre"></div>
@@ -52,7 +53,7 @@
       <nav class="row">
           <div>
               <ul>
-                  <li class="b1" class="l1"><a href="#">Rechercher un trajet</a></li>
+                  <li class="b1"><a href="#">Rechercher un trajet</a></li>
                   <li class="b2"><a href="#">Mes réservations</a></li>
                   <li class="b3"><a href="#">Proposer un trajet</a></li>
                   <li class="b4"><a href="#">Mes trajets</a></li>

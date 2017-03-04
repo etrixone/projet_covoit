@@ -56,7 +56,7 @@ class HomeController extends Controller {
 
     public function trajet() {
 
-        return view('proposer-trajet');
+        return view('ajouter-trajet');
     }
 
     public function ajoutTrajet(Request $request) {
