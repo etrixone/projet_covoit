@@ -22,7 +22,7 @@ class UsersController extends Controller
     
     public function allUsersForm()
     {
-        $users = DB::table('users')->get();
+        $users = DB::table('users')->where('admin','false')->get();
 
         return view('all-users', ['users' => $users]);
     }
@@ -33,8 +33,56 @@ class UsersController extends Controller
         $user->delete();
         
         return redirect('admin/all_users');
-    }   
+    } 
     
+    public function deleteAllUsers(){
+        foreach (User::where('admin','false')->get() as $user){
+           $user->delete();
+        }       
+        
+        return redirect('admin/all_users');
+    }  
+    
+    public function statusUser($id)
+    {
+        $user = User::find($id);
+        $status=$user->enable;
+        
+        if($status===true)
+        {
+            $user->enable = $status = !$status;
+            $user->save();
+        }
+        else
+        {
+            $user->enable = $status = !$status;
+            $user->save();
+        }
+        
+        return redirect('admin/all_users');
+    }  
+    
+    public function statusAllUsers()
+    {
+        foreach (User::where('admin','false')->get() as $user){
+           $status=$user->enable;
+        
+            if($status===true)
+            {
+                $user->enable = $status = !$status;
+                $user->save();
+            }
+            else
+            {
+                $user->enable = $status = !$status;
+                $user->save();
+            } 
+        }       
+        
+        return redirect('admin/all_users');
+    }  
+    
+    /*
     public function password()
     {
         $password = "";
@@ -50,38 +98,52 @@ class UsersController extends Controller
 
         return $password;   
     }
+    */
     
      public function usersList(Request $request)
     {   
-        $upload=$request->file('upload_file');
-        $filePath=$upload->getRealPath();
-        $file=fopen($filePath, 'r');
-
-        $array = array();
-        $index = 0;
-
-        $f = fopen($filePath, 'r');
-
-        while($lg = fgetcsv($f,1000,';')) 
+        $mime = $request->file('upload_file')->getMimeType();
+        $mimes = array('application/vnd.ms-excel','text/plain','text/csv','text/tsv');
+        
+        if(in_array($mime,$mimes))
         {
-            if($lg && array($lg))
-            {
-                $array[$index] = $lg;     
-                
-                $nom = $array[$index][0];
-                $prenom = $array[$index][1];
-                $email = $array[$index][2];
-                $pwd=self::password();
+            $upload=$request->file('upload_file');
+            $filePath=$upload->getRealPath();
+            $file=fopen($filePath, 'r');
 
-                $user= new User;
-                $user->name=$nom;
-                $user->surname=$prenom;
-                $user->email=$email;
-                $user->password=hash('sha256', $pwd);
-                $user->save();
+            $array = array();
+            $index = 0;
+
+            $f = fopen($filePath, 'r');
+
+            while($lg = fgetcsv($f,1000,';')) 
+            {
+                if($lg && array($lg))
+                {
+                    $array[$index] = $lg;     
+
+                    $nom = $array[$index][0];
+                    $prenom = $array[$index][1];
+                    $email = $array[$index][2];
+                    //$pwd=self::password();
+
+                    $user= new User;
+                    $user->name=$nom;
+                    $user->surname=$prenom;
+                    $user->email=$email;
+                    //$user->password=hash('sha256', $pwd);
+                    $user->save();
+                }
+                $index = $index + 1;
             }
-            $index = $index + 1;
+            fclose($f);
+            
+            return redirect('admin/all_users');
         }
-        fclose($f);
+        else{
+            return redirect('admin/csv_upload');
+        }
+         
+        
     }
 }
