@@ -37,10 +37,10 @@
   <div class="container-fluid">
       <header class="row">
        <div class="logo">
-           <img src="../../../public/images/Logo2.gif">
+           <img src="http://localhost/laravel/covoiturage/public/images/Logo2.gif">
        </div>
        <div class="logo2">
-          <img src="../../../public/images/Utilisateur2.gif">
+          <img src="http://localhost/laravel/covoiturage/public/images/Utilisateur2.gif">
            <p>Stacy Boulanger</p>
        </div>
         <!--<img src="http://localhost/laravel/covoiturage/public/images/logo3.gif" class="logo">-->

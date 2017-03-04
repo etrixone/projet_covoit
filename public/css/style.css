@@ -127,7 +127,7 @@ li a
 
 li.b1
 {
-    background-image:url("../../public/images/bouton.gif");
+    background-image:url("../images/bouton.gif");
     background-position: center;
     height:30px;
     border-right: 1px solid black;
@@ -135,7 +135,7 @@ li.b1
 
 li.b2
 {
-    background-image:url("../../public/images/bouton.gif");
+    background-image:url("../images/bouton.gif");
     background-position: center;
     min-height:30px;
     border-bottom-right-radius: 10px;
@@ -143,7 +143,7 @@ li.b2
 
 li.b3
 {
-    background-image:url("../../public/images/bouton2.gif");
+    background-image:url("../images/bouton2.gif");
     background-position: center;
     min-height:30px;
     border-bottom-left-radius: 10px;
@@ -152,7 +152,7 @@ li.b3
 
 li.b4
 {
-    background-image:url("../../public/images/bouton2.gif");
+    background-image:url("../images/bouton2.gif");
     background-position: center;
     min-height:30px;
     border-bottom-right-radius: 10px;
@@ -160,7 +160,7 @@ li.b4
 
 li.b5
 {
-    background-image:url("../../public/images/bouton.gif");
+    background-image:url("../images/bouton.gif");
     background-position: center;
     min-height:30px;
     border-bottom-left-radius: 10px;

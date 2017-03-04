@@ -44,11 +44,9 @@
 });
   </script>
   
-<div class="demo">
+<div class="">
   <h1>Proposer un trajet</h1>
 
-
-	
 	<form action="{!! url('trajet') !!}" method="post">
             {!! csrf_field() !!}  
       
