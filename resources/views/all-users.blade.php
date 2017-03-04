@@ -12,6 +12,10 @@
                 margin-left:auto; 
                 margin-right:auto;
             }
+            th{
+                font-weight: bold;
+                font-size: 16px;
+            }
             table, tr, th, td{
                 text-align:center;
                 border-color: black; 
@@ -50,10 +54,10 @@
         </script>
         
     </head>
-    <body>    
+    <body>            
         <table border="1">
             <tr>
-                <th width="75">Identifiant</th>
+                <th width="100">Identifiant</th>
                 <th width="275">Nom & Prénom</th>
                 <th width="350">Email</th>
                 <th width="200">Dernière connexion</th>
@@ -81,6 +85,13 @@
             </tr>
             @endforeach 
         </table>
+        <form method="get" action="{{url('admin/status')}}">
+                    <input type="submit" value="Activer/Désactiver tous">
+        </form>
+        
+        <form method="get" action="{{url('admin/deleteAll')}}">
+                    <input type="submit" value="Supprimer tous">
+        </form>
     </body>
 </html>
 

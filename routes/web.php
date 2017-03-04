@@ -37,15 +37,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     
 Route::get('index', 'HomeController@admin');
 
-//Route qui permet d'accéder à la page d'ajout de membres via fichier CSV
+//Permet d'accéder à la page d'ajout de membres via fichier CSV
 Route::get('csv_upload', 'UsersController@csvForm');
-//Route qui permet l'upload du fichier CSV à l'aide du formulaire
+//Permet d'upload un fichier CSV à l'aide du formulaire d'ajout
 Route::post('csv_upload', 'UsersController@usersList');
-//Route qui permet d'accéder à la page qui regroupe toutes les info. utilisateurs
+//Permet d'accéder à la page qui regroupe toutes les info. des utilisateurs du site
 Route::get('all_users', 'UsersController@allUsersForm');
-//Route qui permet d'accéder à la page qui regroupe toutes les info. utilisateurs
+//Permet de supprimer un utilisateur depuis la page all_users
 Route::get('delete/{id}', 'UsersController@deleteUser');
-
+//Route qui permet de changer supprimer tous les utilisateurs depuis la page all_users
+Route::get('deleteAll', 'UsersController@deleteAllUsers');
+//Route qui permet de changer le statut d'un utilisateur depuis la page all_users
+Route::get('status/{id}', 'UsersController@statusUser');
+//Route qui permet de changer le statut de tous les utilisateurs depuis la page all_users
+Route::get('status', 'UsersController@statusAllUsers');
 });
 
 

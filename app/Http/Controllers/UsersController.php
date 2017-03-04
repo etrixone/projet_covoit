@@ -33,6 +33,14 @@ class UsersController extends Controller
         $user->delete();
         
         return redirect('admin/all_users');
+    } 
+    
+    public function deleteAllUsers(){
+        foreach (User::where('admin','false')->get() as $user){
+           $user->delete();
+        }       
+        
+        return redirect('admin/all_users');
     }  
     
     public function statusUser($id)
