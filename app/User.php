@@ -35,7 +35,7 @@ class User extends Authenticatable
     
     //relation nn
     public function reserver() {
-        return $this->belongsToMany('App\Trajet');
+        return $this->belongsToMany('App\Trajet', 'trajets_users', 'USR_ID', 'TRJ_ID');
     }
     
     public $timestamps = false;

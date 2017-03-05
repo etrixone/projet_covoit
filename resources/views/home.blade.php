@@ -60,6 +60,8 @@
             @endforeach
         </ul>
     </div>
+            
+            @if (isset(depart)
 @endif
             
         </form>

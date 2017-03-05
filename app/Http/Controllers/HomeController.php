@@ -42,20 +42,16 @@ class HomeController extends Controller {
 
         $this->validate($request, ['depart' => 'required', 'destination' => 'required']);
 
-        return "resultat recherche";
+        $resultat=Ville::where('VIL_NOM', '=', $request->input('depart'))->first()->depart()->get();
+        //dd($resultat);
+    
+    /*$recherche = DB::table('trajets')->where('depart','=',$request->input('depart'))->get();
+        foreach ($resultat as $trajet){
+        echo 'Trajet : ', $trajet->depart, '->' ,$trajet->destination, '<br/>';
+      }*/
+    return View::make('home')->with('resultat', $resultat);
     }
-
-    //$recherche = DB::table('trajets')->where('depart','=',$request->input('depart'))->get();
-    /* foreach ($recherche as $trajet){
-      echo 'Trajet : ', $trajet->depart, '->' ,$trajet->destination, '<br/>';
-
-      } */
-
-    // return View::make('trajet')->with('depart', $recherche);
-    // 
-
     public function trajet() {
-
         return view('ajouter-trajet');
     }
 
