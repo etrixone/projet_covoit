@@ -11,7 +11,7 @@ class Ville extends Model
     
         //relation 1:1
     public function depart() {
-        return $this->hasMany('App\Trajet','VIL_ID_DEPART', 'ID');
+        return $this->hasMany('App\Trajet','VIL_ID_DEPART', 'ID')->select(array('VIL_NOM'));
     }
     
         public function destination() {

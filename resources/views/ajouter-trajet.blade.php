@@ -10,7 +10,7 @@
     			<label for="date">Date</label>
     		</div>
     		<div class="col-sm-8">
-    			<input type="text" class="form-control input-sm" id="exampleInputName2" placeholder="jj/mm/aaaa">	
+    			<input type="date" class="form-control input-sm" id="exampleInputName2" placeholder="jj/mm/aaaa">	
     		</div>
   		</div>
   		<div class="col-sm-6">

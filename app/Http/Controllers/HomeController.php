@@ -41,15 +41,12 @@ class HomeController extends Controller {
     public function recherche(Request $request) {
 
         $this->validate($request, ['depart' => 'required', 'destination' => 'required']);
+        $trajets = Trajet::where('TRJ_DEPART',$request->input('depart'))->get();
+        
+       // $destination=Trajet::join('villes', 'villes.id', '=', 'trajets.vil_id_destination')->where('villes.vil_nom',$request->input('depart'))->get();
+       //$resultat=Trajet::get();
 
-        $resultat=Ville::where('VIL_NOM', '=', $request->input('depart'))->first()->depart()->get();
-        //dd($resultat);
-    
-    /*$recherche = DB::table('trajets')->where('depart','=',$request->input('depart'))->get();
-        foreach ($resultat as $trajet){
-        echo 'Trajet : ', $trajet->depart, '->' ,$trajet->destination, '<br/>';
-      }*/
-    return View::make('home')->with('resultat', $resultat);
+        return View::make('home')->with('resultat', $trajets);
     }
     public function trajet() {
         return view('ajouter-trajet');
@@ -58,40 +55,18 @@ class HomeController extends Controller {
     public function ajoutTrajet(Request $request) {
         $this->validate($request, ['depart' => 'required', 'destination' => 'required']);
 
-        $depart = $this->ajoutVille($request->depart, $request->departement, $request->longitude, $request->latitude);
-        $destination = $this->ajoutVille($request->destination, $request->destination_departement, $request->destination_longitude, $request->destination_latitude);
+       // $depart = $this->ajoutVille($request->depart, $request->departement, $request->longitude, $request->latitude);
+       // $destination = $this->ajoutVille($request->destination, $request->destination_departement, $request->destination_longitude, $request->destination_latitude);
 
         
         $trajet = new Trajet;
-        $trajet->vil_id_depart = $depart;
-        $trajet->vil_id_arrivee = $destination;
-        $trajet->trj_info = $request->info;
-        $trajet->usr_id = Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d');
+        $trajet->TRJ_DEPART = $$request->depart;
+        $trajet->TRJ_DESTINATION = $$request->destination;
+        $trajet->TRJ_INFO = $request->info;
+        $trajet->USR_ID = Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d');
         $trajet->save();
 
          return "trajet enregistré";
-    }
-
-    public function ajoutVille($nom, $departement, $longitude, $latitude) {
-        $ville = Ville::where('vil_nom', $nom)->select('vil_id')->first();
-        $id = null;
-        if (isset($ville)) {
-            $id = $ville->vil_id;
-           
-            
-        } else {
-            $tmp = new Ville;
-            $tmp->vil_nom = $nom;
-            $tmp->vil_departement = $departement;
-            $tmp->vil_longitude = $longitude;
-            $tmp->vil_latitude = $latitude;
-            $tmp->save();
-            $ville = Ville::where('vil_nom', $nom)->select('vil_id')->first();
-            $id = $ville->vil_id;
-        }
-        return $id;
-    }
     
-    
-
+    }
 }

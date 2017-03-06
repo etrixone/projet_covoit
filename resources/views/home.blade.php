@@ -53,16 +53,28 @@
             <input type="submit" value="Rechercher">	
             
             @if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
             
-            @if (isset(depart)
-@endif
+            
+                @if(!empty($resultat))
+                    <h2>IL Y A DES TRAJETS</h2>
+                    
+                    @foreach ($resultat as $trajet)
+                        <p>Depart: {{ $trajet->TRJ_DEPART }} </p> <br>
+                        <p>Destination: {{ $trajet->TRJ_DESTINATION }} </p> <br>
+                        <p>Info: {{ $trajet->TRJ_INFO }} </p> <br>
+                    @endforeach
+                @endif
+
+
             
         </form>
                 
