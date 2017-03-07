@@ -13,10 +13,12 @@
 
     <div class="row cadre">
         <div class="col-sm-4 center">
-            {{ $trajet->TRJ_DATE_DEPART }} <br>
+            {{ Carbon\Carbon::parse($trajet->TRJ_DATE_DEPART)->format('d-m-Y') }}<br>
+            
             <span class="arial-bold" >1.</span> <span class="arial-bold rouge">Départ : </span> <span class="arial-bold" >{{ $trajet->TRJ_DEPART }}</span>
             <div class="glyphicon glyphicon-arrow-right"></div><br>
-            {{ $trajet->TRJ_HEURE_DEPART }} 
+            {{ Carbon\Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i') }}
+            
         </div>
 
 

@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
     
     <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
-     <link rel="stylesheet" href="http://localhost/laravel/covoiturage/public/css/addresspicker/jquery.ui.all.css">
+    <!-- <link rel="stylesheet" href="http://localhost/laravel/covoiturage/public/css/addresspicker/jquery.ui.all.css">-->
      
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
@@ -29,10 +29,10 @@
         ]) !!};
     </script>
     
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC8zSQHYetf1-fRjNQCy7aYDwT4SCR2Xo0"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC8zSQHYetf1-fRjNQCy7aYDwT4SCR2Xo0"></script>-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    <script src="http://localhost/laravel/covoiturage/public/js/jquery.ui.addresspicker.js"></script>
+    <!--<script src="http://localhost/laravel/covoiturage/public/js/jquery.ui.addresspicker.js"></script>-->
 
 
 </head>
@@ -53,9 +53,9 @@
       <nav class="row">
           <div>
               <ul>
-                  <li class="b1"><a href="#">Rechercher un trajet</a></li>
+                  <li class="b1"><a href="{!! url('home') !!}">Rechercher un trajet</a></li>
                   <li class="b2"><a href="#">Mes réservations</a></li>
-                  <li class="b3"><a href="#">Proposer un trajet</a></li>
+                  <li class="b3"><a href="{!! url('trajet') !!}">Proposer un trajet</a></li>
                   <li class="b4"><a href="#">Mes trajets</a></li>
                   <li class="b5"><a href="#">Contact</a></li>
               </ul>
