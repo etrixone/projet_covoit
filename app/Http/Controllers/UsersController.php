@@ -23,8 +23,17 @@ class UsersController extends Controller
     public function allUsersForm()
     {
         $users = DB::table('users')->where('admin','false')->get();
+        $letters = range('A', 'Z');
 
-        return view('all-users', ['users' => $users]);
+        return view('all-users', ['users' => $users], ['letters' => $letters]);
+    }
+    
+    public function getUsers($letter)
+    {
+        $users = DB::table('users')->where('admin','false')->where('name', 'like', $letter.'%')->get();
+        $letters = range('A', 'Z');
+        
+        return view('all-users', ['users' => $users], ['letters' => $letters]);
     }
     
     public function deleteUser($id)
