@@ -217,6 +217,18 @@ button {
     color: white;  
 }
 
+.proposer
+{
+	background-image:url("../images/bouton.gif");
+        background-position: center;
+	width:200px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	font-weight:bold;
+}
+
 .right {
     text-align: right;
    /* border: solid 1px black;*/
