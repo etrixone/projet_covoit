@@ -46,7 +46,7 @@ class HomeController extends Controller {
        // $destination=Trajet::join('villes', 'villes.id', '=', 'trajets.vil_id_destination')->where('villes.vil_nom',$request->input('depart'))->get();
        //$resultat=Trajet::get();
 
-        return View::make('home')->with('resultat', $trajets);
+        return View::make('trajet')->with('resultat', $trajets);
     }
     public function trajet() {
         return view('ajouter-trajet');

@@ -20,14 +20,6 @@ class Trajet extends Model {
     public function reserver() {
         return $this->belongsToMany('App\User', 'trajets_users', 'TRJ_ID', 'USR_ID');
     }
-    
-    //relation 1:1
-    public function depart() {
-        return $this->belongsTo('App\Ville','VIL_ID_DEPART','ID');
-    }
-    
-        public function destination() {
-        return $this->belongsTo('App\Ville', 'VIL_ID_DESTINATION','ID');
-    }
+
 
 }

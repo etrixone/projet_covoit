@@ -2,43 +2,60 @@
 
 @section('content')   
 
+@if(!empty($resultat))
+
+<h4><strong>Voici les Trajets</strong></h4>               
+
+@foreach ($resultat as $trajet)
 
 <div class="container">
-    <h4><strong>Voici les Trajets</strong></h4>
 
-    
+
     <div class="row cadre">
         <div class="col-sm-4 center">
-            06/03/2017<br>
-            <label class="rouge">1.Départ : </label> <span class="arial" >Béziers</span>
+            {{ $trajet->TRJ_DATE_DEPART }} <br>
+            <span class="arial-bold" >1.</span> <span class="arial-bold rouge">Départ : </span> <span class="arial-bold" >{{ $trajet->TRJ_DEPART }}</span>
             <div class="glyphicon glyphicon-arrow-right"></div><br>
-            8:00
+            {{ $trajet->TRJ_HEURE_DEPART }} 
         </div>
 
 
 
         <div class="col-sm-4 center">
-            
-                <br>
-                <label class="rouge">2.Etape : </label>
-                <br>
-                <span class="arial" >Carcassone<br>perpignan<br>poilhes-montady<br></span>
 
+            <br>
+            <span class="arial-bold" >2.<span class="arial-bold rouge">Etape(s) : </span>
+            <br>
+            @if(!empty($trajet->TRJ_ETAPE1))
+            <span class="arial-bold" >{{ $trajet->TRJ_ETAPE1 }} </span>
+            <span class="arial-bold" >{{ $trajet->TRJ_ETAPE2 }} </span>
+            <span class="arial-bold" >{{ $trajet->TRJ_ETAPE3 }} </span>
+            @else <span class="arial-bold" >Pas d'étape</span>
+            @endif
         </div>
 
         <div class="col-sm-4 center">
             <br>
             <div class="glyphicon glyphicon-arrow-right"></div>
-            <label class="rouge">3.Destination :</label> <span class="arial" > Toulouse</span><br>
+            <span class="arial-bold" >3.<span class="arial-bold rouge">Destination : </span> <span class="arial-bold" >{{ $trajet->TRJ_DESTINATION }}</span><br>
             10:30
 
         </div>
     </div>
+    <div class="row padding-right">
+        <a href="#"><div class="col-sm-offset-10 col-sm-2 details">Voir les details</div></a>
+    </div>
 
-    
 </div>
 
-    
+@endforeach
+
+@else <Span class="arial-bold">Aucun trajet ne correspond a votre recherche</span>
+
+@endif
+
+
+
 
 
 
