@@ -8,6 +8,9 @@
             body{
                 background-color: white;
             }
+            .atoz{
+                display:inline-block;
+            }
             table{
                 margin-left:auto; 
                 margin-right:auto;
@@ -54,7 +57,17 @@
         </script>
         
     </head>
-    <body>            
+    <body>          
+        <ul class="atoz">
+            <li>
+                <a href="{{url('admin/all_users')}}"> Tous </a>
+            </li>
+            @foreach($letters as $letter)
+            <li>
+                <a href="{{url('admin/getUsers/'.$letter)}}"> {{$letter}} </a>
+            </li>
+            @endforeach
+        </ul>
         <table border="1">
             <tr>
                 <th width="100">Identifiant</th>
