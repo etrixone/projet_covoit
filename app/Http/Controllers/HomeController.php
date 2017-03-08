@@ -43,9 +43,17 @@ class HomeController extends Controller {
     public function recherche(Request $request) {
 
         $this->validate($request, ['depart' => 'required', 'destination' => 'required']);
-        $trajets = Trajet::where('TRJ_DEPART',$request->input('depart'))->get();
         
-       // $destination=Trajet::join('villes', 'villes.id', '=', 'trajets.vil_id_destination')->where('villes.vil_nom',$request->input('depart'))->get();
+        $trajets = Trajet::where('TRJ_DEPART', $request->input('depart'))
+                ->where('TRJ_DESTINATION', $request->input('destination'))->get();
+
+        $trajetsEtapesDepart = Trajet::where('TRJ_DEPART', $request->input('depart'))
+                ->where('TRJ_ETAPE1', $request->input('destination'))->get();
+        
+        $trajetsEtapesDestination = Trajet::where('TRJ_ETAPE1', $request->input('depart'))
+                ->where('TRJ_DESTINATION', $request->input('destination'))->get();
+
+        // $destination=Trajet::join('villes', 'villes.id', '=', 'trajets.vil_id_destination')->where('villes.vil_nom',$request->input('depart'))->get();
        //$resultat=Trajet::get();
 
         return View::make('trajet')->with('resultat', $trajets);
@@ -67,13 +75,13 @@ class HomeController extends Controller {
         $trajet->TRJ_DATE_DEPART = Carbon::parse($dateDepart)->format('Y-m-d');
         $trajet->TRJ_HEURE_DEPART = Carbon::parse($request->heureDepart)->format('H:i:00');
         $trajet->TRJ_HEURE_DESTINATION = Carbon::parse($request->heureDestination)->format('H:i:00');
-        $trajet->TRJ_DEPART =  $request->depart;
-        $trajet->TRJ_DESTINATION = $request->destination;
+        $trajet->TRJ_DEPART =  $request->localityDepart;
+        $trajet->TRJ_DESTINATION = $request->localityDestination;
         $trajet->TRJ_INFO = $request->informations;
         $trajet->TRJ_PRIX = $request->prix;
         $trajet->TRJ_FLEXIBLE = $request->flexible;
         $trajet->TRJ_PLACES = $request->places;
-        $trajet->TRJ_ETAPE1 = $request->etape1;
+        $trajet->TRJ_ETAPE1 = $request->localityEtape1;
         $trajet->TRJ_ETAPE2 = $request->etape2;
         $trajet->TRJ_ETAPE3 = $request->etape3;
                 $trajet->USR_ID = Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d');

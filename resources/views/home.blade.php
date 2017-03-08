@@ -1,54 +1,19 @@
 @extends('layouts.app2')
 
 @section('content')    
-    <script>
-      $(function() {
- 
-    var addresspickerMap = $( "#addresspicker_map" ).addresspicker({
-        elements: {
-            map: "#map",
-            lat: "#lat",
-            lng: "#lng",
-            locality: '#locality',
-            country: '#country'
-        }
-    });
-    var gmarker = addresspickerMap.addresspicker( "marker");
-    gmarker.setVisible(true);
-    addresspickerMap.addresspicker( "updatePosition");
-    
-    var addresspickerMap2 = $( "#addresspicker_map2" ).addresspicker({
-        elements: {
-            map: "#map2",
-            lat: "#lat2",
-            lng: "#lng2",
-            locality: '#locality2',
-            country: '#country2'
-        }
-    });
-    var gmarker = addresspickerMap2.addresspicker( "marker");
-    gmarker.setVisible(true);
-    addresspickerMap2.addresspicker( "updatePosition");
- 
-});
-  
-  </script>
-
       
     <center>
         <h1>Bienvenue sur saliege covoit</h1> 
                 <br/><br/>
-                
-
     	<form method="POST" action="{!! url('home') !!}" accept-charset="UTF-8">
 		{!! csrf_field() !!}   
 	
-           <label>Départ : </label> <input id="addresspicker_map" />  
-           <label>Destination : </label> <input id="addresspicker_map2" /><br/> 
+           <label>Départ : </label> <input id="depart" type="text"/> 
+           <input id="localityDepart" name="depart" type="hidden"/><br/> 
            
-            <input id="locality"  name="depart" readonly="true" type="hidden"> <br/>
+           <label>Destination : </label> <input id="destination" type="text"/> 
+           <input id="localityDestination" name="destination" type="hidden"/><br/> 
 
-            <input id="locality2" name="destination" readonly="true" type="hidden"> <br/>
 
             <input type="submit" value="Rechercher">	
             
@@ -61,9 +26,7 @@
                 </ul>
             </div>
             @endif
-
-            
-            
+     
                 @if(!empty($resultat))
                     <h2>IL Y A DES TRAJETS</h2>
                     
@@ -74,13 +37,48 @@
                     @endforeach
                 @endif
 
-
-            
         </form>
-                
-              
-                
-             <div id="map"></div>
-             <div id="map2"></div>
+
     </center>
+
+<script>
+    
+    function initMap(){
+        var origin_input = document.getElementById('depart');
+        var destination_input = document.getElementById('destination');
+
+        var origin_autocomplete = new google.maps.places.Autocomplete(origin_input);
+        var destination_autocomplete =
+        new google.maps.places.Autocomplete(destination_input);
+    
+        function fillInAddressDepart() {
+    // Get the place details from the autocomplete object.
+            var place = origin_autocomplete.getPlace();
+            //init input Form
+            document.getElementById('localityDepart').value = '';
+            document.getElementById('localityDepart').disabled = false;
+            //val=locality -> input locality Depart
+            var val = place.address_components[0]['long_name'];
+            document.getElementById('localityDepart').value = val;
+        }
+        function fillInAddressDestination() {
+        // Get the place details from the autocomplete object.
+        var place = destination_autocomplete.getPlace();
+            //init input Form
+            document.getElementById('localityDestination').value = '';
+            document.getElementById('localityDestination').disabled = false;
+            //val=locality -> input locality Depart
+            var val = place.address_components[0]['long_name'];
+            document.getElementById('localityDestination').value = val;
+        }
+        
+        origin_autocomplete.addListener('place_changed', fillInAddressDepart);
+        destination_autocomplete.addListener('place_changed', fillInAddressDestination);
+        
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8zSQHYetf1-fRjNQCy7aYDwT4SCR2Xo0&signed_in=true&libraries=places&callback=initMap"
+        async defer></script>
+
+    
 @endsection
