@@ -64,6 +64,10 @@ class HomeController extends Controller {
     public function trajet() {
         return view('ajouter-trajet');
     }
+	
+	public function detailsTrajet(){
+		return view('details-trajet');
+	}
 
     public function ajoutTrajet(Request $request) {
         $this->validate($request, ['date' => 'date_format:"d/m/Y', 'heureDepart' => 'date_format:"H:i"', 'heureDestination' => 'date_format:"H:i"', 'depart' => 'required', 'destination' => 'required', 'places' => 'required|integer|between:1,7', 'prix' => 'required|integer|between:1,500']);

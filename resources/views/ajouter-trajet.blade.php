@@ -4,9 +4,10 @@
 
 <section class="container small-container">
     <h4><strong>Proposez votre trajet</strong></h4>
-    <form class="form-horizontal" method="POST" action="{!! url('trajet') !!}" accept-charset="UTF-8">
+    <form class= method="POST" action="{!! url('trajet') !!}" accept-charset="UTF-8">
     {!! csrf_field() !!}    
-        <div class="col-sm-6">
+        <div class="form-horizontal">
+           <div class="col-sm-6">
             <div class="col-sm-4">
                 <label for="dateL">Date</label>
             </div>
@@ -35,7 +36,13 @@
                 <label for="placesL">Places disponibles</label>
             </div>
             <div class="col-sm-7">
-                <input type="number" class="form-control input-sm" name="places" placeholder="exemple : 3">
+                <select class="form-control input-sm">
+                	<option>1</option>
+                	<option>2</option>
+                	<option>3</option>
+                	<option>4</option>
+                	<option>5</option>
+                </select>
             </div>
         </div>
         <div class="col-sm-6">
@@ -63,7 +70,11 @@
                 <label for="tailleBagagesL">Taille des bagages</label>
             </div>
             <div class="col-sm-7">
-                <input type="text" class="form-control input-sm" name="tailleBagages" placeholder="exemple : 3 valises">
+                <select class="form-control input-sm">
+                	<option>Petit</option>
+                	<option>Moyen</option>
+                	<option>Grand</option>
+				</select>
             </div>
         </div>
         <div class="col-sm-6">
@@ -112,16 +123,16 @@
                 <label for="heureArriveeL">Heure prévue</label>
             </div>
             <div class="col-sm-4">
-                <input type="text" class="form-control input-sm" name="heureDestination" placeholder="exemple : 12h00">
+                <input type="time" class="form-control input-sm" name="heureDestination" placeholder="exemple : 12h00">
             </div>
         </div>   
 
- 
-        <div class="col-sm-offset-8">
+ 		</div>
+        <div class="col-sm-offset-8 col-sm-4">
           <input type="submit" class="btn proposer" value="Proposer un trajet" name="proposerTrajet">  
-          <input type="text" id="localityDepart" name="localityDepart"/>
-          <input type="text" id="localityDestination" name="localityDestination"/>
-          <input type="text" id="localityEtape1" name="localityEtape1"/>
+          <input type="text" id="localityDepart" name="localityDepart" class="invisible"/>
+          <input type="text" id="localityDestination" name="localityDestination" class="invisible"/>
+          <input type="text" id="localityEtape1" name="localityEtape1" class="invisible"/>
         </div>
     </form>
     <div id="map"></div>
