@@ -22,7 +22,7 @@ class Enable
         
         //On recupere la valeur du champ "enable" dans la base.
         $enable=User::where('id',$id)->select('enable')->first();
-  
+        
         //Cast puis verification du champs.
        if (intval($enable->enable)==1) {
         return $next($request);

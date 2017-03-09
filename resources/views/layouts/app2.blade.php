@@ -12,8 +12,8 @@
 
     <!-- Styles -->
     <!-- Bootstrap -->
-    <link href="http://localhost/laravel/covoiturage/public/css/bootstrap.css" rel="stylesheet">
-    <link href="http://localhost/laravel/covoiturage/public/css/style.css" rel="stylesheet">
+    <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     
     <!-- Import police --> 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
@@ -40,12 +40,12 @@
   <div class="container-fluid">
       <header class="row">
        <div class="logo">
-           <img src="http://localhost/laravel/covoiturage/public/images/Logo2.gif">
+           <img src="{{ asset('/images/Logo2.gif') }}">
        </div>
        <div class="logo2">
-          <img src="http://localhost/laravel/covoiturage/public/images/Utilisateur2.gif">
-           <p class="prenom">Stacy</p>
-           <p class="nom">Boulanger</p>
+          <img src="{{ asset('/images/Utilisateur2.gif') }}">
+           <p class="prenom">{{ Auth::user()->surname }}</p>
+           <p class="nom">{{ Auth::user()->name }}</p>
        </div>
         <!--<img src="http://localhost/laravel/covoiturage/public/images/logo3.gif" class="logo">-->
          <div class="barre"></div>
