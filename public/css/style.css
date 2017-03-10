@@ -17,8 +17,21 @@ body
 
 .container
 {
-	width:60%;
+	width:750px;
 	margin:auto;
+}
+
+@media screen and (max-width: 768px)
+{
+	.container
+	{
+		width:400px;
+	}
+	
+	.fleche-proposer
+	{
+		visibility: hidden;
+	}
 }
 
 
@@ -30,10 +43,30 @@ h4
 
 .form-horizontal
 {
-	border:1px solid lightgrey;
-	border-radius:10px;
+	border:2px solid #e0dacc;
+	border-radius:20px;
 	padding:10px;
-	overflow:auto;
+	background: linear-gradient(to bottom, #ffffff 25%,#fff2e2 100%);
+}
+
+input[type="text"], input[type="number"], input[type="time"]
+{
+	box-shadow: 2px 2px 1px 1px #ccc;
+}
+
+input[type="time"]
+{
+	width:50%;
+}
+
+.listeD
+{
+	box-shadow: 2px 2px 1px 1px #ccc;
+}
+
+select
+{
+	
 }
 
 .col-sm-6
@@ -62,6 +95,11 @@ header
     margin-left:0px;
     min-width:100%;
     background-color:#c03644; /* #b42026 rouge plus foncé */
+}
+
+.barre-infos
+{
+	border-top:1px solid #b42026;
 }
 
 .logo
@@ -222,7 +260,8 @@ button {
 {
 	background-image:url("../images/bouton.gif");
     background-position: center;
-	width:200px;
+	width:50%;
+	margin-left:25%;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
 	border-bottom-left-radius: 20px;
@@ -252,7 +291,7 @@ button {
 }
 
 .cadre {
-    border: solid 2px grey;
+    border: solid 2px #e0dacc;
     border-radius: 15px;
     background: linear-gradient(to bottom, #ffffff 25%,#fff2e2 100%);
     padding-bottom: 10px;
@@ -292,17 +331,26 @@ button {
 
 .form-details
 {
-	padding-left:30px;
-	padding-right:30px;
+	/*padding-left:3%;
+	padding-right:3%;*/
 	border-top-left-radius: 0px;
+	font-size:1.2em;
+	position:relative;
+}
+
+.form-proposer
+{
+	padding-left:8%;
+	padding-right:8%;
 }
 
 .details-user
 {
-	margin-left:-10%;
-	float:left;
+	position:absolute;
+	left:-150px;
+	top:-2px;
 	background-color:#e0dacc;
-	height:150px;
+	height:170px;
 	width:150px;
 	border-bottom-left-radius:20px;
 	border-top-left-radius: -20px;
@@ -352,4 +400,19 @@ button {
 	margin-top:-10px;
 }
 
+
+.fleche-proposer
+{
+	left:25px;
+}
+
+.fleche-proposer2
+{
+	top:20px;
+}
+
+.margin
+{
+	margin-bottom:10px;
+}
 
