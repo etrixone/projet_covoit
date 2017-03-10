@@ -51,7 +51,7 @@ Route::get('deleteAll', 'UsersController@deleteAllUsers');
 Route::get('status/{id}', 'UsersController@statusUser');
 //Route qui permet de changer le statut de tous les utilisateurs depuis la page all_users
 Route::get('status', 'UsersController@statusAllUsers');
-//Route qui permet de changer le statut de tous les utilisateurs depuis la page all_users
+//Route qui permet de changer de récuperer les utilisateurs selon la lettre
 Route::get('getUsers/{letter}', 'UsersController@getUsers');
 });
 

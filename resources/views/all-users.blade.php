@@ -84,7 +84,13 @@
                 <td>{{$user->name}} {{$user->surname}}</td>
                 <td>{{$user->email}}</td>  
                 <td>{{$user->last_connection}}</td>  
-                <td>{{$user->enable}}</td>  
+                <td>
+                    @if (1==$user->enable)
+                    Actif
+                    @else
+                    Inactif
+                    @endif
+                </td>  
                 <td>
                     <form method="get" action="{{url('admin/status/'.$user->id)}}">
                     <input type="submit">
