@@ -5,7 +5,7 @@
     <center>
         <h1>Bienvenue sur saliege covoit</h1> 
                 <br/><br/>
-    	<form method="POST" action="{!! url('home') !!}" accept-charset="UTF-8">
+    	<form method="POST" action="{!! url('rechercher_un_trajet') !!}" accept-charset="UTF-8">
 		{!! csrf_field() !!}   
 	
            <label>Départ : </label> <input id="depart" type="text"/> 

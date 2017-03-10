@@ -20,14 +20,20 @@ Auth::routes();
 Route::group(['middleware' => ['enable']], function () {
     
 Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@home');
-Route::post('/home', 'HomeController@recherche');
+Route::get('/rechercher_un_trajet', 'HomeController@rechercherUnTrajet');
+Route::post('/rechercher_un_trajet', 'HomeController@resultatRecherche');
+
+Route::get('/details_trajet/{id}', 'HomeController@detailsTrajet')->name('details_trajet');
+
+
+
+
 Route::get('/trajet', 'HomeController@trajet');
 Route::post('/trajet', 'HomeController@ajoutTrajet');
 Route::get('/details', 'HomeController@detailsTrajet');
-Route::get('/test', function(){
-    return view('trajet');
-});
+Route::get('/test/{id}', function(){
+    return view('test');
+})->name('test');
 
 
 

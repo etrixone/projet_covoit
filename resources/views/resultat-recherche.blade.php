@@ -42,11 +42,13 @@
             <div class="glyphicon glyphicon-arrow-right"></div>
             <span class="arial-bold" >3.</span><span class="arial-bold rouge">Destination : </span> <span class="arial-bold" >{{ $trajet->TRJ_DESTINATION }}</span><br>
             {{ Carbon\Carbon::parse($trajet->TRJ_HEURE_DESTINATION)->format('H:i') }}
+            
 
         </div>
     </div>
     <div class="row padding-right">
-        <a href="#"><div class="col-sm-offset-10 col-sm-2 details">Voir les details</div></a>
+        
+        <a href="{{ route('details_trajet',['id' => $trajet->ID]) }}" ><div class="col-sm-offset-10 col-sm-2 details">Voir les details</div></a>
     </div>
 
 </div>
@@ -93,7 +95,7 @@
                 </div>
                 </div>
                 <div class="row padding-right">
-                    <a href="#"><div class="col-sm-offset-10 col-sm-2 details">Voir les details</div></a>
+                    <a href="{{ route('details_trajet',['id' => $trajet->ID]) }}"><div class="col-sm-offset-10 col-sm-2 details">Voir les details</div></a>
                 </div>
 
         </div>
@@ -140,7 +142,7 @@
                 </div>
                 </div>
                 <div class="row padding-right">
-                    <a href="#"><div class="col-sm-offset-10 col-sm-2 details">Voir les details</div></a>
+                    <a href="{{ route('details_trajet',['id' => $trajet->ID]) }}"><div class="col-sm-offset-10 col-sm-2 details">Voir les details</div></a>
                 </div>
 
         </div>
