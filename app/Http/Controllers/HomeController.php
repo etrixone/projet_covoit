@@ -78,6 +78,44 @@ class HomeController extends Controller {
                 ->with('user', $user);
     }
     
+    public function detailsTrajetReservation($id) {
+        
+        $trajet = Trajet::where('ID',$id)->first();
+        
+        $depart = strtotime(Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i'));
+        $destination = strtotime(Carbon::parse($trajet->TRJ_HEURE_DESTINATION)->format('H:i'));
+        $duree = gmdate('H:i',$destination-$depart);
+
+        $voiture = Voiture::where('USR_ID', $trajet->USR_ID)->first();
+        $user = User::where('ID', $trajet->USR_ID)->first();
+        
+        
+        return View::make('details-trajet-reservation')
+                ->with('trajet', $trajet)
+                ->with('duree', $duree)
+                ->with('voiture', $voiture)
+                ->with('user', $user);
+    }
+    
+    public function detailsTrajetProposer($id) {
+        
+        $trajet = Trajet::where('ID',$id)->first();
+        
+        $depart = strtotime(Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i'));
+        $destination = strtotime(Carbon::parse($trajet->TRJ_HEURE_DESTINATION)->format('H:i'));
+        $duree = gmdate('H:i',$destination-$depart);
+
+        $voiture = Voiture::where('USR_ID', $trajet->USR_ID)->first();
+        $user = User::where('ID', $trajet->USR_ID)->first();
+        
+        
+        return View::make('details-trajet-proposer')
+                ->with('trajet', $trajet)
+                ->with('duree', $duree)
+                ->with('voiture', $voiture)
+                ->with('user', $user);
+    }
+    
     public function reserverTrajet(Request $request){
         
         $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));

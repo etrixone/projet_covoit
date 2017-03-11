@@ -48,12 +48,15 @@
         </div>
         <div class="row padding-right">
 
-            <a href="{{ route('details_trajet',['id' => $trajet->ID]) }}" ><div class="col-sm-offset-10 col-sm-2 details">Voir les details</div></a>
+            <a href="{{ route('details_trajet_proposer',['id' => $trajet->ID]) }}" ><div class="col-sm-offset-10 col-sm-2 details">Voir les details</div></a>
         </div>
 
     </div>
 
     @endforeach
+    
+@else
+<h4><strong>Vous n'avez pas proposé de trajet</strong></h4> 
 @endif
 
 
