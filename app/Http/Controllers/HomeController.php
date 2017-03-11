@@ -8,6 +8,7 @@ use App\User;
 use App\Ville;
 use App\Voiture;
 use App\Trajet;
+use App\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -62,7 +63,6 @@ class HomeController extends Controller {
         
         $trajet = Trajet::where('ID',$id)->first();
         
-                
         $depart = strtotime(Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i'));
         $destination = strtotime(Carbon::parse($trajet->TRJ_HEURE_DESTINATION)->format('H:i'));
         $duree = gmdate('H:i',$destination-$depart);
@@ -77,6 +77,14 @@ class HomeController extends Controller {
                 ->with('voiture', $voiture)
                 ->with('user', $user);
     }
+    
+    public function reserverTrajet(Request $request){
+        
+        $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
+            $user->reserver()->attach([$request->id]);
+            return "trajet reservé!";
+    }
+    
 
     public function proposerUnTrajet() {
         return view('proposer-un-trajet');
