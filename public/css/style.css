@@ -50,7 +50,7 @@ h4
         
 }
 
-input[type="text"], input[type="number"], input[type="time"]
+input[type="text"], input[type="number"], input[type="time"], input[type="date"]
 {
 	box-shadow: 2px 2px 1px 1px #ccc;
 }
@@ -187,6 +187,7 @@ li
     min-width:20%;
     padding-top:4px;
     margin-bottom: 20px;
+	font-weight: bold;
 }
 
 li a
@@ -262,7 +263,7 @@ button {
 .proposer
 {
 	background-image:url("../images/bouton.gif");
-        background-position: center;
+    background-position: center;
 	width:50%;
 	margin-left:25%;
 	border-top-left-radius: 0px;
@@ -283,7 +284,6 @@ button {
 
 .center {
     text-align: center;
-    
     margin:0px;
     padding: 0px;
 }
@@ -301,6 +301,7 @@ button {
     padding-bottom: 10px;
     
 }
+
 .rouge {
     color:#c03644; 
 }
@@ -427,3 +428,55 @@ button {
     text-align: center;
     
 }
+
+.flex
+{
+	display:flex;
+	width:400px;
+}
+
+.flex-barre
+{
+	border-top:1px solid black;
+}
+
+.flex-barre1
+{
+	width:150px;
+}
+
+.flex-barre2
+{
+	width:130px;
+}
+
+.flex-barre3
+{
+	width:160px;
+}
+
+.flex label
+{
+	margin-top:5px;
+}
+
+
+.rechercher
+{
+	width:180px;
+	border-radius:20px;
+	border:0;
+	height:30px;
+	background-image: url(../images/bouton.gif);
+	color:white;
+	font-weight: bold;
+}
+
+
+.flex .form-control
+{
+	width:180px;
+}
+
+
+
