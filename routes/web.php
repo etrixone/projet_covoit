@@ -24,14 +24,18 @@ Route::get('/rechercher_un_trajet', 'HomeController@rechercherUnTrajet');
 Route::post('/rechercher_un_trajet', 'HomeController@resultatRecherche');
 
 Route::get('/details_trajet/{id}', 'HomeController@detailsTrajet')->name('details_trajet');
+Route::post('/reservation', 'HomeController@reserverTrajet')->name('reservation');
+
 
 
 
 
 Route::get('/proposer_un_trajet', 'HomeController@proposerUnTrajet');
 Route::post('/proposer_un_trajet', 'HomeController@validerProposerUnTrajet');
-Route::get('/details', 'HomeController@detailsTrajet');
-Route::get('/test/{id}', function(){
+
+Route::post('/details', 'HomeController@detailsTrajet');
+
+Route::get('/test/', function(){
     return view('test');
 })->name('test');
 

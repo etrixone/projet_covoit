@@ -15,7 +15,7 @@
 
             <div class="form-horizontal form-details">
 
-                <form class=m ethod="POST" action="" accept-charset="UTF-8">
+                <form class=m ethod="get" action="{{ route('details_trajet',['id' => $trajet->ID]) }}" accept-charset="UTF-8">
 
                     <div class="row">
                         <div class="col-sm-6" style="text-align:center;">
@@ -79,7 +79,7 @@
                                 <hr class="hr-details">
                             </div>
                             <div class="col-sm-12">
-                                <textarea class="form-control" name="informations" rows="5">{{ $trajet->TRJ_INFO}}</textarea>
+                                <textarea class="form-control"  rows="5">{{ $trajet->TRJ_INFO}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                         </a>-->
             </div>
             <div class="col-sm-6">
-                <input type="submit" class="btn proposer" value="Réserver ce trajet" name="proposerTrajet">
+                <input type="submit" class="btn proposer" value="Réserver ce trajet"/>
             </div>
         </form>
         @endforeach
@@ -105,7 +105,7 @@
         @foreach ($trajetsEtapesDepart  as $trajet)
             <div class="form-horizontal form-details">
 
-                <form class=m ethod="POST" action="" accept-charset="UTF-8">
+                <form class=m ethod="get" action="{{ route('details_trajet',['id' => $trajet->ID]) }}" accept-charset="UTF-8">
 
                     <div class="row">
                         <div class="col-sm-6" style="text-align:center;">
@@ -169,7 +169,7 @@
                                 <hr class="hr-details">
                             </div>
                             <div class="col-sm-12">
-                                <textarea class="form-control" name="informations" rows="5">{{ $trajet->TRJ_INFO}}</textarea>
+                                <textarea class="form-control" rows="5">{{ $trajet->TRJ_INFO}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
                         </a>-->
             </div>
             <div class="col-sm-6">
-              <input type="submit" class="btn proposer" value="Réserver ce trajet" name="proposerTrajet">
+              <input type="submit" class="btn proposer" value="Réserver ce trajet">
             </div>
         </form>
         @endforeach
@@ -194,7 +194,7 @@
 
             <div class="form-horizontal form-details">
 
-                <form class=m ethod="POST" action="" accept-charset="UTF-8">
+                <form class=m ethod="get" action="{{ route('details_trajet',['id' => $trajet->ID]) }}" accept-charset="UTF-8">
 
                     <div class="row">
                         <div class="col-sm-6" style="text-align:center;">
@@ -258,7 +258,7 @@
                                 <hr class="hr-details">
                             </div>
                             <div class="col-sm-12">
-                                <textarea class="form-control" name="informations" rows="5">{{ $trajet->TRJ_INFO}}</textarea>
+                                <textarea class="form-control" rows="5">{{ $trajet->TRJ_INFO}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -269,7 +269,7 @@
                         </a>-->
             </div>
             <div class="col-sm-6">
-              <input type="submit" class="btn proposer" value="Réserver ce trajet" name="proposerTrajet">
+              <input type="submit" class="btn proposer" value="Réserver ce trajet"/>
             </div>
         </form>
         @endforeach
