@@ -47,7 +47,10 @@
                 <img src="{{ asset('/images/Logo2.gif') }}">
             </div>
             <div class="logo2">
-                <img src="{{ asset('/images/Utilisateur2.gif') }}">
+                <a href="{{ route('logout') }}"onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ asset('/images/Utilisateur2.gif') }}"></a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
                 <p class="prenom">{{ Auth::user()->surname }}</p>
                 <p class="nom">{{ Auth::user()->name }}</p>
             </div>
