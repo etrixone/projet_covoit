@@ -128,7 +128,6 @@
                 @if(!empty($trajet->TRJ_ETAPE1))
                 <span class="arial-bold" >{{ $trajet->TRJ_ETAPE1 }} </span>
                 <span class="arial-bold" >{{ $trajet->TRJ_ETAPE2 }} </span>
-                <span class="arial-bold" >{{ $trajet->TRJ_ETAPE3 }} </span>
                 @else <span class="arial-bold" >Pas d'étape</span>
                 @endif
         </div>

@@ -6,6 +6,7 @@ use DB;
 use View;
 use App\User;
 use App\Ville;
+use App\Voiture;
 use App\Trajet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -39,10 +40,10 @@ class HomeController extends Controller {
     public function resultatRecherche(Request $request) {
 
         $this->validate($request, ['depart' => 'required', 'destination' => 'required']);
-
+        
         $trajets = Trajet::where('TRJ_DEPART', $request->input('depart'))
                         ->where('TRJ_DESTINATION', $request->input('destination'))->get();
-
+        
         $trajetsEtapesDepart = Trajet::where('TRJ_DEPART', $request->input('depart'))
                         ->where('TRJ_ETAPE1', $request->input('destination'))->get();
 
@@ -58,12 +59,24 @@ class HomeController extends Controller {
                         ->with('trajetsEtapesDestination', $trajetsEtapesDestination);
     }
 
-    public function detailsTrajet(Request $id) {
+    public function detailsTrajet($id) {
         
-        $trajet = Trajet::where('ID',$id)->get();
+        $trajet = Trajet::where('ID',$id)->first();
+        
+                
+        $depart = strtotime(Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i'));
+        $destination = strtotime(Carbon::parse($trajet->TRJ_HEURE_DESTINATION)->format('H:i'));
+        $duree = gmdate('H:i',$destination-$depart);
+
+        $voiture = Voiture::where('USR_ID', $trajet->USR_ID)->first();
+        $user = User::where('ID', $trajet->USR_ID)->first();
+        
         
         return View::make('details-trajet')
-                ->with('trajet', $trajet);
+                ->with('trajet', $trajet)
+                ->with('duree', $duree)
+                ->with('voiture', $voiture)
+                ->with('user', $user);
     }
 
     public function trajet() {
@@ -92,7 +105,7 @@ class HomeController extends Controller {
         $trajet->TRJ_PLACES = $request->places;
         $trajet->TRJ_ETAPE1 = $request->localityEtape1;
         $trajet->TRJ_ETAPE2 = $request->etape2;
-        $trajet->TRJ_ETAPE3 = $request->etape3;
+        $trajet->TRJ_BAGAGE = $request->bagage;
         $trajet->USR_ID = Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d');
         $trajet->save();
 

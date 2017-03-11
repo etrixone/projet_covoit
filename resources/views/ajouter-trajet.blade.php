@@ -69,7 +69,7 @@
                         <label for="placesL">Places disponibles</label>
                     </div>
                     <div class="col-sm-7 margin">
-                        <select class="form-control input-sm listeD">
+                        <select class="form-control input-sm listeD" name="places">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -87,7 +87,7 @@
                         <label for="tailleBagagesL">Taille des bagages</label>
                     </div>
                     <div class="col-sm-7 margin">
-                        <select class="form-control input-sm listeD">
+                        <select class="form-control input-sm listeD" name=bagage"">
                             <option>Petit</option>
                             <option>Moyen</option>
                             <option>Grand</option>

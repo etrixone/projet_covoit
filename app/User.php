@@ -38,5 +38,9 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Trajet', 'trajets_users', 'USR_ID', 'TRJ_ID');
     }
     
+    public function posseder() {
+        return $this->belongsTo('App\Voiture');
+    }
+    
     public $timestamps = false;
 }
