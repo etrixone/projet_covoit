@@ -26,6 +26,9 @@ Route::post('/rechercher_un_trajet', 'HomeController@resultatRecherche');
 Route::get('/details_trajet/{id}', 'HomeController@detailsTrajet')->name('details_trajet');
 Route::post('/reservation', 'HomeController@reserverTrajet')->name('reservation');
 
+Route::get('/mes_reservations', 'HomeController@mesReservations');
+Route::get('/mes_trajets', 'HomeController@mesTrajets');
+
 
 
 

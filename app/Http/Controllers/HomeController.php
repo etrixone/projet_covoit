@@ -81,8 +81,38 @@ class HomeController extends Controller {
     public function reserverTrajet(Request $request){
         
         $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
-            $user->reserver()->attach([$request->id]);
-            return "trajet reservé!";
+        $user->reserver()->attach([$request->id]);
+            
+        $trajet = Trajet::find($request->id);
+        
+        
+        $places = $trajet->TRJ_PLACES;
+        $trajet->TRJ_PLACE = $places-1;
+        $trajet->save();
+        
+        return View::make('message')
+                        ->with('message', "Reservation effectuée !");
+
+    }
+    
+    public function mesReservations() {
+        $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
+        
+        $reservations = $user->reserver()->get();
+        
+        return view('mes-reservations')
+            ->with('reservations', $reservations);
+    }
+    
+        public function mesTrajets() {
+        $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
+        
+        $trajets = $user->proposer()->get();
+        
+        
+        
+        return view('mes-trajets')
+            ->with('trajets', $trajets);
     }
     
 

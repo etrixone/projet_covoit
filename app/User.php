@@ -28,9 +28,9 @@ class User extends Authenticatable
     ];
     
     //Relation user plusieurs trajets 1n
-    public function trajets() 
+    public function proposer() 
     {
-        return $this->hasMany('App\Trajet');
+        return $this->hasMany('App\Trajet' ,'USR_ID' , 'id');
     }
     
     //relation nn
