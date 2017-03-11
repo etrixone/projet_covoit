@@ -2,7 +2,8 @@
 
 <section class="container small-container">
     <h4><strong>Proposez votre trajet</strong></h4>
-    <form method="POST" action="{!! url('trajet') !!}" accept-charset="UTF-8">
+    <form method="POST" action="{!! url('proposer_un_trajet') !!}" accept-charset="UTF-8">
+        {!! csrf_field() !!}
         <div class="form-horizontal form-proposer">
             <div class="row">
                 <div class="col-sm-6">
@@ -104,128 +105,8 @@
             </div>
 
         </div>
-        {!! csrf_field() !!}
-        <!--<div class="form-horizontal">
-           <div class="col-sm-6">
-            <div class="col-sm-4">
-                <label for="dateL">Date</label>
-            </div>
-            <div class="col-sm-7">
-                <input type="text" class="form-control input-sm" name="date" placeholder="jj/mm/aaaa">	
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="col-sm-4">
-                <label for="tempsTrajetL">Flexibilité (en minute)</label>
-            </div>
-            <div class="col-sm-7">
-                <input type="number" class="form-control input-sm" name="flexible" placeholder="exemple : 2h30">
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <br><div class="col-sm-4">
-                <label for="departL">Votre départ</label>
-            </div>
-            <div class="col-sm-7">
-                <input type="text" class="form-control input-sm" id="depart" name="depart" placeholder="exemple : Bordeaux">
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <br><div class="col-sm-4">
-                <label for="placesL">Places disponibles</label>
-            </div>
-            <div class="col-sm-7">
-                <select class="form-control input-sm listeD">
-                	<option>1</option>
-                	<option>2</option>
-                	<option>3</option>
-                	<option>4</option>
-                	<option>5</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <br><div class="col-sm-4">
-                <label for="heureDepartL">Heure prévue</label>
-            </div>
-            <div class="col-sm-4">
-                <input type="time" class="form-control input-sm" name="heureDepart" placeholder="exemple : 12h00">
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <br><div class="col-sm-4">
-                <label for="prixDemandeL">Prix demandé</label>
-            </div>
-            <div class="col-sm-7">
-                <input type="number" class="form-control input-sm" name="prix" placeholder="exemple : 10€">
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <br>
-            <div class="glyphicon glyphicon-arrow-down fleche-proposer"></div>
-        </div>
-        <div class="col-sm-6">
-            <br><div class="col-sm-4">
-                <label for="tailleBagagesL">Taille des bagages</label>
-            </div>
-            <div class="col-sm-7">
-                <select class="form-control input-sm listeD">
-                	<option>Petit</option>
-                	<option>Moyen</option>
-                	<option>Grand</option>
-				</select>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <br><div class="col-sm-4">
-                <label for="etapesL">Vos étapes</label>
-            </div>
-            <div class="col-sm-7">
-                <input type="text" class="form-control input-sm" id="etape1" name="etape1" placeholder="exemple : Agen">
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <br>
-            <hr class="barre-infos">
-        </div>
-        <div class="col-sm-6">
-            <div class="col-sm-7 col-sm-offset-4">
-                <input type="text" class="form-control input-sm" id="etape2" name="etape2" placeholder="">
-            </div>
-            <div class="col-sm-6">
-            <div class="glyphicon glyphicon-arrow-down fleche-proposer fleche-proposer2"></div>
-        </div>
-        </div>
-        <div class="col-sm-6">
-            <fieldset>Informations complémentaires :</fieldset>
-            <textarea class="form-control" name="informations" rows="3" placeholder="Exemple : Je pars de la place de la victoire à bordeaux, je fais une étape à 10h30 au péage d'Agen et je termine le trajet au lycée Saliège à Balma"></textarea>
-        </div>
-        <div class="col-sm-6">
-            <div class="col-sm-4">
-                <label for="arriveeL">Votre arrivée</label><br><br>
-                <label for="heureArriveeL">Heure prévue</label>
-            </div>
-            <div class="col-sm-7">
-                <input type="text" class="form-control input-sm" id="destination" name="destination" placeholder="exemple : Balma">
-                <br>
-                <div class="col-sm-8 col-sm-pull-1">
-                <input type="time" class="form-control input-sm" name="heureDestination" placeholder="exemple : 12h00">
-                </div>
-            </div>
-        </div>
-        <!--<div class="col-sm-6">
-            <br><div class="col-sm-4">
-                <label for="heureArriveeL">Heure prévue</label>
-            </div>
-            <div class="col-sm-4">
-                <input type="time" class="form-control input-sm" name="heureDestination" placeholder="exemple : 12h00">
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <br><br>
-        </div>
-          
-		-->
+        
+      
 			<div class="col-sm-6">
 				
 			</div>
@@ -235,6 +116,7 @@
             <input type="text" id="localityDepart" name="localityDepart" class="invisible" />
             <input type="text" id="localityDestination" name="localityDestination" class="invisible" />
             <input type="text" id="localityEtape1" name="localityEtape1" class="invisible" />
+            <input type="text" id="localityEtape2" name="localityEtape2" class="invisible" />
     </form>
     <div id="map"></div>
 </section>
@@ -271,6 +153,7 @@
         var origin_input = document.getElementById('depart');
         var destination_input = document.getElementById('destination');
         var etape1_input = document.getElementById('etape1');
+        var etape2_input = document.getElementById('etape2');
         //var modes = document.getElementById('mode-selector');
 
         var origin_autocomplete = new google.maps.places.Autocomplete(origin_input);
@@ -280,6 +163,7 @@
         destination_autocomplete.bindTo('bounds', map);
 
         var etape1_autocomplete = new google.maps.places.Autocomplete(etape1_input);
+        var etape2_autocomplete = new google.maps.places.Autocomplete(etape2_input);
 
 
         google.maps.TravelMode.Driving;
@@ -379,9 +263,20 @@
             document.getElementById('localityEtape1').value = val;
         }
 
+        function fillInAddressEtape2() {
+            // Get the place details from the autocomplete object.
+            var place = etape2_autocomplete.getPlace();
+            //init input Form
+            document.getElementById('localityEtape2').value = '';
+            document.getElementById('localityEtape2').disabled = false;
+            //val=locality -> input locality Depart
+            var val = place.address_components[0]['long_name'];
+            document.getElementById('localityEtape2').value = val;
+        }
         origin_autocomplete.addListener('place_changed', fillInAddressDepart);
         destination_autocomplete.addListener('place_changed', fillInAddressDestination);
         etape1_autocomplete.addListener('place_changed', fillInAddressEtape1);
+        etape2_autocomplete.addListener('place_changed', fillInAddressEtape2);
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8zSQHYetf1-fRjNQCy7aYDwT4SCR2Xo0&signed_in=true&libraries=places&callback=initMap" async defer></script>

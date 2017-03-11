@@ -47,6 +47,7 @@ h4
 	border-radius:20px;
 	padding:10px;
 	background: linear-gradient(to bottom, #ffffff 25%,#fff2e2 100%);
+        
 }
 
 input[type="text"], input[type="number"], input[type="time"]
@@ -177,6 +178,7 @@ ul
     padding:0;
     margin:0;
     text-align:center;
+    
 }
 
 li
@@ -184,6 +186,7 @@ li
     float:left;
     min-width:20%;
     padding-top:4px;
+    margin-bottom: 20px;
 }
 
 li a
@@ -259,7 +262,7 @@ button {
 .proposer
 {
 	background-image:url("../images/bouton.gif");
-    background-position: center;
+        background-position: center;
 	width:50%;
 	margin-left:25%;
 	border-top-left-radius: 0px;
@@ -267,6 +270,7 @@ button {
 	border-bottom-left-radius: 20px;
 	border-bottom-right-radius: 20px;
 	font-weight:bold;
+        
 }
 
 .right {
@@ -416,3 +420,10 @@ button {
 	margin-bottom:10px;
 }
 
+.message {
+    width:50%;
+    margin:auto;
+    font-weight: bold;
+    text-align: center;
+    
+}

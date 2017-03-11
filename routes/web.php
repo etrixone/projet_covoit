@@ -28,8 +28,8 @@ Route::get('/details_trajet/{id}', 'HomeController@detailsTrajet')->name('detail
 
 
 
-Route::get('/trajet', 'HomeController@trajet');
-Route::post('/trajet', 'HomeController@ajoutTrajet');
+Route::get('/proposer_un_trajet', 'HomeController@proposerUnTrajet');
+Route::post('/proposer_un_trajet', 'HomeController@validerProposerUnTrajet');
 Route::get('/details', 'HomeController@detailsTrajet');
 Route::get('/test/{id}', function(){
     return view('test');

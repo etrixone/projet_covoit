@@ -44,11 +44,10 @@ class HomeController extends Controller {
         $trajets = Trajet::where('TRJ_DEPART', $request->input('depart'))
                         ->where('TRJ_DESTINATION', $request->input('destination'))->get();
         
-        $trajetsEtapesDepart = Trajet::where('TRJ_DEPART', $request->input('depart'))
-                        ->where('TRJ_ETAPE1', $request->input('destination'))->get();
+        $trajetsEtapesDepart = DB::select('select * from trajets where TRJ_DEPART ="'.$request->input('depart').'" and TRJ_ETAPE1 ="'.$request->input('destination').'" or TRJ_ETAPE2 ="'.$request->input('destination').'";');
 
-        $trajetsEtapesDestination = Trajet::where('TRJ_ETAPE1', $request->input('depart'))
-                        ->where('TRJ_DESTINATION', $request->input('destination'))->get();
+        $trajetsEtapesDestination = DB::select('select * from trajets where TRJ_DESTINATION ="'.$request->input('destination').'" and TRJ_ETAPE1 ="'.$request->input('depart').'" or TRJ_ETAPE2 ="'.$request->input('depart').'";');
+
 
         // $destination=Trajet::join('villes', 'villes.id', '=', 'trajets.vil_id_destination')->where('villes.vil_nom',$request->input('depart'))->get();
         //$resultat=Trajet::get();
@@ -79,12 +78,12 @@ class HomeController extends Controller {
                 ->with('user', $user);
     }
 
-    public function trajet() {
-        return view('ajouter-trajet');
+    public function proposerUnTrajet() {
+        return view('proposer-un-trajet');
     }
 
 
-    public function ajoutTrajet(Request $request) {
+    public function validerProposerUnTrajet(Request $request) {
         $this->validate($request, ['date' => 'date_format:"d/m/Y', 'heureDepart' => 'date_format:"H:i"', 'heureDestination' => 'date_format:"H:i"', 'depart' => 'required', 'destination' => 'required', 'places' => 'required|integer|between:1,7', 'prix' => 'required|integer|between:1,500']);
 
         // $depart = $this->ajoutVille($request->depart, $request->departement, $request->longitude, $request->latitude);
@@ -104,7 +103,7 @@ class HomeController extends Controller {
         $trajet->TRJ_FLEXIBLE = $request->flexible;
         $trajet->TRJ_PLACES = $request->places;
         $trajet->TRJ_ETAPE1 = $request->localityEtape1;
-        $trajet->TRJ_ETAPE2 = $request->etape2;
+        $trajet->TRJ_ETAPE2 = $request->localityEtape2;
         $trajet->TRJ_BAGAGE = $request->bagage;
         $trajet->USR_ID = Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d');
         $trajet->save();

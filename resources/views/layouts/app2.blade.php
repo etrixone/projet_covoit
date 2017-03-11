@@ -55,7 +55,7 @@
               <ul>
                   <li class="b1"><a href="{!! url('rechercher_un_trajet') !!}">Rechercher un trajet</a></li>
                   <li class="b2"><a href="#">Mes réservations</a></li>
-                  <li class="b3"><a href="{!! url('trajet') !!}">Proposer un trajet</a></li>
+                  <li class="b3"><a href="{!! url('proposer_un_trajet') !!}">Proposer un trajet</a></li>
                   <li class="b4"><a href="#">Mes trajets</a></li>
                   <li class="b5"><a href="#">Contact</a></li>
               </ul>
