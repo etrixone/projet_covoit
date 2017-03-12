@@ -17,7 +17,7 @@ class UsersController extends Controller
     
     public function csvForm()
     {   
-        return view('upload');
+        return view('admin/upload');
     }
     
     public function allUsersForm()
@@ -25,7 +25,14 @@ class UsersController extends Controller
         $users = DB::table('users')->where('admin','false')->get();
         $letters = range('A', 'Z');
 
-        return view('all-users', ['users' => $users], ['letters' => $letters]);
+        return view('admin/all-users', ['users' => $users], ['letters' => $letters]);
+    }
+    
+    public function getAllTrajets()
+    {
+        $trajets = DB::table('trajets')->get();
+        
+        return view('admin/all-trajets', ['trajets' => $trajets]);
     }
     
     public function getUsers($letter)
@@ -33,7 +40,7 @@ class UsersController extends Controller
         $users = DB::table('users')->where('admin','false')->where('name', 'like', $letter.'%')->get();
         $letters = range('A', 'Z');
         
-        return view('all-users', ['users' => $users], ['letters' => $letters]);
+        return view('admin/all-users', ['users' => $users], ['letters' => $letters]);
     }
     
     public function deleteUser($id)

@@ -71,6 +71,8 @@ Route::get('status/{id}', 'UsersController@statusUser');
 Route::get('status', 'UsersController@statusAllUsers');
 //Route qui permet de changer de récuperer les utilisateurs selon la lettre
 Route::get('getUsers/{letter}', 'UsersController@getUsers');
+//Route qui retourne tous les trajets
+Route::get('all_trajets', 'UsersController@getAllTrajets');
 });
 
 
