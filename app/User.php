@@ -28,14 +28,18 @@ class User extends Authenticatable
     ];
     
     //Relation user plusieurs trajets 1n
-    public function trajets() 
+    public function proposer() 
     {
-        return $this->hasMany('App\Trajet');
+        return $this->hasMany('App\Trajet' ,'USR_ID' , 'id');
     }
     
     //relation nn
     public function reserver() {
         return $this->belongsToMany('App\Trajet', 'trajets_users', 'USR_ID', 'TRJ_ID');
+    }
+    
+    public function posseder() {
+        return $this->belongsTo('App\Voiture');
     }
     
     public $timestamps = false;

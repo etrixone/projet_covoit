@@ -17,22 +17,57 @@ body
 
 .container
 {
-	width:60%;
+	width:750px;
 	margin:auto;
+}
+
+@media screen and (max-width: 768px)
+{
+	.container
+	{
+		width:400px;
+	}
+	
+	.fleche-proposer
+	{
+		visibility: hidden;
+	}
 }
 
 
 h4
 {
-	text-align: center
+	text-align: center;
+	margin-top:30px;
 }
 
 .form-horizontal
 {
-	border:1px solid lightgrey;
-	border-radius:10px;
+	border:2px solid #e0dacc;
+	border-radius:20px;
 	padding:10px;
-	overflow:auto;
+	background: linear-gradient(to bottom, #ffffff 25%,#fff2e2 100%);
+        
+}
+
+input[type="text"], input[type="number"], input[type="time"], input[type="date"]
+{
+	box-shadow: 2px 2px 1px 1px #ccc;
+}
+
+input[type="time"]
+{
+	width:50%;
+}
+
+.listeD
+{
+	box-shadow: 2px 2px 1px 1px #ccc;
+}
+
+select
+{
+	
 }
 
 .col-sm-6
@@ -61,6 +96,11 @@ header
     margin-left:0px;
     min-width:100%;
     background-color:#c03644; /* #b42026 rouge plus foncé */
+}
+
+.barre-infos
+{
+	border-top:1px solid #b42026;
 }
 
 .logo
@@ -138,6 +178,7 @@ ul
     padding:0;
     margin:0;
     text-align:center;
+    
 }
 
 li
@@ -145,6 +186,8 @@ li
     float:left;
     min-width:20%;
     padding-top:4px;
+    margin-bottom: 20px;
+	font-weight: bold;
 }
 
 li a
@@ -220,13 +263,15 @@ button {
 .proposer
 {
 	background-image:url("../images/bouton.gif");
-        background-position: center;
-	width:200px;
+    background-position: center;
+	width:50%;
+	margin-left:25%;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
 	border-bottom-left-radius: 20px;
 	border-bottom-right-radius: 20px;
 	font-weight:bold;
+        
 }
 
 .right {
@@ -239,31 +284,32 @@ button {
 
 .center {
     text-align: center;
-    
     margin:0px;
     padding: 0px;
 }
 
 .left {
     text-align: left;
-    
     margin:0px;
     padding: 0px;
 }
 
 .cadre {
-    border: solid 2px grey;
+    border: solid 2px #e0dacc;
     border-radius: 15px;
     background: linear-gradient(to bottom, #ffffff 25%,#fff2e2 100%);
     padding-bottom: 10px;
     
 }
+
 .rouge {
     color:#c03644; 
 }
+
 .arial {
     font-family: Arial;
 }
+
 .arial-bold {
     font-family: Arial;
     font-weight: bold;
@@ -282,5 +328,155 @@ button {
 .padding-right{
     padding-right: 20px;
 }
+
+.invisible
+{
+	visibility: hidden;
+}
+
+.form-details
+{
+	/*padding-left:3%;
+	padding-right:3%;*/
+	border-top-left-radius: 0px;
+	font-size:1.2em;
+	position:relative;
+}
+
+.form-proposer
+{
+	padding-left:8%;
+	padding-right:8%;
+}
+
+.details-user
+{
+	position:absolute;
+	left:-150px;
+	top:-2px;
+	background-color:#e0dacc;
+	height:170px;
+	width:150px;
+	border-bottom-left-radius:20px;
+	border-top-left-radius: -20px;
+	text-align: center;
+}
+
+
+.inner
+{
+	border-radius:50%;
+	width:50px;
+	height:50px;
+	background-color:#FFF;
+	margin-top:-20px;
+	margin-left:-20px;
+}
+
+.hr-details
+{
+	border-top:1px solid #b42026;
+}
+
+.details-prenom
+{
+	margin-top:-30px;
+}
+
+.details-nom
+{
+	margin-top:-10px;
+}
+
+.details-hr
+{
+	margin-top:-5px;
+	border-top:1px solid black;
+	width:80%;
+}
+
+.voiture
+{
+	margin-top:-15px;
+}
+
+.couleur
+{
+	margin-top:-10px;
+}
+
+
+.fleche-proposer
+{
+	left:25px;
+}
+
+.fleche-proposer2
+{
+	top:20px;
+}
+
+.margin
+{
+	margin-bottom:10px;
+}
+
+.message {
+    width:50%;
+    margin:auto;
+    font-weight: bold;
+    text-align: center;
+    
+}
+
+.flex
+{
+	display:flex;
+	width:400px;
+}
+
+.flex-barre
+{
+	border-top:1px solid black;
+}
+
+.flex-barre1
+{
+	width:150px;
+}
+
+.flex-barre2
+{
+	width:130px;
+}
+
+.flex-barre3
+{
+	width:160px;
+}
+
+.flex label
+{
+	margin-top:5px;
+}
+
+
+.rechercher
+{
+	width:180px;
+	border-radius:20px;
+	border:0;
+	height:30px;
+	background-image: url(../images/bouton.gif);
+	color:white;
+	font-weight: bold;
+}
+
+
+.flex .form-control
+{
+	width:180px;
+}
+
 
 

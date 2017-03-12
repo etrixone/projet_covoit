@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,23 +13,25 @@
 
     <!-- Styles -->
     <!-- Bootstrap -->
-    <link href="http://localhost/laravel/covoiturage/public/css/bootstrap.css" rel="stylesheet">
-    <link href="http://localhost/laravel/covoiturage/public/css/style.css" rel="stylesheet">
-    
-    <!-- Import police --> 
+    <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+
+    <!-- Import police -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
-    
+
     <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
     <!-- <link rel="stylesheet" href="http://localhost/laravel/covoiturage/public/css/addresspicker/jquery.ui.all.css">-->
-     
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
+        window.Laravel = {
+            !!json_encode([
+                'csrfToken' => csrf_token(),
+            ]) !!
+        };
     </script>
-    
+
     <!--<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC8zSQHYetf1-fRjNQCy7aYDwT4SCR2Xo0"></script>-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
@@ -36,42 +39,47 @@
 
 
 </head>
-<body>
-  <div class="container-fluid">
-      <header class="row">
-       <div class="logo">
-           <img src="http://localhost/laravel/covoiturage/public/images/Logo2.gif">
-       </div>
-       <div class="logo2">
-          <img src="http://localhost/laravel/covoiturage/public/images/Utilisateur2.gif">
-           <p class="prenom">Stacy</p>
-           <p class="nom">Boulanger</p>
-       </div>
-        <!--<img src="http://localhost/laravel/covoiturage/public/images/logo3.gif" class="logo">-->
-         <div class="barre"></div>
-      </header>
-      <nav class="row">
-          <div>
-              <ul>
-                  <li class="b1"><a href="{!! url('home') !!}">Rechercher un trajet</a></li>
-                  <li class="b2"><a href="#">Mes réservations</a></li>
-                  <li class="b3"><a href="{!! url('trajet') !!}">Proposer un trajet</a></li>
-                  <li class="b4"><a href="#">Mes trajets</a></li>
-                  <li class="b5"><a href="#">Contact</a></li>
-              </ul>
-          </div>
-      </nav>
-      <section class="row">
-          <div>
 
-               @yield('content')
-    
-          </div>
-      </section>
-      <footer class="row">
-      
-      </footer>
-  </div>
-   
+<body>
+    <div class="container-fluid">
+        <header class="row">
+            <div class="logo">
+                <img src="{{ asset('/images/Logo2.gif') }}">
+            </div>
+            <div class="logo2">
+                <a href="{{ route('logout') }}"onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ asset('/images/Utilisateur2.gif') }}"></a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+                <p class="prenom">{{ Auth::user()->surname }}</p>
+                <p class="nom">{{ Auth::user()->name }}</p>
+            </div>
+            <!--<img src="http://localhost/laravel/covoiturage/public/images/logo3.gif" class="logo">-->
+            <div class="barre"></div>
+        </header>
+        <nav class="row">
+            <div>
+                <ul>
+                    <li class="b1"><a href="{!! url('rechercher_un_trajet') !!}">Rechercher un trajet</a></li>
+                    <li class="b2"><a href="{!! url('mes_reservations') !!}">Mes réservations</a></li>
+                    <li class="b3"><a href="{!! url('proposer_un_trajet') !!}">Proposer un trajet</a></li>
+                    <li class="b4"><a href="{!! url('mes_trajets') !!}">Mes trajets</a></li>
+                    <li class="b5"><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <section class="row">
+            <div>
+
+                @yield('content')
+
+            </div>
+        </section>
+        <footer class="row">
+
+        </footer>
+    </div>
+
 </body>
+
 </html>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
      protected $fillable = [
-        'usr_id', 'trj_id'
+        'USR_ID', 'TRJ_ID'
     ];
     public $timestamps = false;
     
