@@ -72,7 +72,9 @@ Route::get('status', 'UsersController@statusAllUsers');
 //Route qui permet de changer de récuperer les utilisateurs selon la lettre
 Route::get('getUsers/{letter}', 'UsersController@getUsers');
 //Route qui retourne tous les trajets
-Route::get('all_trajets', 'UsersController@getAllTrajets');
+Route::get('all_trajets', 'TrajetsController@getAllTrajets');
+//Permet de supprimer un trajet depuis
+Route::get('deleteTrajet/{id}', 'TrajetsController@deleteTrajet');
 });
 
 

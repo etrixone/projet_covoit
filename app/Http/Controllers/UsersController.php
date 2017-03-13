@@ -28,13 +28,6 @@ class UsersController extends Controller
         return view('admin/all-users', ['users' => $users], ['letters' => $letters]);
     }
     
-    public function getAllTrajets()
-    {
-        $trajets = DB::table('trajets')->get();
-        
-        return view('admin/all-trajets', ['trajets' => $trajets]);
-    }
-    
     public function getUsers($letter)
     {
         $users = DB::table('users')->where('admin','false')->where('name', 'like', $letter.'%')->get();

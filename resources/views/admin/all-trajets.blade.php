@@ -64,13 +64,19 @@
                 <th width="275">Départ</th>
                 <th width="350">Arrivée</th>
                 <th width="200">Date départ</th>
+                <th width="150">Supprimer</th>
             </tr>
             @foreach($trajets as $trajet)
             <tr>
                 <td>{{$trajet->TRJ_ID}}</td>
-                <td>{{$trajet->VIL_ID_DEPART}}</td>
-                <td>{{$trajet->VIL_ID_ARRIVEE}}</td>  
-                <td>{{$trajet->TRJ_DATE_DEPART}}</td>                  
+                <td>{{$trajet->VIL_NOM}}</td>
+                <td>{{$trajet->VIL_NOM}}</td>  
+                <td>{{$trajet->TRJ_DATE_DEPART}}</td> 
+                <td>
+                    <form method="get" action="{{url('admin/deleteTrajet/'.$trajet->TRJ_ID)}}">
+                    <input type="submit" onclick="">
+                    </form>
+                </td> 
             @endforeach 
         </table>       
     </body>
