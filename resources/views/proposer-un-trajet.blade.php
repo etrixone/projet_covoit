@@ -11,7 +11,7 @@
                         <label for="dateL">Date</label>
                     </div>
                     <div class="col-sm-7 margin">
-                        <input type="text" class="form-control input-sm" name="date" placeholder="jj/mm/aaaa">
+                        <input type="date" class="form-control input-sm" name="date" placeholder="jj/mm/aaaa">
                     </div>
                     <div class="col-sm-4">
                         <label for="departL">Votre départ</label>
@@ -156,14 +156,18 @@
         var etape2_input = document.getElementById('etape2');
         //var modes = document.getElementById('mode-selector');
 
-        var origin_autocomplete = new google.maps.places.Autocomplete(origin_input);
+        var options = {
+            types: ['(cities)'],
+            componentRestrictions: {country: 'fr'}
+        };
+        var origin_autocomplete = new google.maps.places.Autocomplete(origin_input, options);
         origin_autocomplete.bindTo('bounds', map);
         var destination_autocomplete =
-            new google.maps.places.Autocomplete(destination_input);
+            new google.maps.places.Autocomplete(destination_input, options);
         destination_autocomplete.bindTo('bounds', map);
 
-        var etape1_autocomplete = new google.maps.places.Autocomplete(etape1_input);
-        var etape2_autocomplete = new google.maps.places.Autocomplete(etape2_input);
+        var etape1_autocomplete = new google.maps.places.Autocomplete(etape1_input, options);
+        var etape2_autocomplete = new google.maps.places.Autocomplete(etape2_input, options);
 
 
         google.maps.TravelMode.Driving;

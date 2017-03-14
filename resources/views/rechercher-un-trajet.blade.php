@@ -26,7 +26,7 @@
         <div class="flex">
             <label>Date </label>
             <hr class="flex-barre flex-barre3">
-            <input type="date" id="date" class="form-control input-sm">
+            <input type="date" id="date" name="date" class="form-control input-sm">
         </div>
         <br>
         <input type="submit" value="Rechercher" class="rechercher"> @if (count($errors) > 0)
@@ -54,10 +54,15 @@
     function initMap() {
         var origin_input = document.getElementById('depart');
         var destination_input = document.getElementById('destination');
-
-        var origin_autocomplete = new google.maps.places.Autocomplete(origin_input);
+        //options ville france
+        var options = {
+            types: ['(cities)'],
+            offset: 3,
+            componentRestrictions: {country: 'fr'}
+        };
+        var origin_autocomplete = new google.maps.places.Autocomplete(origin_input, options);
         var destination_autocomplete =
-            new google.maps.places.Autocomplete(destination_input);
+            new google.maps.places.Autocomplete(destination_input, options);
 
         function fillInAddressDepart() {
             // Get the place details from the autocomplete object.

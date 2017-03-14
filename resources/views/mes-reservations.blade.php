@@ -55,7 +55,7 @@
 
     @endforeach
 @else
-<h4><strong>Vous n'avez pas reservé de trajet</strong></h4> 
+<h4>Vous n'avez pas reservé de trajet</h4s> 
     
 @endif
 
