@@ -15,7 +15,7 @@
 
             <div class="form-horizontal form-details">
 
-                <form class=m ethod="get" action="{{ route('details_trajet',['id' => $trajet->ID]) }}" accept-charset="UTF-8">
+                <form method="get" action="{{ route('details_trajet',['id' => $trajet->ID]) }}" accept-charset="UTF-8">
 
                     <div class="row">
                         <div class="col-sm-6" style="text-align:center;">

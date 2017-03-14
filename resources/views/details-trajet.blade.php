@@ -29,7 +29,7 @@
                         <p>{{ Carbon\Carbon::parse($trajet->TRJ_DATE_DEPART)->format('d-m-Y')  }}</p>
                     </div>
                     <div class="col-sm-12">
-                        <p>1 • <span class="rouge"><strong>Départ</strong></span> : <strong>{{ $trajet->TRJ_DEPART }}</strong></p>
+                        <p>1 • <span class="rouge"><strong>Départ</strong></span> : <strong><span id="origin">{{ $trajet->TRJ_DEPART }}</span></strong></p>
                     </div>
                     <div class="col-sm-12">
                         <p>{{ Carbon\Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i') }}</p>
@@ -57,7 +57,7 @@
                         <div class="glyphicon glyphicon-arrow-down"></div>
                     </div>
                     <div class="col-sm-12">
-                        <p>3 • <span class="rouge"><strong>Arrivée</strong></span> : <strong>{{ $trajet->TRJ_DESTINATION}}</strong></p>
+                        <p>3 • <span class="rouge" id="destination"><strong>Arrivée</strong></span> : <strong><span id="destination">{{ $trajet->TRJ_DESTINATION}}</span></strong></p>
                     </div>
                     <div class="col-sm-12">
                         <p>{{ Carbon\Carbon::parse($trajet->TRJ_HEURE_DESTINATION)->format('H:i') }}</p>
@@ -95,8 +95,17 @@
     <div class="col-sm-6">
        <input type="submit" class="btn proposer" value="Confirmer la reservation"/>
     </div>
-    </form>
+    </form> 
+            
+        <div id="map">
+            <iframe width="600" height="450" frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/directions?origin={{ $trajet->TRJ_DEPART}}&destination={{ $trajet->TRJ_DESTINATION}}&key=AIzaSyCyA2rSTXUMQc5CXJ3KGExemqXu-yPcQT0" allowfullscreen>
+                
+            </iframe>
+        </div>
+            
+            
+       
 </section>
-
 
 @endsection
