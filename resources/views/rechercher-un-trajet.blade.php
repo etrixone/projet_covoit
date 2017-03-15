@@ -26,7 +26,7 @@
         <div class="flex">
             <label>Date </label>
             <hr class="flex-barre flex-barre3">
-            <input type="date" id="date" name="date" class="form-control input-sm">
+            <input type="text" id="date" name="date" class="form-control input-sm">
         </div>
         <br>
         <input type="submit" value="Rechercher" class="rechercher"> @if (count($errors) > 0)

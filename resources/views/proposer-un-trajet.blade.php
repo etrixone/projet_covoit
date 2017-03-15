@@ -88,9 +88,9 @@
                         <label for="tailleBagagesL">Taille des bagages</label>
                     </div>
                     <div class="col-sm-7 margin">
-                        <select class="form-control input-sm listeD" name=bagage"">
+                        <select class="form-control input-sm listeD" name="bagage">
                             <option>Petit</option>
-                            <option>Moyen</option>
+                            <option selected>Moyen</option>
                             <option>Grand</option>
                         </select>
                     </div>

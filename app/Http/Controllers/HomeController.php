@@ -40,9 +40,13 @@ class HomeController extends Controller {
 
     public function resultatRecherche(Request $request) {
 
-        $this->validate($request, ['depart' => 'required', 'destination' => 'required', 'date' => 'required']);
+        $this->validate($request, ['depart' => 'required', 'destination' => 'required', 'date' => 'required|date_format:d/m/Y|after:today']);
         
-        $date= Carbon::parse($request->date)->format('Y-d-m');
+  
+        $dat = DateTime::createFromFormat('d/m/Y', $request->date);
+        $date = $dat->format('Y-m-d');
+        
+        
         
         $trajets = Trajet::where('TRJ_DEPART', $request->input('depart'))
                         ->where('TRJ_DESTINATION', $request->input('destination'))
@@ -63,6 +67,7 @@ class HomeController extends Controller {
     public function detailsTrajet($id) {
         
         $trajet = Trajet::where('ID',$id)->first();
+        
         
         $depart = strtotime(Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i'));
         $destination = strtotime(Carbon::parse($trajet->TRJ_HEURE_DESTINATION)->format('H:i'));
@@ -175,11 +180,14 @@ class HomeController extends Controller {
     }
 
     public function validerProposerUnTrajet(Request $request) {
-        $this->validate($request, ['date' => 'date_format:"d/m/Y', 'heureDepart' => 'date_format:"H:i"', 'heureDestination' => 'date_format:"H:i"', 'depart' => 'required', 'destination' => 'required', 'places' => 'required|integer|between:1,7', 'prix' => 'required|integer|between:1,500']);
+        $this->validate($request, ['date' => 'required|date_format:"d/m/Y"|after:today', 'heureDepart' => 'required|date_format:"H:i"', 'heureDestination' => 'required|date_format:"H:i"', 'depart' => 'required', 'destination' => 'required', 'places' => 'required|integer|between:1,7', 'prix' => 'required|integer|between:0,500', 'bagage' => 'required']);
+        
+        /*$datecomplete = new DateTime();
+        $datetrajet= $datecomplete->createFromFormat('d/m/Y H:i', $request->date.' '.$request->heureDepart);*/
 
         $trajet = new Trajet;
         $datetime = new DateTime();
-        $dateDepart = $datetime->createFromFormat('d/m/Y', '$request->date');
+        $dateDepart = $datetime->createFromFormat('d/m/Y', $request->date);
         $trajet->TRJ_DATE_DEPART = Carbon::parse($dateDepart)->format('Y-m-d');
         $trajet->TRJ_HEURE_DEPART = Carbon::parse($request->heureDepart)->format('H:i:00');
         $trajet->TRJ_HEURE_DESTINATION = Carbon::parse($request->heureDestination)->format('H:i:00');
