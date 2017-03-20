@@ -6,7 +6,7 @@
     <br/>
     <form method="POST" action="{!! url('rechercher_un_trajet') !!}" accept-charset="UTF-8">
         {!! csrf_field() !!}
-
+	<div class="container small-container">
         <div class="flex">
             <label>Départ </label>
             <hr class="flex-barre flex-barre1">
@@ -45,7 +45,7 @@
         <br>
         <p>Info: {{ $trajet->TRJ_INFO }} </p>
         <br> @endforeach @endif
-
+		</div>
     </form>
 
 </center>

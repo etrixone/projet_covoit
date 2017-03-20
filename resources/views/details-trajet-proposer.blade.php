@@ -18,15 +18,42 @@
             <p class="couleur">Couleur : <strong>{{ $voiture->CLR_NOM}}</strong></p>
             <hr class="details-hr">
             <p class="voiture">Fumeur : <strong>@if ($voiture->VTR_FURMEUR == 0) non @else oui @endif</strong></p>
-            <p class="couleur">Animaux : <strong>@if ($voiture->VTR_ANIMAUX == 0) non @else oui @endif</strong></strong></p>
+            <p class="couleur">Animaux : <strong>@if ($voiture->VTR_ANIMAUX == 0) non @else oui @endif</strong></p>
+        </div>
+        <div class="vos-covoitureurs">
+            <p class="covoitureurs"><strong>Vos covoitureurs</strong></p>
+        </div>
+        <div class="covoitureur-a">
+           <p class="covoitureur-nom">Prenom Nom</p>
+            <div class="inner-covoit">
+            	<img src="{{ asset('/images/Utilisateur2.gif') }}" style="margin-left:-11px; margin-top:12px; width:50%;">
+            </div>
+        </div>
+        <div class="covoitureur-b">
+           <p class="covoitureur-nom">Prenom Nom</p>
+            <div class="inner-covoit">
+            	<img src="{{ asset('/images/Utilisateur2.gif') }}" style="margin-left:-11px; margin-top:12px; width:50%;">
+            </div>
+        </div>
+        <div class="covoitureur-c">
+           <p class="covoitureur-nom">Prenom Nom</p>
+            <div class="inner-covoit">
+            	<img src="{{ asset('/images/Utilisateur2.gif') }}" style="margin-left:-11px; margin-top:12px; width:50%;">
+            </div>
+        </div>
+        <div class="covoitureur-d">
+           <p class="covoitureur-nom">Prenom Nom</p>
+            <div class="inner-covoit">
+            	<img src="{{ asset('/images/Utilisateur2.gif') }}" style="margin-left:-11px; margin-top:12px; width:50%;">
+            </div>
         </div>
         <form method="POST" action="{!! url('annuler_trajet') !!}" accept-charset="UTF-8">
-            {!! csrf_field() !!}   
+            {!! csrf_field() !!}
 
             <div class="row">
                 <div class="col-sm-6" style="text-align:center;">
                     <div class="col-sm-12">
-                        <p>{{ Carbon\Carbon::parse($trajet->TRJ_DATE_DEPART)->format('d-m-Y')  }}</p>
+                        <p>{{ Carbon\Carbon::parse($trajet->TRJ_DATE_DEPART)->format('d-m-Y') }}</p>
                     </div>
                     <div class="col-sm-12">
                         <p>1 • <span class="rouge"><strong>Départ</strong></span> : <strong>{{ $trajet->TRJ_DEPART }}</strong></p>
@@ -41,17 +68,17 @@
                         <p>2 • <span class="rouge"><strong>Étape(s)</strong></span> :
                     </div>
                     @if(!empty($trajet->TRJ_ETAPE1))
-                        <div class="col-sm-12">
-                            <strong>{{ $trajet->TRJ_ETAPE1}} </strong></p>
-                        </div>
+                    <div class="col-sm-12">
+                        <strong>{{ $trajet->TRJ_ETAPE1}} </strong></p>
+                    </div>
                     @elseif (!empty($trajet->TRJ_ETAPE2))
-                        <div class="col-sm-12">
-                            <strong>{{ $trajet->TRJ_ETAPE2}}</strong></p>
-                        </div>
+                    <div class="col-sm-12">
+                        <strong>{{ $trajet->TRJ_ETAPE2}}</strong></p>
+                    </div>
                     @else
-                        <div class="col-sm-12">
-                            <strong>Pas d'étapes</strong></p>
-                        </div>
+                    <div class="col-sm-12">
+                        <strong>Pas d'étapes</strong></p>
+                    </div>
                     @endif
                     <div class="col-sm-12">
                         <div class="glyphicon glyphicon-arrow-down"></div>
@@ -87,13 +114,13 @@
                     </div>
                 </div>
             </div>
-          
+
     </div>
     <div class="col-sm-6 col-sm-push-2">
-        <input type="hidden" name="id" value="{{ $trajet->ID }}"/>
+        <input type="hidden" name="id" value="{{ $trajet->ID }}" />
     </div>
     <div class="col-sm-6">
-       <input type="submit" class="btn proposer" value="Annuler ce trajet"/>
+        <input type="submit" class="btn proposer" value="Annuler ce trajet" />
     </div>
     </form>
 </section>

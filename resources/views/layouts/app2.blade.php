@@ -46,8 +46,14 @@
             <div class="logo">
                 <img src="{{ asset('/images/Logo2.gif') }}">
             </div>
+            <a href="#">
+                <div class="back-menu">
+                    <p class="lien-menu">RETOUR AU MENU</p>
+                    <div class="glyphicon glyphicon-menu-hamburger"></div>
+                </div>
+            </a>
             <div class="logo2">
-                <a href="{{ route('logout') }}"onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ asset('/images/Utilisateur2.gif') }}"></a>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ asset('/images/Utilisateur2.gif') }}"></a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
