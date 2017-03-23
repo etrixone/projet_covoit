@@ -1,14 +1,12 @@
 @extends('layouts.app2')
 
-@section('content')
-
 <html>
     <head>
         <style>
             body{
                 background-color: white;
             }
-            .atoz{
+            ul{
                 display:inline-block;
             }
             table{
@@ -57,7 +55,18 @@
         </script>
         
     </head>
-    <body>                  
+    <body>      
+        <ul>           
+            <li>
+                <a href="{{url('admin/csv_upload')}}">CSV</a>
+            </li>
+            <li>
+                <a href="{{url('admin/all_users')}}">Liste utilisateurs</a>
+            </li>
+            <li>
+                <a href="{{url('admin/all_trajets')}}">Liste trajets</a>
+            </li>
+        </ul>
         <table border="1">
             <tr>
                 <th width="100">Identifiant</th>
@@ -81,5 +90,3 @@
         </table>       
     </body>
 </html>
-
-@endsection

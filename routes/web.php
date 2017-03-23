@@ -77,6 +77,10 @@ Route::get('getUsers/{letter}', 'UsersController@getUsers');
 Route::get('all_trajets', 'TrajetsController@getAllTrajets');
 //Permet de supprimer un trajet depuis
 Route::get('deleteTrajet/{id}', 'TrajetsController@deleteTrajet');
+//Permet d'ajouter une classe à la BDD
+Route::post('ajouterClasse', 'UsersController@ajouterClasse');
+//ERREUR
+Route::post('all_users/{classe}', 'UsersController@getUsers');
 });
 
 

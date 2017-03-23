@@ -17,23 +17,27 @@ class UsersController extends Controller
     
     public function csvForm()
     {   
-        return view('admin/upload');
+        $classes = DB::table('classes')->get();
+        
+        return view('admin/upload')->with(['classes' => $classes]);
     }
     
     public function allUsersForm()
     {
         $users = DB::table('users')->where('admin','false')->get();
-        $letters = range('A', 'Z');
-
-        return view('admin/all-users', ['users' => $users], ['letters' => $letters]);
-    }
-    
-    public function getUsers($letter)
-    {
-        $users = DB::table('users')->where('admin','false')->where('name', 'like', $letter.'%')->get();
-        $letters = range('A', 'Z');
+        //$letters = range('A', 'Z');
+        $classes = DB::table('classes')->get();
         
-        return view('admin/all-users', ['users' => $users], ['letters' => $letters]);
+        return view('admin/all-users')->with(['users' => $users])/*->with(['letters' => $letters])*/->with(['classes' => $classes]);
+;    }
+    
+    public function getUsers($classe)
+    {
+        $users = DB::table('users')->where('admin','false')->where('classe', $classe.'%')->get();
+        //$letters = range('A', 'Z');
+        $classes = DB::table('classes')->get();
+        
+        return view('admin/all-users')->with(['users' => $users])/*->with(['letters' => $letters])*/->with(['classes' => $classes]);
     }
     
     public function deleteUser($id)
@@ -42,6 +46,15 @@ class UsersController extends Controller
         $user->delete();
         
         return redirect('admin/all_users');
+    } 
+    
+    public function ajouterClasse(Request $request)
+    {
+        $classe = $request->input('texte_classe');
+        
+        DB::table('classes')->insert(['CLS_NOM' => $classe]);
+        
+        return redirect('admin/upload');
     } 
     
     public function deleteAllUsers(){
@@ -91,24 +104,6 @@ class UsersController extends Controller
         return redirect('admin/all_users');
     }  
     
-    /*
-    public function password()
-    {
-        $password = "";
-
-        $string = "abcdefghjkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ023456789";
-        $string_length = strlen($string);
-
-        for($i = 1; $i <= 6; $i++)
-        {
-            $rand = mt_rand(0,($string_length-1));
-            $password .= $string[$rand];
-        }
-
-        return $password;   
-    }
-    */
-    
      public function usersList(Request $request)
     {   
         $mime = $request->file('upload_file')->getMimeType();
@@ -134,13 +129,15 @@ class UsersController extends Controller
                     $nom = $array[$index][0];
                     $prenom = $array[$index][1];
                     $email = $array[$index][2];
-                    //$pwd=self::password();
+                    $classe = $array[$index][3];
 
                     $user= new User;
                     $user->name=$nom;
                     $user->surname=$prenom;
                     $user->email=$email;
-                    //$user->password=hash('sha256', $pwd);
+                    $user->enable=0;
+                    $user->admin=0;
+                    $user->classe=$classe;
                     $user->save();
                 }
                 $index = $index + 1;
