@@ -49,8 +49,9 @@
             <input type="submit" value="Valider">
         </form>
    
-        <form method="POST" action="">
-                <select> 
+        <form method="POST" action="{{url('admin/supprimerClasse')}}">
+            {{ csrf_field() }} 
+                <select name="supprimerClasse"> 
                     <option></option>
                 @foreach($classes as $classe)
                     <option> {{$classe->CLS_NOM}} </option>

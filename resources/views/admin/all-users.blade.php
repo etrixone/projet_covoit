@@ -51,12 +51,12 @@
                 <a href="{{url('admin/all_users')}}"> Tous </a>
             </li>
             
-        <form method="POST" id="target" action="">
+        <form method="post" action="{{url('admin/classe')}}">
             {{ csrf_field() }}
-            <select id="something"> 
+            <select name="cla" onchange="this.form.submit()"> 
                 <option></option>
             @foreach($classes as $classe)
-                <option> {{$classe->CLS_NOM}} </option>
+                <option value="{{$classe->CLS_NOM }}"> {{ $classe->CLS_NOM }} </option>
             @endforeach
             </select>
         </form>
@@ -119,14 +119,5 @@
         <form method="get" action="{{url('admin/deleteAll')}}">
                     <input type="submit" value="Supprimer tous">
         </form>        
-    </body>
-    <script>
-    $('#something').change(function() {
-        $var = $( "#something" ).val();
-        console.log($var);
-        $str="{{url('admin/all_users')}}";
-        $('#target').attr('action', 'admin/all_users' ).submit();
-        
-      });
-    </script>
+    </body>    
 </html>

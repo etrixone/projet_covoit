@@ -25,20 +25,27 @@ class UsersController extends Controller
     public function allUsersForm()
     {
         $users = DB::table('users')->where('admin','false')->get();
-        //$letters = range('A', 'Z');
         $classes = DB::table('classes')->get();
         
-        return view('admin/all-users')->with(['users' => $users])/*->with(['letters' => $letters])*/->with(['classes' => $classes]);
-;    }
-    
-    public function getUsers($classe)
-    {
-        $users = DB::table('users')->where('admin','false')->where('classe', $classe.'%')->get();
-        //$letters = range('A', 'Z');
-        $classes = DB::table('classes')->get();
-        
-        return view('admin/all-users')->with(['users' => $users])/*->with(['letters' => $letters])*/->with(['classes' => $classes]);
+        return view('admin/all-users')->with(['users' => $users])->with(['classes' => $classes]);
     }
+ 
+    public function getUsers(Request $request)
+    {
+        $classe = $request->input('cla');
+        $users = DB::table('users')->where('admin','false')->where('classe', $classe)->get();
+        $classes = DB::table('classes')->get();
+        
+        return view('admin/all-users')->with(['users' => $users])->with(['classes' => $classes]);
+    }
+    
+    public function supprimerClasse(Request $request)
+    {
+        $classe = $request->input('supprimerClasse');
+        DB::table('classes')->where('CLS_NOM', $classe)->delete(); 
+        
+        return redirect('admin/csv_upload');
+    } 
     
     public function deleteUser($id)
     {
@@ -54,7 +61,7 @@ class UsersController extends Controller
         
         DB::table('classes')->insert(['CLS_NOM' => $classe]);
         
-        return redirect('admin/upload');
+        return redirect('admin/csv_upload');
     } 
     
     public function deleteAllUsers(){
