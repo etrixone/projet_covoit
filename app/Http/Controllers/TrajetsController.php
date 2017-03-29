@@ -17,10 +17,7 @@ class TrajetsController extends Controller
     
     public function getAllTrajets()
     {
-        $trajets = DB::table('trajets')
-                ->join('villes', 'trajets.VIL_ID_DEPART', '=', 'villes.VIL_ID')
-                ->join('villes', 'trajets.VIL_ID_ARRIVEE', '=', 'villes.VIL_ID')
-                ->get();
+        $trajets = DB::table('trajets')->get();
         
         return view('admin/all-trajets', ['trajets' => $trajets]);
     }

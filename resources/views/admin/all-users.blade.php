@@ -112,12 +112,6 @@
             </tr>
             @endforeach 
         </table>
-        <form method="get" action="{{url('admin/status')}}">
-                    <input type="submit" value="Activer/Désactiver tous">
-        </form>
-        
-        <form method="get" action="{{url('admin/deleteAll')}}">
-                    <input type="submit" value="Supprimer tous">
-        </form>        
+              
     </body>    
 </html>

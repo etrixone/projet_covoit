@@ -1,5 +1,3 @@
-@extends('layouts.app2')
-
 <html>
     <head>
         <style>
@@ -41,17 +39,7 @@
         </style>
         
         <script>
-            function deleteUser()
-            {
-                if (confirm("Etes-vous sûr de supprimer cet utilisateur?"))
-                {
-                    return true;
-                }
-                else 
-                {
-                   return false;
-                }
-            }
+           
         </script>
         
     </head>
@@ -77,12 +65,12 @@
             </tr>
             @foreach($trajets as $trajet)
             <tr>
-                <td>{{$trajet->TRJ_ID}}</td>
-                <td>{{$trajet->VIL_NOM}}</td>
-                <td>{{$trajet->VIL_NOM}}</td>  
+                <td>{{$trajet->ID}}</td>
+                <td>{{$trajet->TRJ_DEPART}}</td>
+                <td>{{$trajet->TRJ_DESTINATION}}</td>  
                 <td>{{$trajet->TRJ_DATE_DEPART}}</td> 
                 <td>
-                    <form method="get" action="{{url('admin/deleteTrajet/'.$trajet->TRJ_ID)}}">
+                    <form method="get" action="{{url('admin/deleteTrajet/'.$trajet->ID)}}">
                     <input type="submit" onclick="">
                     </form>
                 </td> 

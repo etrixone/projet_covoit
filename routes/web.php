@@ -78,6 +78,8 @@ Route::get('all_trajets', 'TrajetsController@getAllTrajets');
 //Permet de supprimer un trajet depuis
 Route::get('deleteTrajet/{id}', 'TrajetsController@deleteTrajet');
 //Permet d'ajouter une classe à la BDD
+Route::post('ajouterClasse', 'UsersController@ajouterClasse');
+//Permet d'ajouter une classe à la BDD
 Route::post('supprimerClasse', 'UsersController@supprimerClasse');
 //ERREUR
 Route::post('classe', 'UsersController@getUsers');
