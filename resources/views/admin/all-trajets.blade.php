@@ -4,20 +4,21 @@
             body{
                 background-color: white;
             }
-            ul{
-                display:inline-block;
-            }
             table{
                 margin-left:auto; 
                 margin-right:auto;
+                font-style: none;
+                border-collapse: collapse;
             }
             th{
                 font-weight: bold;
                 font-size: 16px;
             }
-            table, tr, th, td{
+            tr{
                 text-align:center;
-                border-color: black; 
+            }
+            tr, th, td{                
+                border: 1px solid black;               
             }
             input{
                 background: #f94e27;
@@ -34,8 +35,7 @@
                 font-size: 14px;
                 padding: 7px 20px;
                 margin:5px;
-            }
-            
+            }            
         </style>
         
         <script>

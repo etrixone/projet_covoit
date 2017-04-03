@@ -30,27 +30,32 @@
    
         <form action="{{url('admin/csv_upload')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
-            <label>Importer un fichier CSV</label>
+            Importer un fichier CSV
             <input type="file" name="upload_file"/>
-            <input style="width:120px;height: 35px;"type="submit" value="Valider" name="submit"/>
+            <input style=""type="submit" value="Valider" name="submit"/>
         </form>
    
         <form method="get" action="{{url('admin/status')}}">
+            Activer tous les utilisateurs :
                     <input type="submit" value="Activer/Désactiver tous">
         </form>
         
         <form method="get" action="{{url('admin/deleteAll')}}">
+            Supprimer tous les utilisateurs :
                     <input type="submit" value="Supprimer tous">
         </form>
    
         <form method="post" action="{{url('admin/ajouterClasse')}}">
-            {{ csrf_field() }}            
+            {{ csrf_field() }}      
+            Ajouter une classe :
             <input type="text" name="texte_classe">
             <input type="submit" value="Valider">
         </form>
    
+        
         <form method="POST" action="{{url('admin/supprimerClasse')}}">
             {{ csrf_field() }} 
+            Supprimer une classe :
                 <select name="supprimerClasse"> 
                     <option></option>
                 @foreach($classes as $classe)
