@@ -20,12 +20,10 @@
             <p class="voiture">Fumeur : <strong>@if ($voiture->VTR_FURMEUR == 0) non @else oui @endif</strong></p>
             <p class="couleur">Animaux : <strong>@if ($voiture->VTR_ANIMAUX == 0) non @else oui @endif</strong></p>
         </div>
-        @if(!empty($covoit[0]->name))
+        @if(sizeof($covoit) >= 1)
         <div class="vos-covoitureurs">
             <p class="covoitureurs"><strong>Vos covoitureurs</strong></p>
         </div>
-        @endif
-        @if (!empty($covoit[0]->name))
         <div class="covoitureur-a">
            <p class="covoitureur-nom">{{$covoit[0]->surname}} {{$covoit[0]->name}}</p>
             <div class="inner-covoit">
@@ -33,7 +31,7 @@
             </div>
         </div>
         @endif
-        @if (!empty($covoit[1]->name))
+        @if (sizeof($covoit) == 2)
         <div class="covoitureur-b">
            <p class="covoitureur-nom">{{$covoit[1]->surname}} {{$covoit[1]->name}}</p>
             <div class="inner-covoit">
@@ -41,7 +39,7 @@
             </div>
         </div>
         @endif
-        @if (!empty($covoit[2]->name))
+      @if (sizeof($covoit) == 3)
         <div class="covoitureur-c">
            <p class="covoitureur-nom">{{$covoit[2]->surname}} {{$covoit[2]->name}}</p>
             <div class="inner-covoit">
@@ -49,7 +47,7 @@
             </div>
         </div>
         @endif
-        @if (!empty($covoit[3]->name))
+        @if (sizeof($covoit) == 4)
         <div class="covoitureur-d">
            <p class="covoitureur-nom">Prenom Nom</p>
             <div class="inner-covoit">
