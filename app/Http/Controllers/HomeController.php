@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use DateTime;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller {
 
@@ -41,21 +42,21 @@ class HomeController extends Controller {
     public function resultatRecherche(Request $request) {
 
         $this->validate($request, ['depart' => 'required', 'destination' => 'required', 'date' => 'required|date_format:d/m/Y|after:today']);
-        
-  
+
+
         $dat = DateTime::createFromFormat('d/m/Y', $request->date);
         $date = $dat->format('Y-m-d');
-        
-        
-        
+
+
+
         $trajets = Trajet::where('TRJ_DEPART', $request->input('depart'))
                         ->where('TRJ_DESTINATION', $request->input('destination'))
                         ->where('TRJ_PLACES', '>', 0)
-                        ->where('TRJ_DATE_DEPART', '=',$date)->get();
-        
-        $trajetsEtapesDepart = DB::select('select * from trajets where TRJ_PLACES > 0 and TRJ_DATE_DEPART ="'.$date.'" and TRJ_DEPART ="'.$request->input('depart').'" and TRJ_ETAPE1 ="'.$request->input('destination').'" or TRJ_ETAPE2 ="'.$request->input('destination').'";');
+                        ->where('TRJ_DATE_DEPART', '=', $date)->get();
 
-        $trajetsEtapesDestination = DB::select('select * from trajets where TRJ_PLACES > 0 and TRJ_DATE_DEPART ="'.$date.'" and TRJ_DESTINATION ="'.$request->input('destination').'" and TRJ_ETAPE1 ="'.$request->input('depart').'" or TRJ_ETAPE2 ="'.$request->input('depart').'";');
+        $trajetsEtapesDepart = DB::select('select * from trajets where TRJ_PLACES > 0 and TRJ_DATE_DEPART ="' . $date . '" and TRJ_DEPART ="' . $request->input('depart') . '" and TRJ_ETAPE1 ="' . $request->input('destination') . '" or TRJ_ETAPE2 ="' . $request->input('destination') . '";');
+
+        $trajetsEtapesDestination = DB::select('select * from trajets where TRJ_PLACES > 0 and TRJ_DATE_DEPART ="' . $date . '" and TRJ_DESTINATION ="' . $request->input('destination') . '" and TRJ_ETAPE1 ="' . $request->input('depart') . '" or TRJ_ETAPE2 ="' . $request->input('depart') . '";');
 
 
         return View::make('resultat-recherche')
@@ -65,125 +66,134 @@ class HomeController extends Controller {
     }
 
     public function detailsTrajet($id) {
-        
-        $trajet = Trajet::where('ID',$id)->first();
-        
-        
+
+        $trajet = Trajet::where('ID', $id)->first();
+
+
         $depart = strtotime(Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i'));
         $destination = strtotime(Carbon::parse($trajet->TRJ_HEURE_DESTINATION)->format('H:i'));
-        $duree = gmdate('H:i',$destination-$depart);
+        $duree = gmdate('H:i', $destination - $depart);
 
         $voiture = Voiture::where('USR_ID', $trajet->USR_ID)->first();
         $user = User::where('ID', $trajet->USR_ID)->first();
-        
-        
+
+
         return View::make('details-trajet')
-                ->with('trajet', $trajet)
-                ->with('duree', $duree)
-                ->with('voiture', $voiture)
-                ->with('user', $user);
+                        ->with('trajet', $trajet)
+                        ->with('duree', $duree)
+                        ->with('voiture', $voiture)
+                        ->with('user', $user);
     }
-    
+
     public function detailsTrajetReservation($id) {
-        
-        $trajet = Trajet::where('ID',$id)->first();
-        
+
+        $trajet = Trajet::where('ID', $id)->first();
+
         $depart = strtotime(Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i'));
         $destination = strtotime(Carbon::parse($trajet->TRJ_HEURE_DESTINATION)->format('H:i'));
-        $duree = gmdate('H:i',$destination-$depart);
+        $duree = gmdate('H:i', $destination - $depart);
 
         $voiture = Voiture::where('USR_ID', $trajet->USR_ID)->first();
         $user = User::where('ID', $trajet->USR_ID)->first();
-        
-        
+
+
         return View::make('details-trajet-reservation')
-                ->with('trajet', $trajet)
-                ->with('duree', $duree)
-                ->with('voiture', $voiture)
-                ->with('user', $user);
+                        ->with('trajet', $trajet)
+                        ->with('duree', $duree)
+                        ->with('voiture', $voiture)
+                        ->with('user', $user);
     }
-    
+
     public function detailsTrajetProposer($id) {
-        
-        $trajet = Trajet::where('ID',$id)->first();
-        
+
+        $trajet = Trajet::where('ID', $id)->first();
+
         $depart = strtotime(Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i'));
         $destination = strtotime(Carbon::parse($trajet->TRJ_HEURE_DESTINATION)->format('H:i'));
-        $duree = gmdate('H:i',$destination-$depart);
+        $duree = gmdate('H:i', $destination - $depart);
 
         $voiture = Voiture::where('USR_ID', $trajet->USR_ID)->first();
         $user = User::where('ID', $trajet->USR_ID)->first();
-        
-        
+
+
+        $covoit = User::where('TRJ_ID', $id)
+                        ->join('trajets_users', 'users.id', '=', 'trajets_users.USR_ID')->get();
+
+        //dd($covoit[0]->name);
+//here `TRJ_ID` = ".$id.");
+
         return View::make('details-trajet-proposer')
-                ->with('trajet', $trajet)
-                ->with('duree', $duree)
-                ->with('voiture', $voiture)
-                ->with('user', $user);
+                        ->with('trajet', $trajet)
+                        ->with('duree', $duree)
+                        ->with('voiture', $voiture)
+                        ->with('user', $user)
+                        ->with('covoit', $covoit);
     }
-    
-    public function reserverTrajet(Request $request){
-        
+
+    public function reserverTrajet(Request $request) {
+
         $trajet = Trajet::find($request->id);
         $places = $trajet->TRJ_PLACES;
-        
+
         if ($places > 0) {
-            $places = $trajet->TRJ_PLACES-1;
+
+
+
+            Mail::to("bryan.torralba34@gmail.com")->send("coucou");
+
+            $places = $trajet->TRJ_PLACES - 1;
             $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
             $user->reserver()->attach([$request->id]);
-            DB::select("update `trajets` set `TRJ_PLACES` = ".$places." where `id` =".$request->id.";" );
+            DB::select("update `trajets` set `TRJ_PLACES` = " . $places . " where `id` =" . $request->id . ";");
             return View::make('message')
                             ->with('message', "Reservation effectuée !");
-        }
-        else {
-             return View::make('message')
+        } else {
+            return View::make('message')
                             ->with('message', "Désolé il n'y a plus de place pour ce trajet !");
         }
-        
-
     }
-    
-    public function annulerReservation(Request $request){
+
+    public function annulerReservation(Request $request) {
         $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
         $user->reserver()->detach([$request->id]);
-        
+
         $trajet = Trajet::find($request->id);
-        $places = $trajet->TRJ_PLACES+1;
-        
-        DB::select("update `trajets` set `TRJ_PLACES` = ".$places." where `id` =".$request->id.";" );
+        $places = $trajet->TRJ_PLACES + 1;
+
+        DB::select("update `trajets` set `TRJ_PLACES` = " . $places . " where `id` =" . $request->id . ";");
         return View::make('message')
                         ->with('message', "Reservation Annulée!");
     }
-    
+
     public function mesReservations() {
         $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
-        
+
         $reservations = $user->reserver()->get();
-        
+
         return view('mes-reservations')
-            ->with('reservations', $reservations);
+                        ->with('reservations', $reservations);
     }
-    
+
     public function mesTrajets() {
         $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
-        
+
         $trajets = $user->proposer()->get();
-        
-        
-        
+
+
+
         return view('mes-trajets')
-            ->with('trajets', $trajets);
+                        ->with('trajets', $trajets);
     }
-    
+
     public function proposerUnTrajet() {
         return view('proposer-un-trajet');
     }
 
     public function validerProposerUnTrajet(Request $request) {
         $this->validate($request, ['date' => 'required|date_format:"d/m/Y"|after:today', 'heureDepart' => 'required|date_format:"H:i"', 'heureDestination' => 'required|date_format:"H:i"', 'depart' => 'required', 'destination' => 'required', 'places' => 'required|integer|between:1,7', 'prix' => 'required|integer|between:0,500', 'bagage' => 'required']);
-        
-        /*$datecomplete = new DateTime();
-        $datetrajet= $datecomplete->createFromFormat('d/m/Y H:i', $request->date.' '.$request->heureDepart);*/
+
+        /* $datecomplete = new DateTime();
+          $datetrajet= $datecomplete->createFromFormat('d/m/Y H:i', $request->date.' '.$request->heureDepart); */
 
         $trajet = new Trajet;
         $datetime = new DateTime();
@@ -205,11 +215,19 @@ class HomeController extends Controller {
 
         return "trajet enregistré";
     }
-    
+
     public function annulerTrajet(Request $request) {
-        DB::delete("delete from trajets where id=".$request->id.";");
+        DB::delete("delete from trajets where id=" . $request->id . ";");
         return View::make('message')
                         ->with('message', "Trajet Annulée!");
+    }
+
+    public function profil(Request $request) {
+        return view('profil');
+    }
+
+    public function modifierProfil(Request $request) {
+        return view('modifier-profil');
     }
 
     public function admin() {

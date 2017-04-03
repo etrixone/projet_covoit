@@ -25,10 +25,11 @@
     <style type="text/css">
         body
         {
-            background:url("{{ asset('images/back-connexion.jpg') }}") no-repeat fixed center center;
+            background:url("{{ asset('images/back-connexion1.jpg') }}") no-repeat;
             background-size:cover;
+            background-position: 0 0;
             width:100%;
-            height:100%;
+            /*height:100%;*/
             margin: auto;
             color:white;
             font-family: "Open Sans Condensed", Arial;
@@ -134,7 +135,7 @@
             </button>
              </form><br>
 
-          <p><a href="#"><span class="txt1">Mot de passe oublié ?</span></a></p>
+          <p><a href="{{ route('password.request') }}"><span class="txt1">Mot de passe oublié ?</span></a></p>
           
       </div>
   </div>

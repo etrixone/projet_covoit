@@ -98,26 +98,27 @@
     </form> 
             
         <div id="map">
-            @if(!empty($trajet->TRJ_ETAPE1) && (!empty($trajet->TRJ_ETAPE2)) ){
+            
+            @if(!empty($trajet->TRJ_ETAPE1) && (!empty($trajet->TRJ_ETAPE2)) )
             <iframe width="600" height="450" frameborder="0" style="border:0"
                     src="https://www.google.com/maps/embed/v1/directions?origin={{ $trajet->TRJ_DEPART}}&destination={{ $trajet->TRJ_DESTINATION}}&waypoints={{ $trajet->TRJ_ETAPE1}}|{{ $trajet->TRJ_ETAPE2}}&key=AIzaSyCyA2rSTXUMQc5CXJ3KGExemqXu-yPcQT0" allowfullscreen>
 
             </iframe>
-            }
+            
 
-            @elseif (!empty($trajet->TRJ_ETAPE1)){
+            @elseif (!empty($trajet->TRJ_ETAPE1))
             <iframe width="600" height="450" frameborder="0" style="border:0"
                     src="https://www.google.com/maps/embed/v1/directions?origin={{ $trajet->TRJ_DEPART}}&destination={{ $trajet->TRJ_DESTINATION}}&waypoints={{ $trajet->TRJ_ETAPE1}}&key=AIzaSyCyA2rSTXUMQc5CXJ3KGExemqXu-yPcQT0" allowfullscreen>
 
             </iframe>
-            }
             
-            @else {
+            
+            @else
             <iframe width="600" height="450" frameborder="0" style="border:0"
                     src="https://www.google.com/maps/embed/v1/directions?origin={{ $trajet->TRJ_DEPART}}&destination={{ $trajet->TRJ_DESTINATION}}&key=AIzaSyCyA2rSTXUMQc5CXJ3KGExemqXu-yPcQT0" allowfullscreen>
 
             </iframe>
-            }
+            
             @endif
             
 

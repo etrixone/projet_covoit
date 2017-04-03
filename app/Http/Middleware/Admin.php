@@ -18,7 +18,7 @@ class Admin
     public function handle($request, Closure $next)
     {
         //dd($request);
-        //On recupere l'id de l'utilisateur connecté
+        //On recupere l'id de l'utilisateur connecté.
         $id=Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d');
         
         //On recupere la valeur du champ "enable" dans la base.

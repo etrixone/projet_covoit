@@ -620,7 +620,7 @@ button {
 	position:absolute;
 	background-color:green;
 	height:30px;
-	width:200px;
+	width: 200px;
 	right:-200px;
 	top:125px;
 	border-top-right-radius: 20px;

@@ -36,14 +36,13 @@ Route::get('/details_trajet_reservation/{id}', 'HomeController@detailsTrajetRese
 Route::get('/mes_trajets', 'HomeController@mesTrajets');
 Route::get('/details_trajet_proposer/{id}', 'HomeController@detailsTrajetProposer')->name('details_trajet_proposer');
 
-
-
-
-
 Route::get('/proposer_un_trajet', 'HomeController@proposerUnTrajet');
 Route::post('/proposer_un_trajet', 'HomeController@validerProposerUnTrajet');
 
 Route::post('/details', 'HomeController@detailsTrajet');
+
+Route::get('/profil', 'HomeController@profil');
+Route::get('/modifier_profil', 'HomeController@modifierProfil');
 
 Route::get('/test/', function(){
     return view('test');
