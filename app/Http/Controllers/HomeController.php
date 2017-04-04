@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use DB;
 use View;
 use App\User;
-use App\Ville;
 use App\Voiture;
 use App\Trajet;
 use App\Reservation;
 use App\Mail\AjoutTrajet;
-use App\Mail\SuppressionTrajet;
-use App\Mail\SuppressionTrajetReserve;
+use App\Mail\SuppressionTrajetConducteur;
+use App\Mail\SuppressionTrajetCovoitureur;
+use App\Mail\ReservationCovoitureur;
+use App\Mail\ReservationConducteur;
+use App\Mail\AnnulationReservationConducteur;
+use App\Mail\AnnulationReservationCovoitureur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -143,13 +146,15 @@ class HomeController extends Controller {
         $trajet = Trajet::find($request->id);
         $places = $trajet->TRJ_PLACES;
         $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
+        $conducteur = User::find($trajet->USR_ID);
         
         if ($user->id != $trajet->USR_ID){
             if ($places > 0) {
                 $places = $trajet->TRJ_PLACES - 1;
                 $user->reserver()->attach([$request->id]);
                 DB::select("update `trajets` set `TRJ_PLACES` = " . $places . " where `id` =" . $request->id . ";");
-                Mail::to($user)->send (new AjoutTrajet);
+                Mail::to($user)->send (new ReservationCovoitureur);
+                Mail::to($conducteur)->send (new ReservationConducteur);
                 return View::make('message')
                                 ->with('message', "Reservation effectuée !");
             } else {
@@ -165,15 +170,23 @@ class HomeController extends Controller {
 
     public function annulerReservation(Request $request) {
         $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
-        $user->reserver()->detach([$request->id]);
-
-        $trajet = Trajet::find($request->id);
+        $annulation = $user->reserver()->detach([$request->id]);
         
-        $places = $trajet->TRJ_PLACES + 1;
+        if ($annulation == 1){
+            $trajet = Trajet::find($request->id);   
+            $places = $trajet->TRJ_PLACES + 1;
+            $conducteur = User::find($trajet->USR_ID);
+            DB::select("update `trajets` set `TRJ_PLACES` = " . $places . " where `id` =" . $request->id . ";");
+            Mail::to($user)->send (new AnnulationReservationCovoitureur);
+            Mail::to($conducteur)->send (new AnnulationReservationConducteur);
+            return View::make('message')
+                            ->with('message', "Reservation Annulée!");
+        }
+        else {
+             return View::make('message')
+                            ->with('message', "Vous n'avez pas reservé ce trajet, donc vous ne pouvez pas l'annuler");
+        }
         
-        DB::select("update `trajets` set `TRJ_PLACES` = " . $places . " where `id` =" . $request->id . ";");
-        return View::make('message')
-                        ->with('message', "Reservation Annulée!");
     }
 
     public function mesReservations() {
@@ -231,9 +244,9 @@ class HomeController extends Controller {
         $user = Auth::user();
         
         if($user->id == $trajet->USR_ID){
-            Mail::to($user)->send (new SuppressionTrajet);
+            Mail::to($user)->send (new SuppressionTrajetConducteur);
             if (sizeof($covoitureurs) >= 1){
-                Mail::to($covoitureurs)->send (new SuppressionTrajetReserve($trajet));
+                Mail::to($covoitureurs)->send (new SuppressionTrajetCovoitureur($trajet));
             }
             DB::delete("delete from trajets where id=". $request->id .";");
             return View::make('message')

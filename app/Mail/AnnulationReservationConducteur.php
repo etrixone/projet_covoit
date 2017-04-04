@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AnnulationReservation extends Mailable
+class AnnulationReservationConducteur extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +28,6 @@ class AnnulationReservation extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('mail.annulation-reservation-conducteur');
     }
 }

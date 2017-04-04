@@ -2,13 +2,12 @@
 
 namespace App\Mail;
 
-use App\Trajet;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SuppressionTrajetReserve extends Mailable
+class ReservationConducteur extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -17,11 +16,9 @@ class SuppressionTrajetReserve extends Mailable
      *
      * @return void
      */
-    public $trajet;
-    
-    public function __construct(Trajet $trajet)
+    public function __construct()
     {
-        $this->trajet = $trajet;
+        //
     }
 
     /**
@@ -31,7 +28,6 @@ class SuppressionTrajetReserve extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.suppression-trajet-reserve')
-                ->with('trajet', $this->trajet);
+        return $this->view('mail.reservation-conducteur');
     }
 }
