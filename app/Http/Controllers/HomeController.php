@@ -45,23 +45,27 @@ class HomeController extends Controller {
 
     public function resultatRecherche(Request $request) {
 
-        $this->validate($request, ['depart' => 'required', 'destination' => 'required', 'date' => 'required|date_format:d/m/Y|after:today']);
+        if ($request->date != null ){
+            $this->validate($request, ['depart' => 'required', 'destination' => 'required', 'date' => 'required|date_format:d/m/Y|after:today']);
+            $dat = DateTime::createFromFormat('d/m/Y', $request->date);
+            $date = $dat->format('Y-m-d');
+            $trajets = Trajet::where('TRJ_DEPART', $request->input('depart'))
+                            ->where('TRJ_DESTINATION', $request->input('destination'))
+                            ->where('TRJ_PLACES', '>', 0)
+                            ->where('TRJ_DATE_DEPART', '=', $date)->get();
 
+            $trajetsEtapesDepart = DB::select('select * from trajets where TRJ_PLACES > 0 and TRJ_DATE_DEPART ="' . $date . '" and TRJ_DEPART ="' . $request->input('depart') . '" and TRJ_ETAPE1 ="' . $request->input('destination') . '" or TRJ_ETAPE2 ="' . $request->input('destination') . '";');
+            $trajetsEtapesDestination = DB::select('select * from trajets where TRJ_PLACES > 0 and TRJ_DATE_DEPART ="' . $date . '" and TRJ_DESTINATION ="' . $request->input('destination') . '" and TRJ_ETAPE1 ="' . $request->input('depart') . '" or TRJ_ETAPE2 ="' . $request->input('depart') . '";');
+        }
+        else {
+             $this->validate($request, ['depart' => 'required', 'destination' => 'required']);
 
-        $dat = DateTime::createFromFormat('d/m/Y', $request->date);
-        $date = $dat->format('Y-m-d');
-
-
-
-        $trajets = Trajet::where('TRJ_DEPART', $request->input('depart'))
-                        ->where('TRJ_DESTINATION', $request->input('destination'))
-                        ->where('TRJ_PLACES', '>', 0)
-                        ->where('TRJ_DATE_DEPART', '=', $date)->get();
-
-        $trajetsEtapesDepart = DB::select('select * from trajets where TRJ_PLACES > 0 and TRJ_DATE_DEPART ="' . $date . '" and TRJ_DEPART ="' . $request->input('depart') . '" and TRJ_ETAPE1 ="' . $request->input('destination') . '" or TRJ_ETAPE2 ="' . $request->input('destination') . '";');
-
-        $trajetsEtapesDestination = DB::select('select * from trajets where TRJ_PLACES > 0 and TRJ_DATE_DEPART ="' . $date . '" and TRJ_DESTINATION ="' . $request->input('destination') . '" and TRJ_ETAPE1 ="' . $request->input('depart') . '" or TRJ_ETAPE2 ="' . $request->input('depart') . '";');
-
+            $trajets = Trajet::where('TRJ_DEPART', $request->input('depart'))
+                            ->where('TRJ_DESTINATION', $request->input('destination'))
+                            ->where('TRJ_PLACES', '>', 0)->get();
+             $trajetsEtapesDepart = DB::select('select * from trajets where TRJ_PLACES > 0  and TRJ_DEPART ="' . $request->input('depart') . '" and TRJ_ETAPE1 ="' . $request->input('destination') . '" or TRJ_ETAPE2 ="' . $request->input('destination') . '";');
+            $trajetsEtapesDestination = DB::select('select * from trajets where TRJ_PLACES > 0 and TRJ_DESTINATION ="' . $request->input('destination') . '" and TRJ_ETAPE1 ="' . $request->input('depart') . '" or TRJ_ETAPE2 ="' . $request->input('depart') . '";');
+        }
 
         return View::make('resultat-recherche')
                         ->with('trajets', $trajets)
@@ -138,18 +142,24 @@ class HomeController extends Controller {
 
         $trajet = Trajet::find($request->id);
         $places = $trajet->TRJ_PLACES;
-
-        if ($places > 0) {
-
-            $places = $trajet->TRJ_PLACES - 1;
-            $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
-            $user->reserver()->attach([$request->id]);
-            DB::select("update `trajets` set `TRJ_PLACES` = " . $places . " where `id` =" . $request->id . ";");
-            return View::make('message')
-                            ->with('message', "Reservation effectuée !");
-        } else {
-            return View::make('message')
-                            ->with('message', "Désolé il n'y a plus de place pour ce trajet !");
+        $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
+        
+        if ($user->id != $trajet->USR_ID){
+            if ($places > 0) {
+                $places = $trajet->TRJ_PLACES - 1;
+                $user->reserver()->attach([$request->id]);
+                DB::select("update `trajets` set `TRJ_PLACES` = " . $places . " where `id` =" . $request->id . ";");
+                Mail::to($user)->send (new AjoutTrajet);
+                return View::make('message')
+                                ->with('message', "Reservation effectuée !");
+            } else {
+                return View::make('message')
+                                ->with('message', "Désolé il n'y a plus de place pour ce trajet !");
+            }
+        }
+        else {
+             return View::make('message')
+                                ->with('message', "Vous ne pouvez pas reserver votre propre trajet !");
         }
     }
 
