@@ -11,6 +11,7 @@ use App\Trajet;
 use App\Reservation;
 use App\Mail\AjoutTrajet;
 use App\Mail\SuppressionTrajet;
+use App\Mail\SuppressionTrajetReserve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -70,7 +71,7 @@ class HomeController extends Controller {
 
     public function detailsTrajet($id) {
 
-        $trajet = Trajet::where('ID', $id)->first();
+        $trajet = Trajet::where('id', $id)->first();
 
 
         $depart = strtotime(Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i'));
@@ -90,7 +91,7 @@ class HomeController extends Controller {
 
     public function detailsTrajetReservation($id) {
 
-        $trajet = Trajet::where('ID', $id)->first();
+        $trajet = Trajet::where('id', $id)->first();
 
         $depart = strtotime(Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i'));
         $destination = strtotime(Carbon::parse($trajet->TRJ_HEURE_DESTINATION)->format('H:i'));
@@ -157,8 +158,9 @@ class HomeController extends Controller {
         $user->reserver()->detach([$request->id]);
 
         $trajet = Trajet::find($request->id);
+        
         $places = $trajet->TRJ_PLACES + 1;
-
+        
         DB::select("update `trajets` set `TRJ_PLACES` = " . $places . " where `id` =" . $request->id . ";");
         return View::make('message')
                         ->with('message', "Reservation Annulée!");
@@ -166,9 +168,7 @@ class HomeController extends Controller {
 
     public function mesReservations() {
         $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
-
         $reservations = $user->reserver()->get();
-
         return view('mes-reservations')
                         ->with('reservations', $reservations);
     }
@@ -214,17 +214,27 @@ class HomeController extends Controller {
     }
 
     public function annulerTrajet(Request $request) {
-        DB::delete("delete from trajets where id=' . $request->id . ';");
-        $user = Auth::user();
-        Mail::to($user)->send (new SuppressionTrajet);
         
+        
+        $trajet = Trajet::where('id', $request->id )->first();
         $covoitureurs = Trajet::find($request->id)->reserver()->get();
+        $user = Auth::user();
         
-        Mail::to($covoitureurs)->send (new SuppressionTrajet);
+        if($user->id == $trajet->USR_ID){
+            Mail::to($user)->send (new SuppressionTrajet);
+            if (sizeof($covoitureurs) >= 1){
+                Mail::to($covoitureurs)->send (new SuppressionTrajetReserve($trajet));
+            }
+            DB::delete("delete from trajets where id=". $request->id .";");
+            return View::make('message')
+                        ->with('message', "Trajet Annulé!");
+        }
+        else {
+            return View::make('message')
+                            ->with('message', "Vous ne pouvez pas supprimer ce trajet");
+        }
         
-        
-        return View::make('message')
-                        ->with('message', "Trajet Annulée!");
+           
     }
 
     public function profil(Request $request) {

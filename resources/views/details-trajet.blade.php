@@ -90,7 +90,7 @@
           
     </div>
     <div class="col-sm-6 col-sm-push-2">
-        <input type="hidden" name="id" value="{{ $trajet->ID }}"/>
+        <input type="hidden" name="id" value="{{ $trajet->id }}"/>
     </div>
     <div class="col-sm-6">
        <input type="submit" class="btn proposer" value="Confirmer la reservation"/>

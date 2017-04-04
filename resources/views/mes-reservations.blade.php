@@ -48,7 +48,7 @@
         </div>
         <div class="row padding-right">
 
-            <a href="{{ route('details_trajet_reservation',['id' => $trajet->ID]) }}" ><div class="col-sm-offset-10 col-sm-2 details">Voir les details</div></a>
+            <a href="{{ route('details_trajet_reservation',['id' => $trajet->id]) }}" ><div class="col-sm-offset-10 col-sm-2 details">Voir les details</div></a>
         </div>
 
     </div>
