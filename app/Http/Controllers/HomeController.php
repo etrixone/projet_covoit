@@ -9,11 +9,14 @@ use App\Ville;
 use App\Voiture;
 use App\Trajet;
 use App\Reservation;
+use App\Mail\AjoutTrajet;
+use App\Mail\SuppressionTrajet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
 
@@ -106,7 +109,7 @@ class HomeController extends Controller {
 
     public function detailsTrajetProposer($id) {
 
-        $trajet = Trajet::where('ID', $id)->first();
+        $trajet = Trajet::where('id', $id)->first();
 
         $depart = strtotime(Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i'));
         $destination = strtotime(Carbon::parse($trajet->TRJ_HEURE_DESTINATION)->format('H:i'));
@@ -121,7 +124,7 @@ class HomeController extends Controller {
 
         //dd($covoit[0]->name);
 //here `TRJ_ID` = ".$id.");
-
+        
         return View::make('details-trajet-proposer')
                         ->with('trajet', $trajet)
                         ->with('duree', $duree)
@@ -136,10 +139,6 @@ class HomeController extends Controller {
         $places = $trajet->TRJ_PLACES;
 
         if ($places > 0) {
-
-
-
-            Mail::to("bryan.torralba34@gmail.com")->send("coucou");
 
             $places = $trajet->TRJ_PLACES - 1;
             $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
@@ -191,14 +190,10 @@ class HomeController extends Controller {
 
     public function validerProposerUnTrajet(Request $request) {
         $this->validate($request, ['date' => 'required|date_format:"d/m/Y"|after:today', 'heureDepart' => 'required|date_format:"H:i"', 'heureDestination' => 'required|date_format:"H:i"', 'depart' => 'required', 'destination' => 'required', 'places' => 'required|integer|between:1,7', 'prix' => 'required|integer|between:0,500', 'bagage' => 'required']);
-
-        /* $datecomplete = new DateTime();
-          $datetrajet= $datecomplete->createFromFormat('d/m/Y H:i', $request->date.' '.$request->heureDepart); */
-
         $trajet = new Trajet;
         $datetime = new DateTime();
         $dateDepart = $datetime->createFromFormat('d/m/Y', $request->date);
-        $trajet->TRJ_DATE_DEPART = Carbon::parse($dateDepart)->format('Y-m-d');
+        $trajet->TRJ_DATE_DEPART = $dateDepart->format('Y-m-d');
         $trajet->TRJ_HEURE_DEPART = Carbon::parse($request->heureDepart)->format('H:i:00');
         $trajet->TRJ_HEURE_DESTINATION = Carbon::parse($request->heureDestination)->format('H:i:00');
         $trajet->TRJ_DEPART = $request->localityDepart;
@@ -212,12 +207,22 @@ class HomeController extends Controller {
         $trajet->TRJ_BAGAGE = $request->bagage;
         $trajet->USR_ID = Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d');
         $trajet->save();
-
-        return "trajet enregistré";
+        $user = Auth::user();
+        Mail::to($user)->send (new AjoutTrajet);
+        return View::make('message')
+                        ->with('message', 'Votre trajet à bien était ajouté. Il est disponible dans la rubrique "Mes trajets".' );
     }
 
     public function annulerTrajet(Request $request) {
-        DB::delete("delete from trajets where id=" . $request->id . ";");
+        DB::delete("delete from trajets where id=' . $request->id . ';");
+        $user = Auth::user();
+        Mail::to($user)->send (new SuppressionTrajet);
+        
+        $covoitureurs = Trajet::find($request->id)->reserver()->get();
+        
+        Mail::to($covoitureurs)->send (new SuppressionTrajet);
+        
+        
         return View::make('message')
                         ->with('message', "Trajet Annulée!");
     }

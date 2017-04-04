@@ -21,6 +21,6 @@ class Trajet extends Model {
         return $this->belongsToMany('App\User', 'trajets_users', 'TRJ_ID', 'USR_ID');
     }
     
-    public $key = 'ID';
+    //public $key = 'ID';
 
 }

@@ -11,13 +11,13 @@
                         <label for="dateL">Date</label>
                     </div>
                     <div class="col-sm-7 margin">
-                        <input type="date" class="form-control input-sm" name="date" placeholder="jj/mm/aaaa">
+                        <input type="text" class="form-control input-sm" name="date" placeholder="jj/mm/aaaa">
                     </div>
                     <div class="col-sm-4">
                         <label for="departL">Votre départ</label>
                     </div>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control input-sm" id="depart" name="depart" placeholder="exemple : Bordeaux">
+                        <input type="text" class="form-control input-sm" id="depart" name="depart" placeholder="exemple : Bordeaux" required>
                     </div>
                     <div class="col-sm-4">
                         <label for="heureDepartL">Heure prévue</label>
