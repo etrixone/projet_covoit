@@ -11,19 +11,19 @@
                         <label for="dateL">Date</label>
                     </div>
                     <div class="col-sm-7 margin">
-                        <input type="text" class="form-control input-sm" id="date" name="date" placeholder="jj/mm/aaaa">
+                        <input type="text" class="form-control input-sm" id="date" name="date" placeholder="jj/mm/aaaa" required>
                     </div>
                     <div class="col-sm-4">
                         <label for="departL">Votre départ</label>
                     </div>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control input-sm" id="depart" name="depart" placeholder="exemple : Bordeaux" required>
+                        <input type="text" class="form-control input-sm" id="depart" name="depart" placeholder="exemple: Bordeaux" required>
                     </div>
                     <div class="col-sm-4">
                         <label for="heureDepartL">Heure prévue</label>
                     </div>
                     <div class="col-sm-7">
-                        <input type="time" class="form-control input-sm" name="heureDepart" placeholder="exemple : 12:00">
+                        <input type="time" class="form-control input-sm" name="heureDepart" placeholder="exemple: 12:00" required>
                     </div>
                     <div class="col-sm-4">
                         <div class="glyphicon glyphicon-arrow-down fleche-proposer"></div>
@@ -50,13 +50,13 @@
                         <label for="arriveeL">Votre arrivée</label>
                     </div>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control input-sm" id="destination" name="destination" placeholder="exemple : Balma">
+                        <input type="text" class="form-control input-sm" id="destination" name="destination" placeholder="exemple : Balma" required>
                     </div>
                     <div class="col-sm-4">
                         <label for="heureArriveeL">Heure prévue</label>
                     </div>
                     <div class="col-sm-7">
-                        <input type="time" class="form-control input-sm" name="heureDestination" placeholder="exemple : 12:00">
+                        <input type="time" class="form-control input-sm" name="heureDestination" placeholder="exemple : 12:00" required>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -64,14 +64,14 @@
                         <label for="tempsTrajetL">Flexibilité</label>
                     </div>
                     <div class="col-sm-7">
-                        <input type="number" class="form-control input-sm margin" name="flexible" placeholder="exemple (en minutes) : 15">
+                        <input type="number" class="form-control input-sm margin" name="flexible" placeholder="exemple: 15" required>
                     </div>
                     <div class="col-sm-5 margin">
                         <label for="placesL">Places disponibles</label>
                     </div>
                     <div class="col-sm-7 margin">
                         <select class="form-control input-sm listeD" name="places">
-                            <option>1</option>
+                            <option selected>1</option>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
@@ -82,7 +82,7 @@
                         <label for="prixDemandeL">Prix demandé</label>
                     </div>
                     <div class="col-sm-7 margin">
-                        <input type="number" class="form-control input-sm" name="prix" placeholder="exemple : 10€">
+                        <input type="number" class="form-control input-sm" name="prix" placeholder="exemple : 10" required>
                     </div>
                     <div class="col-sm-5 margin">
                         <label for="tailleBagagesL">Taille des bagages</label>
@@ -99,7 +99,7 @@
                     </div>
                     <div class="col-sm-12">
                         <fieldset>Informations complémentaires :</fieldset>
-                        <textarea class="form-control" name="informations" rows="3" placeholder="Exemple : Je pars de la place de la victoire à bordeaux, je fais une étape à 10h30 au péage d'Agen et je termine le trajet au lycée Saliège à Balma"></textarea>
+                        <textarea class="form-control" name="informations" rows="3" placeholder="Exemple : Je pars de la place de la victoire à bordeaux, je fais une étape à 10h30 au péage d'Agen et je termine le trajet au lycée Saliège à Balma" required></textarea>
                     </div>
                 </div>
             </div>
