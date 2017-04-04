@@ -10,7 +10,7 @@
         <div class="flex">
             <label>Départ </label>
             <hr class="flex-barre flex-barre1">
-            <input id="depart" type="text" class="form-control input-sm">
+            <input id="depart" type="text" class="form-control input-sm" required>
             <input id="localityDepart" name="depart" type="hidden">
             <br/>
         </div>
@@ -18,7 +18,7 @@
         <div class="flex">
             <label>Destination </label>
             <hr class="flex-barre flex-barre2">
-            <input id="destination" type="text" class="form-control input-sm">
+            <input id="destination" type="text" class="form-control input-sm" required>
             <input id="localityDestination" name="destination" type="hidden">
             <br/>
         </div>
@@ -26,7 +26,7 @@
         <div class="flex">
             <label>Date </label>
             <hr class="flex-barre flex-barre3">
-            <input type="text" id="date" name="date" class="form-control input-sm">
+            <input type="text" id="date" name="date" class="form-control input-sm" placeholder="jj/mm/aaaa">
         </div>
         <br>
         <input type="submit" value="Rechercher" class="rechercher"> @if (count($errors) > 0)
