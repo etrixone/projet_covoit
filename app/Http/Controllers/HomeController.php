@@ -142,13 +142,14 @@ class HomeController extends Controller {
     }
 
     public function reserverTrajet(Request $request) {
-
+        
+        $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
         $trajet = Trajet::find($request->id);
         $places = $trajet->TRJ_PLACES;
-        $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
         $conducteur = User::find($trajet->USR_ID);
+
         
-        if ($user->id != $trajet->USR_ID){
+        if ($user->id != $trajet->USR_ID and (sizeof($user->reserver()->where('TRJ_ID',$trajet->id)->get()) == 0)){
             if ($places > 0) {
                 $places = $trajet->TRJ_PLACES - 1;
                 $user->reserver()->attach([$request->id]);
@@ -164,7 +165,7 @@ class HomeController extends Controller {
         }
         else {
              return View::make('message')
-                                ->with('message', "Vous ne pouvez pas reserver votre propre trajet !");
+                                ->with('message', "Vous ne pouvez pas reserver votre propre trajet ou bien reserver plusieurs fois le même trajet !");
         }
     }
 
