@@ -17,7 +17,7 @@ class TrajetsController extends Controller
     
     public function getAllTrajets()
     {
-        $trajets = DB::table('trajets')->get();
+        $trajet = DB::table('trajets')->where('id', $id)->delete($id);   
         
         return view('admin/all-trajets', ['trajets' => $trajets]);
     }
