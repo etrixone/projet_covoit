@@ -48,7 +48,7 @@
             </div>
             <a href="#">
                 <div class="back-menu">
-                    <p class="lien-menu">RETOUR AU MENU</p>
+                    <p class="lien-menu">MENU</p>
                     <div class="glyphicon glyphicon-menu-hamburger"></div>
                 </div>
             </a>

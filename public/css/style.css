@@ -153,6 +153,11 @@ body
 		margin-top:-80px;
 	}
 	
+	.form-profil
+	{
+		text-align: center;
+	}
+	
 }
 
 
@@ -169,7 +174,6 @@ h4
 	border-radius:20px;
 	padding:10px;
 	background: linear-gradient(to bottom, #ffffff 25%,#fff2e2 100%);
-        
 }
 
 input[type="text"], input[type="number"], input[type="time"], input[type="date"]
@@ -385,8 +389,7 @@ button {
 	border-top-right-radius: 0px;
 	border-bottom-left-radius: 20px;
 	border-bottom-right-radius: 20px;
-	font-weight:bold;
-        
+	font-weight:bold;    
 }
 
 .right {
@@ -667,6 +670,54 @@ button {
 	background: linear-gradient(to bottom, #ffffff 25%,#fff2e2 100%);
 }
 
+.form-profil
+{
+	border:2px solid #e0dacc;
+	border-radius:20px;
+	padding:10px;
+	background: linear-gradient(to bottom, #ffffff 25%,#fff2e2 100%);
+	margin-top:50px;
+	position:relative;
+	font-size:1.4em;
+	color:black;
+	padding-bottom:40px;
+}
+
+.img-profil
+{
+	position:absolute;
+	top:-40px;
+	left:-60px;
+}
+
+.container-profil
+{
+	width:600px;
+}
+
+.small-text-profil
+{
+	margin-top:-20px; 
+	font-size:0.7em;
+	font-style: italic;
+	margin-bottom:20px;
+}
+
+
+.modifier
+{
+	background-image:url("../images/bouton2.gif");
+    background-position: center;
+	width:300px;
+	margin-left:25%;
+	margin-top:0;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	font-weight:bold;    
+	font-size:1.2em;
+}
 
 
 
