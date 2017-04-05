@@ -304,9 +304,11 @@ li
 {
     float:left;
     min-width:20%;
-    padding-top:4px;
+    padding-top:5px;
     margin-bottom: 20px;
 	font-weight: bold;
+	height:40px;
+	font-size:1.3em;
 }
 
 li a
@@ -317,42 +319,42 @@ li a
 
 li.b1
 {
-    background-image:url("../images/bouton.gif");
-    background-position: center;
-    height:30px;
+    background:url("../images/1.gif");
+	background-size: cover;
+    background-position:left;
     border-right: 1px solid black;
 }
 
 li.b2
 {
-    background-image:url("../images/bouton.gif");
-    background-position: center;
-    min-height:30px;
+    background:url("../images/3.gif");
+	background-size: cover;
+    background-position:left;
     border-bottom-right-radius: 10px;
 }
 
 li.b3
 {
-    background-image:url("../images/bouton2.gif");
-    background-position: center;
-    min-height:30px;
+    background:url("../images/5.gif");
+	background-size: cover;
+    background-position:left;
     border-bottom-left-radius: 10px;
     border-right: 1px solid black;
 }
 
 li.b4
 {
-    background-image:url("../images/bouton2.gif");
-    background-position: center;
-    min-height:30px;
+    background:url("../images/7.gif");
+	background-size: cover;
+    background-position:left;
     border-bottom-right-radius: 10px;
 }
 
 li.b5
 {
-    background-image:url("../images/bouton.gif");
-    background-position: center;
-    min-height:30px;
+    background:url("../images/9.gif");
+	background-size: cover;
+    background-position:left;
     border-bottom-left-radius: 10px;
 }
 
