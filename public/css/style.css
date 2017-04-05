@@ -256,19 +256,24 @@ header
 .logo2 img
 {
     position:absolute;
-    top:20px;
+    top:10px;
     left:24px;
 }
 
 
 .prenom
 {
-	margin-top:75px;
+	margin-top:65px;
 }
 
 .nom
 {
     margin-top:-10px;
+}
+
+.glyphicon-off
+{
+	top:-5px;
 }
 
 
@@ -325,14 +330,7 @@ li.b1
     border-right: 1px solid black;
 }
 
-li.b1:active
-{
-    background:url("../images/2.gif");
-	background-size: cover;
-    background-position:left;
-    border-right: 1px solid black;
-	color:white;
-}
+
 
 li.b2
 {
@@ -361,7 +359,7 @@ li.b4
 
 li.b5
 {
-    background:url("../images/9.gif");
+    background:url("../images/91.gif");
 	background-size: cover;
     background-position:left;
     border-bottom-left-radius: 10px;
@@ -736,7 +734,6 @@ button {
 	margin-top:10px;
 	font-size:1.3em;
 }
-
 
 
 

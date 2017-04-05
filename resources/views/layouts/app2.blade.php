@@ -53,37 +53,39 @@
                 </div>
             </a>
             <div class="logo2">
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ asset('/images/Utilisateur2.gif') }}"></a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <a href=" {{ route( 'logout') }} " onclick="event.preventDefault(); document.getElementById( 'logout-form').submit(); "><img src="{{ asset( '/images/Utilisateur2.gif') }} "></a>
+                <form id="logout-form " action="{{ route( 'logout') }} " method="POST " style="display: none; ">
                     {{ csrf_field() }}
                 </form>
-                <p class="prenom">{{ Auth::user()->surname }}</p>
-                <p class="nom">{{ Auth::user()->name }}</p>
+                
+                <p class="prenom ">{{ Auth::user()->surname }}</p>
+                <p class="nom ">{{ Auth::user()->name }}</p>
+                <div class="glyphicon glyphicon-off"></div>
             </div>
-            <!--<img src="http://localhost/laravel/covoiturage/public/images/logo3.gif" class="logo">-->
-            <div class="barre"></div>
+            <!--<img src="http://localhost/laravel/covoiturage/public/images/logo3.gif " class="logo ">-->
+            <div class="barre "></div>
         </header>
-        <nav class="row">
+        <nav class="row ">
             <div>
                 <ul>
-                    <li class="b1"><a href="{!! url('rechercher_un_trajet') !!}">Rechercher un trajet</a></li>
-                    <li class="b2"><a href="{!! url('mes_reservations') !!}">Mes réservations</a></li>
-                    <li class="b3"><a href="{!! url('proposer_un_trajet') !!}">Proposer un trajet</a></li>
-                    <li class="b4"><a href="{!! url('mes_trajets') !!}">Mes trajets</a></li>
-                    <li class="b5"><a href="#">Contact</a></li>
+                    <li class="b1 "><a href="{!! url( 'rechercher_un_trajet') !!} ">Rechercher un trajet</a></li>
+                    <li class="b2 "><a href="{!! url( 'mes_reservations') !!} ">Mes réservations</a></li>
+                    <li class="b3 "><a href="{!! url( 'proposer_un_trajet') !!} ">Proposer un trajet</a></li>
+                    <li class="b4 "><a href="{!! url( 'mes_trajets') !!} ">Mes trajets</a></li>
+                    <li class="b5 "><a href="# ">Contact</a></li>
                 </ul>
             </div>
         </nav>
-        <section class="row">
+        <section class="row ">
             <div>
 
                 @yield('content')
 
             </div>
         </section>
-        <footer class="row">
-			<div class="text-center footer">
-				<p><a href="">Mentions légales</a></p>
+        <footer class="row ">
+			<div class="text-center footer ">
+				<p><a href=" ">Mentions légales</a></p>
 			</div>
         </footer>
     </div>
