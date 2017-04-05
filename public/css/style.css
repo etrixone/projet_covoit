@@ -325,6 +325,15 @@ li.b1
     border-right: 1px solid black;
 }
 
+li.b1:active
+{
+    background:url("../images/2.gif");
+	background-size: cover;
+    background-position:left;
+    border-right: 1px solid black;
+	color:white;
+}
+
 li.b2
 {
     background:url("../images/3.gif");
@@ -721,7 +730,12 @@ button {
 	font-size:1.2em;
 }
 
-
+.footer p
+{
+	color:black;
+	margin-top:10px;
+	font-size:1.3em;
+}
 
 
 

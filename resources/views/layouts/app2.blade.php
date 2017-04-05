@@ -82,7 +82,9 @@
             </div>
         </section>
         <footer class="row">
-
+			<div class="text-center footer">
+				<p><a href="">Mentions légales</a></p>
+			</div>
         </footer>
     </div>
 
