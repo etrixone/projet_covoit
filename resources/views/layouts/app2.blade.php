@@ -55,7 +55,7 @@ window.Laravel = {
                 </a>
                 <div class="logo2">
                     <a href="{!! url( 'profil') !!}">
-                    <img src="{{ asset( '/images/Utilisateur2.gif') }}">
+                        <img src="{{ asset(Auth::user()->logo) }}" width="50px">
                     </a>
                     <p class="prenom ">{{ Auth::user()->surname }}</p>
                     <p class="nom ">{{ Auth::user()->name }}</p>

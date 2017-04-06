@@ -8,6 +8,8 @@ use App\User;
 use App\Voiture;
 use App\Trajet;
 use App\Reservation;
+use App\Marque;
+use App\Couleur;
 use App\Mail\AjoutTrajet;
 use App\Mail\SuppressionTrajetConducteur;
 use App\Mail\SuppressionTrajetCovoitureur;
@@ -48,7 +50,7 @@ class HomeController extends Controller {
 
     public function resultatRecherche(Request $request) {
 
-        if ($request->date != null ){
+        if ($request->date != null) {
             $this->validate($request, ['depart' => 'required', 'destination' => 'required', 'date' => 'required|date_format:d/m/Y|after:today']);
             $dat = DateTime::createFromFormat('d/m/Y', $request->date);
             $date = $dat->format('Y-m-d');
@@ -59,14 +61,13 @@ class HomeController extends Controller {
 
             $trajetsEtapesDepart = DB::select('select * from trajets where TRJ_PLACES > 0 and TRJ_DATE_DEPART ="' . $date . '" and TRJ_DEPART ="' . $request->input('depart') . '" and TRJ_ETAPE1 ="' . $request->input('destination') . '" or TRJ_ETAPE2 ="' . $request->input('destination') . '";');
             $trajetsEtapesDestination = DB::select('select * from trajets where TRJ_PLACES > 0 and TRJ_DATE_DEPART ="' . $date . '" and TRJ_DESTINATION ="' . $request->input('destination') . '" and TRJ_ETAPE1 ="' . $request->input('depart') . '" or TRJ_ETAPE2 ="' . $request->input('depart') . '";');
-        }
-        else {
-             $this->validate($request, ['depart' => 'required', 'destination' => 'required']);
+        } else {
+            $this->validate($request, ['depart' => 'required', 'destination' => 'required']);
 
             $trajets = Trajet::where('TRJ_DEPART', $request->input('depart'))
                             ->where('TRJ_DESTINATION', $request->input('destination'))
                             ->where('TRJ_PLACES', '>', 0)->get();
-             $trajetsEtapesDepart = DB::select('select * from trajets where TRJ_PLACES > 0  and TRJ_DEPART ="' . $request->input('depart') . '" and TRJ_ETAPE1 ="' . $request->input('destination') . '" or TRJ_ETAPE2 ="' . $request->input('destination') . '";');
+            $trajetsEtapesDepart = DB::select('select * from trajets where TRJ_PLACES > 0  and TRJ_DEPART ="' . $request->input('depart') . '" and TRJ_ETAPE1 ="' . $request->input('destination') . '" or TRJ_ETAPE2 ="' . $request->input('destination') . '";');
             $trajetsEtapesDestination = DB::select('select * from trajets where TRJ_PLACES > 0 and TRJ_DESTINATION ="' . $request->input('destination') . '" and TRJ_ETAPE1 ="' . $request->input('depart') . '" or TRJ_ETAPE2 ="' . $request->input('depart') . '";');
         }
 
@@ -132,7 +133,7 @@ class HomeController extends Controller {
 
         //dd($covoit[0]->name);
 //here `TRJ_ID` = ".$id.");
-        
+
         return View::make('details-trajet-proposer')
                         ->with('trajet', $trajet)
                         ->with('duree', $duree)
@@ -142,52 +143,49 @@ class HomeController extends Controller {
     }
 
     public function reserverTrajet(Request $request) {
-        
+
         $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
         $trajet = Trajet::find($request->id);
         $places = $trajet->TRJ_PLACES;
         $conducteur = User::find($trajet->USR_ID);
 
-        
-        if ($user->id != $trajet->USR_ID and (sizeof($user->reserver()->where('TRJ_ID',$trajet->id)->get()) == 0)){
+
+        if ($user->id != $trajet->USR_ID and ( sizeof($user->reserver()->where('TRJ_ID', $trajet->id)->get()) == 0)) {
             if ($places > 0) {
                 $places = $trajet->TRJ_PLACES - 1;
                 $user->reserver()->attach([$request->id]);
                 DB::select("update `trajets` set `TRJ_PLACES` = " . $places . " where `id` =" . $request->id . ";");
-                Mail::to($user)->send (new ReservationCovoitureur);
-                Mail::to($conducteur)->send (new ReservationConducteur);
+                Mail::to($user)->send(new ReservationCovoitureur);
+                Mail::to($conducteur)->send(new ReservationConducteur);
                 return View::make('message')
                                 ->with('message', "Reservation effectuée !");
             } else {
                 return View::make('message')
                                 ->with('message', "Désolé il n'y a plus de place pour ce trajet !");
             }
-        }
-        else {
-             return View::make('message')
-                                ->with('message', "Vous ne pouvez pas reserver votre propre trajet ou bien reserver plusieurs fois le même trajet !");
+        } else {
+            return View::make('message')
+                            ->with('message', "Vous ne pouvez pas reserver votre propre trajet ou bien reserver plusieurs fois le même trajet !");
         }
     }
 
     public function annulerReservation(Request $request) {
         $user = User::find(Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
         $annulation = $user->reserver()->detach([$request->id]);
-        
-        if ($annulation == 1){
-            $trajet = Trajet::find($request->id);   
+
+        if ($annulation == 1) {
+            $trajet = Trajet::find($request->id);
             $places = $trajet->TRJ_PLACES + 1;
             $conducteur = User::find($trajet->USR_ID);
             DB::select("update `trajets` set `TRJ_PLACES` = " . $places . " where `id` =" . $request->id . ";");
-            Mail::to($user)->send (new AnnulationReservationCovoitureur);
-            Mail::to($conducteur)->send (new AnnulationReservationConducteur);
+            Mail::to($user)->send(new AnnulationReservationCovoitureur);
+            Mail::to($conducteur)->send(new AnnulationReservationConducteur);
             return View::make('message')
                             ->with('message', "Reservation Annulée!");
-        }
-        else {
-             return View::make('message')
+        } else {
+            return View::make('message')
                             ->with('message', "Vous n'avez pas reservé ce trajet, donc vous ne pouvez pas l'annuler");
         }
-        
     }
 
     public function mesReservations() {
@@ -232,41 +230,64 @@ class HomeController extends Controller {
         $trajet->USR_ID = Session::get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d');
         $trajet->save();
         $user = Auth::user();
-        Mail::to($user)->send (new AjoutTrajet);
+        Mail::to($user)->send(new AjoutTrajet);
         return View::make('message')
-                        ->with('message', 'Votre trajet à bien était ajouté. Il est disponible dans la rubrique "Mes trajets".' );
+                        ->with('message', 'Votre trajet à bien était ajouté. Il est disponible dans la rubrique "Mes trajets".');
     }
 
     public function annulerTrajet(Request $request) {
-        
-        
-        $trajet = Trajet::where('id', $request->id )->first();
+
+
+        $trajet = Trajet::where('id', $request->id)->first();
         $covoitureurs = Trajet::find($request->id)->reserver()->get();
         $user = Auth::user();
-        
-        if($user->id == $trajet->USR_ID){
-            Mail::to($user)->send (new SuppressionTrajetConducteur);
-            if (sizeof($covoitureurs) >= 1){
-                Mail::to($covoitureurs)->send (new SuppressionTrajetCovoitureur($trajet));
+
+        if ($user->id == $trajet->USR_ID) {
+            Mail::to($user)->send(new SuppressionTrajetConducteur);
+            if (sizeof($covoitureurs) >= 1) {
+                Mail::to($covoitureurs)->send(new SuppressionTrajetCovoitureur($trajet));
             }
-            DB::delete("delete from trajets where id=". $request->id .";");
+            DB::delete("delete from trajets where id=" . $request->id . ";");
             return View::make('message')
-                        ->with('message', "Trajet Annulé!");
-        }
-        else {
+                            ->with('message', "Trajet Annulé!");
+        } else {
             return View::make('message')
                             ->with('message', "Vous ne pouvez pas supprimer ce trajet");
         }
-        
-           
     }
 
     public function profil(Request $request) {
-        return view('profil');
+
+        $voiture = Auth::user()->posseder()->first();
+
+        return view::make('profil')
+                        ->with('voiture', $voiture);
     }
 
     public function modifierProfil(Request $request) {
-        return view('modifier-profil');
+        $marques = Marque::get();
+        $couleurs = Couleur::get();
+        return view::make('modifier-profil')
+                        ->with('couleurs', $couleurs)
+                        ->with('marques', $marques);
+    }
+
+    public function validerModifierProfil(Request $request) {
+
+        $voiture = Auth::user()->posseder()->first();
+
+        $voiture->MRQ_NOM = $request->marque;
+        $voiture->CLR_NOM = $request->couleur;
+        $voiture->VTR_FUMEUR = $request->fumeur;
+        $voiture->VTR_ANIMAUX = $request->animaux;
+        $voiture->save();
+
+        return view::make('profil')
+                        ->with('voiture', $voiture);
+    }
+
+    public function logo() {
+        return view('logo');
     }
 
     public function admin() {

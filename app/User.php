@@ -39,7 +39,7 @@ class User extends Authenticatable
     }
     
     public function posseder() {
-        return $this->belongsTo('App\Voiture');
+        return $this->hasOne('App\Voiture', 'USR_ID', 'id');
     }
     
     public $timestamps = false;
