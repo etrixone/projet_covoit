@@ -25,18 +25,18 @@
         </div>
         <div class="row">
             <div class="col-sm-6 col-sm-push-2">
-                <p><strong>Marque & modèle :</strong></p>
+                <p><strong>Marque de la voiture:</strong></p>
             </div>
             <div class="col-sm-6">
-                <p>Clio - Renault</p>
+                <p>Renault</p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6 col-sm-push-2">
-                <p><strong>Couleur de la voiture :</strong></p>
+                <p><strong>Couleur de la voiture:</strong></p>
             </div>
             <div class="col-sm-6">
-                <p>Couleur blanche</p>
+                <p>blanche</p>
             </div>
         </div>
         <div class="row">
@@ -58,7 +58,11 @@
 
     </div>
     <div class="col-sm-6">
-        <input type="button" class="btn modifier" value="Modifier mon profil" name="modifierProfil">
+        <form action="{!! url('modifier_profil') !!}" method="POST" id="profil">
+            {{ csrf_field() }}
+            <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+        </form>
+        <button class="btn modifier" form="profil">Modifier mon profil</button>
     </div>
 
 </section>

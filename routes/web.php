@@ -42,7 +42,7 @@ Route::post('/proposer_un_trajet', 'HomeController@validerProposerUnTrajet');
 Route::post('/details', 'HomeController@detailsTrajet');
 
 Route::get('/profil', 'HomeController@profil');
-Route::get('/modifier_profil', 'HomeController@modifierProfil');
+Route::post('/modifier_profil', 'HomeController@modifierProfil');
 
 Route::get('/test/', function(){
     return view('test');
