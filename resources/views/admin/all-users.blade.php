@@ -39,38 +39,49 @@
                 padding: 7px 20px;
                 margin:5px;
             }
-            
+            ul{
+                list-style: none;
+                text-align: center;
+            }
+            li{
+                list-style: none;
+                display:inline-block;
+                text-align: center;
+                margin-left: 15px;
+            }
+            a{
+                text-decoration: none;
+            }
         </style>
     </head>
     
-    <body>      
-        
-        <ul>          
-            
-            <li>
-                <a href="{{url('admin/all_users')}}"> Tous </a>
-            </li>
-            
-        <form method="post" action="{{url('admin/classe')}}">
-            {{ csrf_field() }}
-            <select name="cla" onchange="this.form.submit()"> 
-                <option></option>
-            @foreach($classes as $classe)
-                <option value="{{$classe->CLS_NOM }}"> {{ $classe->CLS_NOM }} </option>
-            @endforeach
-            </select>
-        </form>
-        </ul>
-        
+    <body>    
         <ul>           
             <li>
-                <a href="{{url('admin/csv_upload')}}">CSV</a>
+                <a href="{{url('admin/csv_upload')}}">Fonctionnalités générale</a>
             </li>
             <li>
                 <a href="{{url('admin/all_users')}}">Liste utilisateurs</a>
             </li>
             <li>
                 <a href="{{url('admin/all_trajets')}}">Liste trajets</a>
+            </li>
+        </ul>
+        
+        <ul>   
+            <li>
+                <a href="{{url('admin/all_users')}}"> Tous </a>
+            </li>
+            <li>
+                <form method="post" action="{{url('admin/classe')}}">
+                    {{ csrf_field() }}
+                    <select name="cla" onchange="this.form.submit()"> 
+                        <option></option>
+                    @foreach($classes as $classe)
+                        <option value="{{$classe->CLS_NOM }}"> {{ $classe->CLS_NOM }} </option>
+                    @endforeach
+                    </select>
+                </form>
             </li>
         </ul>
         
@@ -91,14 +102,16 @@
                 <td>{{$user->classe}}</td>
                 <td>{{$user->name}} {{$user->surname}}</td>
                 <td>{{$user->email}}</td>  
-                <td>{{$user->last_connection}}</td>  
-                <td>
-                    @if (1==$user->enable)
-                    Actif
-                    @else
-                    Inactif
-                    @endif
+                <td>{{$user->last_connection}}</td>                  
+                @if (1==$user->enable)
+                <td style="background-color:green;">
+                Actif
                 </td>  
+                @else
+                <td style="background-color:red;">
+                Inactif
+                </td>  
+                @endif                
                 <td>
                     <form method="get" action="{{url('admin/status/'.$user->id)}}">
                     <input type="submit">

@@ -17,15 +17,14 @@ class TrajetsController extends Controller
     
     public function getAllTrajets()
     {
-        $trajet = DB::table('trajets')->where('id', $id)->delete($id);   
+        $trajets = DB::table('trajets')->get();
         
         return view('admin/all-trajets', ['trajets' => $trajets]);
     }
     
     public function deleteTrajet($id)
     {
-        $trajet = DB::table('trajets')->find($id);    
-        $trajet->delete();
+        $trajet = DB::table('trajets')->where('id', $id)->delete($id);    
         
         return redirect('admin/all_trajets');
     } 

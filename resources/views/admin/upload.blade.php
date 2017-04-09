@@ -10,6 +10,19 @@
             input{
                 margin-top:35px;                
             }
+            ul{
+                list-style: none;
+                text-align: center;
+            }
+            li{
+                list-style: none;
+                display:inline-block;
+                text-align: center;
+                margin-left: 15px;
+            }
+            a{
+                text-decoration: none;
+            }
         </style>
     </head>
     
@@ -17,7 +30,7 @@
     <head>
         <ul>           
             <li>
-                <a href="{{url('admin/csv_upload')}}">CSV</a>
+                <a href="{{url('admin/csv_upload')}}">Fonctionnalités générale</a>
             </li>
             <li>
                 <a href="{{url('admin/all_users')}}">Liste utilisateurs</a>
