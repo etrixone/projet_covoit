@@ -9,7 +9,7 @@
     <div class="form-horizontal form-details">
         <div class="details-user">
             <div class="inner">
-                <img src="{{ asset('/images/Utilisateur2.gif') }}" style="margin-left:-11px; margin-top:-8px;">
+                <img src="{{ asset(Auth::user()->logo) }}" style="margin-left:-11px; margin-top:-8px;">
             </div>
             <p class="details-prenom"><strong>{{ $user->surname }}</strong></p>
             <p class="details-nom"><strong>{{ $user->name }}</strong></p>
