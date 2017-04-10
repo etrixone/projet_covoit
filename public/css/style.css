@@ -65,7 +65,7 @@ body
 	
 	.container
 	{
-		width:400px;
+		width:300px;
 	}
 	
 	.fleche-proposer
@@ -735,6 +735,54 @@ button {
 	font-size:1.3em;
 }
 
+.button-resp
+{
+	margin-top:-80px;
+	width:140px;
+	height:75px;
+	background-color:#b42026;
+	color:black;
+	border-radius:20px;
+	font-size:1.7em;
+	padding:10px;
+	padding-top:5px;
+}
+
+.button2-resp
+{
+	background-color:#c2b59c;
+	margin-top:30px;
+}
+
+.button3-resp
+{
+	background-color:white;
+	border:3px solid #e0dacc;
+	width:100px;
+	height:50px;
+	margin:auto;
+	margin-top:30px;
+}
+
+.button-resp-01
+{
+	float:left;
+}
+
+.button-resp-02
+{
+	float:right;
+}
+
+.button-resp-03
+{
+	float:left;
+}
+
+.button-resp-04
+{
+	float:right;
+}
 
 
 

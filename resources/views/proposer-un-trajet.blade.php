@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="col-sm-5">
-                        <label for="tempsTrajetL">Flexibilité</label>
+                        <label for="tempsTrajetL">Flexibilité (en min)</label>
                     </div>
                     <div class="col-sm-7">
                         <input type="number" class="form-control input-sm margin" name="flexible" placeholder="exemple: 15" required>
@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-sm-7 margin">
                         <select class="form-control input-sm listeD" name="bagage">
-                            <option>Petit</option>
+                            <option style="background:url('../../public/images/sac-a-dos.png') no-repeat width:100px; height:100px;">Petit</option>
                             <option selected>Moyen</option>
                             <option>Grand</option>
                         </select>
