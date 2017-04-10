@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Trajet;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -16,9 +17,11 @@ class SuppressionTrajetCovoitureur extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $trajet;
+            
+    public function __construct(Trajet $t)
     {
-        //
+        $this->trajet = $t;
     }
 
     /**
@@ -28,6 +31,7 @@ class SuppressionTrajetCovoitureur extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.suppression-trajet-covoitureur');
+        return $this->view('mail.suppression-trajet-covoitureur')
+                ->with ('trajet', $this->trajet);
     }
 }
