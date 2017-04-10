@@ -290,6 +290,18 @@ class HomeController extends Controller {
         return view('logo');
     }
 
+    public function contact() {
+        return view('contact');
+    }
+
+    public function menu() {
+        return view('menu');
+    }
+
+    public function mentionLegale() {
+        return view('mentions-legales');
+    }
+
     public function admin() {
         return view('admin.index');
     }

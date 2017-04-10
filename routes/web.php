@@ -45,6 +45,10 @@ Route::get('/profil', 'HomeController@profil');
 Route::get('/modifier_profil', 'HomeController@modifierProfil');
 Route::post('/modifier_profil', 'HomeController@validerModifierProfil');
 
+Route::get('/contact', 'HomeController@contact');
+Route::get('/menu', 'HomeController@menu');
+
+Route::get('/mentions_legales', 'HomeController@mentionLegale');
 
 Route::get('/logo', 'HomeController@logo');
 

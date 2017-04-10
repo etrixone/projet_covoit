@@ -47,7 +47,7 @@ window.Laravel = {
                 <div class="logo">
                     <img src="{{ asset('/images/Logo2.gif') }}">
                 </div>
-                <a href="#">
+                <a href="{!! url( 'menu') !!}">
                     <div class="back-menu">
                         <p class="lien-menu">MENU</p>
                         <div class="glyphicon glyphicon-menu-hamburger"></div>
@@ -78,8 +78,8 @@ window.Laravel = {
                         <li class="b1 "><a href="{!! url( 'rechercher_un_trajet') !!} ">Rechercher un trajet</a></li>
                         <li class="b2 "><a href="{!! url( 'mes_reservations') !!} ">Mes réservations</a></li>
                         <li class="b3 "><a href="{!! url( 'proposer_un_trajet') !!} ">Proposer un trajet</a></li>
-                        <li class="b4 "><a href="{!! url( 'mes_trajets') !!} ">Mes trajets</a></li>
-                        <li class="b5 "><a href="# ">Contact</a></li>
+                        <li class="b4 "><a href="{!! url( 'mes_trajets') !!}">Mes trajets</a></li>
+                        <li class="b5 "><a href="{!! url( 'contact') !!}">Contact</a></li>
                     </ul>
                 </div>
             </nav>
@@ -92,7 +92,7 @@ window.Laravel = {
             </section>
             <footer class="row ">
                 <div class="text-center footer ">
-                    <p><a href=" ">Mentions légales</a></p>
+                    <p><a href="{!! url( 'mentions_legales') !!}">Mentions légales</a></p>
                 </div>
             </footer>
         </div>
