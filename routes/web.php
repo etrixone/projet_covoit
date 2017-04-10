@@ -44,13 +44,14 @@ Route::post('/details', 'HomeController@detailsTrajet');
 Route::get('/profil', 'HomeController@profil');
 Route::get('/modifier_profil', 'HomeController@modifierProfil');
 Route::post('/modifier_profil', 'HomeController@validerModifierProfil');
+Route::post('/modifier_logo', 'HomeController@validerModifierLogo');
 
 Route::get('/contact', 'HomeController@contact');
 Route::get('/menu', 'HomeController@menu');
 
 Route::get('/mentions_legales', 'HomeController@mentionLegale');
 
-Route::get('/logo', 'HomeController@logo');
+
 
 Route::get('/test/', function(){
     return view('test');

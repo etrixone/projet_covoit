@@ -14,7 +14,9 @@
         <br>
         @if ($voiture == null)
               <div class="row">
-                  <p>Vous ne possédez pas de voiture, vous pouvez en ajouter une en cliquant sur "modifier mon profil".<p>
+                  <div class="col-sm-12">
+                      <p>Vous ne possédez pas de voiture, vous pouvez en ajouter une en cliquant sur "modifier mon profil".</p>
+                  </div>
               </div>
         @else
             <div class="row">

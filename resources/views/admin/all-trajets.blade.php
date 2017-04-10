@@ -78,12 +78,12 @@
             </tr>
             @foreach($trajets as $trajet)
             <tr>
-                <td>{{$trajet->ID}}</td>
+                <td>{{$trajet->id}}</td>
                 <td>{{$trajet->TRJ_DEPART}}</td>
                 <td>{{$trajet->TRJ_DESTINATION}}</td>  
                 <td>{{$trajet->TRJ_DATE_DEPART}}</td> 
                 <td>
-                    <form method="get" action="{{url('admin/deleteTrajet/'.$trajet->ID)}}">
+                    <form method="get" action="{{url('admin/deleteTrajet/'.$trajet->id)}}">
                     <input type="submit" onclick="">
                     </form>
                 </td> 

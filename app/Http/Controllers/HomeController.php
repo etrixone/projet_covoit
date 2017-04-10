@@ -207,7 +207,15 @@ class HomeController extends Controller {
     }
 
     public function proposerUnTrajet() {
-        return view('proposer-un-trajet');
+        $voiture = Auth::user()->posseder()->first();
+
+        if ($voiture == null) {
+            return view('message')
+                ->with('message', "Vous devez d'abord enregistrer une voiture dans votre profil avant de proposer un trajet. Pour cela cliquez sur votre logo en haut a droite, puis cliquez sur modifier mon profil");
+        }
+        else {
+            return view('proposer-un-trajet');
+        }
     }
 
     public function validerProposerUnTrajet(Request $request) {
@@ -274,20 +282,40 @@ class HomeController extends Controller {
 
     public function validerModifierProfil(Request $request) {
 
+
         $voiture = Auth::user()->posseder()->first();
 
-        $voiture->MRQ_NOM = $request->marque;
-        $voiture->CLR_NOM = $request->couleur;
-        $voiture->VTR_FUMEUR = $request->fumeur;
-        $voiture->VTR_ANIMAUX = $request->animaux;
-        $voiture->save();
 
-        return view::make('profil')
-                        ->with('voiture', $voiture);
+        if ($voiture == null) {
+            $voiture = new Voiture();
+            $voiture->USR_ID = Auth::user()->id;
+            $voiture->MRQ_NOM = $request->marque;
+            $voiture->CLR_NOM = $request->couleur;
+            $voiture->VTR_FUMEUR = $request->fumeur;
+            $voiture->VTR_ANIMAUX = $request->animaux;
+            $voiture->save();
+
+            return view::make('profil')
+                            ->with('voiture', $voiture);
+        } else {
+            $voiture->MRQ_NOM = $request->marque;
+            $voiture->CLR_NOM = $request->couleur;
+            $voiture->VTR_FUMEUR = $request->fumeur;
+            $voiture->VTR_ANIMAUX = $request->animaux;
+            $voiture->save();
+
+            return view::make('profil')
+                            ->with('voiture', $voiture);
+        }
     }
 
-    public function logo() {
-        return view('logo');
+    public function validerModifierLogo(Request $request) {
+        $user = Auth::user();
+        $voiture = Auth::user()->posseder()->first();
+        $user->logo = $request->logo;
+        $user->save();
+        return view::make('profil')
+                        ->with('voiture', $voiture);
     }
 
     public function contact() {
