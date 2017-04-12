@@ -1,8 +1,7 @@
 @section('content')
 
 <html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <head>        
         <style>
             body{
                 background-color: white;
@@ -91,7 +90,7 @@
                 <th width="100">Classe</th>
                 <th width="275">Nom & Prénom</th>
                 <th width="350">Email</th>
-                <th width="200">Dernière connexion</th>
+                <th width="200"><a href="{!! url('/admin/last_connection') !!}">Dernière connection</a></th>
                 <th width="75">Statut</th>
                 <th width="150">Activer/Désactiver</th>
                 <th width="150">Supprimer</th>

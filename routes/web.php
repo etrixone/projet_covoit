@@ -91,6 +91,8 @@ Route::post('ajouterClasse', 'UsersController@ajouterClasse');
 Route::post('supprimerClasse', 'UsersController@supprimerClasse');
 //ERREUR
 Route::post('classe', 'UsersController@getUsers');
+//Retourne la liste des users en fonction de leur dernière connection 
+Route::get('last_connection', 'UsersController@allUsersRecent');
 });
 
 

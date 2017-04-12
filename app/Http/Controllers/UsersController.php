@@ -39,6 +39,14 @@ class UsersController extends Controller
         return view('admin/all-users')->with(['users' => $users])->with(['classes' => $classes]);
     }
     
+    public function allUsersRecent()
+    {
+        $users = DB::table('users')->where('admin','false')->orderBy('last_connection', 'desc')->get();
+        $classes = DB::table('classes')->get();
+        
+        return view('admin/all-users')->with(['users' => $users])->with(['classes' => $classes]);
+    }
+    
     public function supprimerClasse(Request $request)
     {
         $classe = $request->input('supprimerClasse');
