@@ -58,7 +58,9 @@ class UsersController extends Controller
     public function ajouterClasse(Request $request)
     {
         $classe = $request->input('texte_classe');
-        
+        if(!$classe){
+            return view('admin.erreur_ajoutClasse');
+        }
         DB::table('classes')->insert(['CLS_NOM' => $classe]);
         
         return redirect('admin/csv_upload');
@@ -113,50 +115,56 @@ class UsersController extends Controller
     
      public function usersList(Request $request)
     {   
-        $mime = $request->file('upload_file')->getMimeType();
-        $mimes = array('application/vnd.ms-excel','text/plain','text/csv','text/tsv');
-        
-        if(in_array($mime,$mimes))
-        {
-            $upload=$request->file('upload_file');
-            $filePath=$upload->getRealPath();
-            $file=fopen($filePath, 'r');
-
-            $array = array();
-            $index = 0;
-
-            $f = fopen($filePath, 'r');
-
-            while($lg = fgetcsv($f,1000,';')) 
-            {
-                if($lg && array($lg))
-                {
-                    $array[$index] = $lg;     
-
-                    $nom = $array[$index][0];
-                    $prenom = $array[$index][1];
-                    $email = $array[$index][2];
-                    $classe = $array[$index][3];
-
-                    $user= new User;
-                    $user->name=$nom;
-                    $user->surname=$prenom;
-                    $user->email=$email;
-                    $user->enable=0;
-                    $user->admin=0;
-                    $user->classe=$classe;
-                    $user->save();
-                }
-                $index = $index + 1;
-            }
-            fclose($f);
-            
-            return redirect('admin/all_users');
-        }
-        else{
-            return redirect('admin/csv_upload');
-        }
          
+        $mime =$request->file('upload_file');
+        if(!$mime){
+            return view('admin.erreur_csv');
+        }
         
+        try{
+            $mime = $request->file('upload_file')->getMimeType();
+            $mimes = array('application/vnd.ms-excel','text/plain','text/csv','text/tsv');
+
+            if(in_array($mime,$mimes))
+            {
+                $upload=$request->file('upload_file');
+                $filePath=$upload->getRealPath();
+                $file=fopen($filePath, 'r');
+
+                $array = array();
+                $index = 0;
+
+                $f = fopen($filePath, 'r');
+
+                while($lg = fgetcsv($f,1000,';')) 
+                {
+                    if($lg && array($lg))
+                    {
+                        $array[$index] = $lg;     
+
+                        $nom = $array[$index][0];
+                        $prenom = $array[$index][1];
+                        $email = $array[$index][2];
+                        $classe = $array[$index][3];
+
+                        $user= new User;
+                        $user->name=$nom;
+                        $user->surname=$prenom;
+                        $user->email=$email;
+                        $user->enable=0;
+                        $user->admin=0;
+                        $user->classe=$classe;
+                        $user->save();
+                    }
+                    $index = $index + 1;
+                }
+                fclose($f);
+
+                return redirect('admin/all_users');
+            }        
+        }
+        catch(\Exception $e) {
+            return view('admin.erreur_csv');
+        }
     }
 }

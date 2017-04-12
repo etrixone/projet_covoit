@@ -11,3 +11,4 @@ Homestead.yaml
 /Netbeans/
 /covoiturage/
 !/vendor/
+/nbproject/private/
