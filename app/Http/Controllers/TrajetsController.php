@@ -24,8 +24,8 @@ class TrajetsController extends Controller
     
     public function deleteTrajet($id)
     {
-        $id = DB::table('trajets')->where('id', $id)->value('USR_ID');
-        $user = User::findOrFail($id);
+        $idU = DB::table('trajets')->where('id', $id)->value('USR_ID');
+        $user = User::findOrFail($idU);
         Mail::to($user)->send(new SupprimerTrajetAdmin);
         
         $trajet = DB::table('trajets')->where('id', $id)->delete($id);
