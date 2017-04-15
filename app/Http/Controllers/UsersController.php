@@ -24,7 +24,7 @@ class UsersController extends Controller
     
     public function allUsersForm()
     {
-        $users = DB::table('users')->where('admin','false')->get();
+        $users = DB::table('users')->get();
         $classes = DB::table('classes')->get();
         
         return view('admin/all-users')->with(['users' => $users])->with(['classes' => $classes]);

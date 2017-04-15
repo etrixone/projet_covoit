@@ -30,7 +30,7 @@
     <head>
         <ul>           
             <li>
-                <a href="{{url('admin/csv_upload')}}">Fonctionnalités générale</a>
+                <a href="{{url('admin/csv_upload')}}">Fonctionnalités générales</a>
             </li>
             <li>
                 <a href="{{url('admin/all_users')}}">Liste utilisateurs</a>

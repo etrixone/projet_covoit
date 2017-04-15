@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SupprimerTrajetAdmin2 extends Mailable
+class SupprimerTrajetAdmin extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +28,6 @@ class SupprimerTrajetAdmin2 extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.SupprimerTrajetAdmin2');
+        return $this->view('mail.SupprimerTrajetAdmin');
     }
 }

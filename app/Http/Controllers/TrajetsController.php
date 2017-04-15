@@ -17,7 +17,7 @@ class TrajetsController extends Controller
     
     public function getAllTrajets()
     {
-        $trajets = DB::table('trajets')->get();
+        $trajets = DB::table('trajets')->join('users', 'trajets.usr_id', '=', 'users.id')->get();
         
         return view('admin/all-trajets', ['trajets' => $trajets]);
     }
@@ -27,6 +27,15 @@ class TrajetsController extends Controller
         $idU = DB::table('trajets')->where('id', $id)->value('USR_ID');
         $user = User::findOrFail($idU);
         Mail::to($user)->send(new SupprimerTrajetAdmin);
+        
+        $idC = DB::table('trajets_users')->where('ID', $id)->value('USR_ID');
+        if(!$idC){
+            foreach($idC as $idC){
+            $user = User::findOrFail($idC);
+            Mail::to($user)->send(new SupprimerTrajetAdmin2);
+            }
+        }
+        
         
         $trajet = DB::table('trajets')->where('id', $id)->delete($id);
         

@@ -57,7 +57,7 @@
     <body>    
         <ul>           
             <li>
-                <a href="{{url('admin/csv_upload')}}">Fonctionnalités générale</a>
+                <a href="{{url('admin/csv_upload')}}">Fonctionnalités générales</a>
             </li>
             <li>
                 <a href="{{url('admin/all_users')}}">Liste utilisateurs</a>
@@ -100,16 +100,20 @@
                 <td>{{$user->id}}</td>
                 <td>{{$user->classe}}</td>
                 <td>{{$user->name}} {{$user->surname}}</td>
-                <td>{{$user->email}}</td>  
-                <td>{{$user->last_connection}}</td>                  
-                @if (1==$user->enable)
-                <td style="background-color:green;">
-                Actif
+                <td>{{$user->email}}</td> 
+                @if (!$user->last_connection)
+                <td>
+                    Jamais connecté
                 </td>  
                 @else
-                <td style="background-color:red;">
-                Inactif
-                </td>  
+                <td>
+                    {{$user->last_connection}}
+                </td> 
+                @endif  
+                @if (1==$user->enable)
+                <td style="background-color:green;">Actif</td>  
+                @else
+                <td style="background-color:red;">Inactif</td>  
                 @endif                
                 <td>
                     <form method="get" action="{{url('admin/status/'.$user->id)}}">

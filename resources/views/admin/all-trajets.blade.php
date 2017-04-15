@@ -59,7 +59,7 @@
     <body>      
         <ul>           
             <li>
-                <a href="{{url('admin/csv_upload')}}">Fonctionnalités générale</a>
+                <a href="{{url('admin/csv_upload')}}">Fonctionnalités générales</a>
             </li>
             <li>
                 <a href="{{url('admin/all_users')}}">Liste utilisateurs</a>
@@ -70,7 +70,7 @@
         </ul>
         <table border="1">
             <tr>
-                <th width="100">Identifiant</th>
+                <th width="175">Conducteur</th>
                 <th width="275">Départ</th>
                 <th width="350">Arrivée</th>
                 <th width="200">Date départ</th>
@@ -78,7 +78,7 @@
             </tr>
             @foreach($trajets as $trajet)
             <tr>
-                <td>{{$trajet->id}}</td>
+                <td>{{$trajet->surname}} {{$trajet->name}}</td>
                 <td>{{$trajet->TRJ_DEPART}}</td>
                 <td>{{$trajet->TRJ_DESTINATION}}</td>  
                 <td>{{$trajet->TRJ_DATE_DEPART}}</td> 
