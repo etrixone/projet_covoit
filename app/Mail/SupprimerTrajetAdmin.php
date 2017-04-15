@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AjoutTrajet extends Mailable
+class SupprimerTrajetAdmin extends Mailable
 {
     use Queueable, SerializesModels;
 
