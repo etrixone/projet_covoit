@@ -1,2 +1,2 @@
 
-<h4>Quelqu'un à reservé pour un de vos trajet !<br></h4>
+<h4>Quelqu'un a reservé pour un de vos trajets !<br></h4>

@@ -1,1 +1,1 @@
-<h4>Une reservation été annulé !<h4>
+<h4>Une reservation a été annulé !<h4>
