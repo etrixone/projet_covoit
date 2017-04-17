@@ -64,7 +64,7 @@
                         <label for="tempsTrajetL">Flexibilité (en min)</label>
                     </div>
                     <div class="col-sm-7">
-                        <input type="number" class="form-control input-sm margin" name="flexible" placeholder="exemple: 15" required>
+                        <input type="number" class="form-control input-sm margin" name="flexible" placeholder="exemple: 15" min="0" max="120" required>
                     </div>
                     <div class="col-sm-5 margin">
                         <label for="placesL">Places disponibles</label>

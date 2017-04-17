@@ -219,7 +219,7 @@ class HomeController extends Controller {
     }
 
     public function validerProposerUnTrajet(Request $request) {
-        $this->validate($request, ['date' => 'required|date_format:"d/m/Y"|after:today', 'heureDepart' => 'required|date_format:"H:i"', 'heureDestination' => 'required|date_format:"H:i"', 'depart' => 'required', 'destination' => 'required', 'places' => 'required|integer|between:1,7', 'prix' => 'required|integer|between:0,500', 'bagage' => 'required']);
+        $this->validate($request, ['date' => 'required|date_format:"d/m/Y"|after:today', 'heureDepart' => 'required|date_format:"H:i"', 'heureDestination' => 'required|date_format:"H:i"', 'depart' => 'required', 'destination' => 'required', 'places' => 'required|integer|between:1,5', 'prix' => 'required|integer|between:0,500', 'bagage' => 'required', 'flexible' => 'required|integer|between:0,120']);
         $trajet = new Trajet;
         $datetime = new DateTime();
         $dateDepart = $datetime->createFromFormat('d/m/Y', $request->date);
