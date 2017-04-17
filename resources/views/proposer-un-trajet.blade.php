@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-sm-7 margin">
                         <select class="form-control input-sm listeD" name="bagage">
-                           
+                            <option selected>Petit</option>
                             <option selected>Moyen</option>
                             <option>Grand</option>
                         </select>
@@ -105,18 +105,18 @@
             </div>
 
         </div>
-        
-      
-			<div class="col-sm-6">
-				
-			</div>
-       		<div class="col-sm-6">
-				<input type="submit" class="btn proposer" value="Proposer un trajet" name="proposerTrajet">
-			</div>
-            <input type="text" id="localityDepart" name="localityDepart" class="invisible" />
-            <input type="text" id="localityDestination" name="localityDestination" class="invisible" />
-            <input type="text" id="localityEtape1" name="localityEtape1" class="invisible" />
-            <input type="text" id="localityEtape2" name="localityEtape2" class="invisible" />
+
+
+        <div class="col-sm-6">
+
+        </div>
+        <div class="col-sm-6">
+            <input type="submit" class="btn proposer" value="Proposer un trajet" name="proposerTrajet">
+        </div>
+        <input type="text" id="localityDepart" name="localityDepart" class="invisible" />
+        <input type="text" id="localityDestination" name="localityDestination" class="invisible" />
+        <input type="text" id="localityEtape1" name="localityEtape1" class="invisible" />
+        <input type="text" id="localityEtape2" name="localityEtape2" class="invisible" />
     </form>
     <div id="map" style="width:0px; border:0;"></div>
 </section>
@@ -163,7 +163,7 @@
         var origin_autocomplete = new google.maps.places.Autocomplete(origin_input, options);
         origin_autocomplete.bindTo('bounds', map);
         var destination_autocomplete =
-            new google.maps.places.Autocomplete(destination_input, options);
+                new google.maps.places.Autocomplete(destination_input, options);
         destination_autocomplete.bindTo('bounds', map);
 
         var etape1_autocomplete = new google.maps.places.Autocomplete(etape1_input, options);
@@ -182,7 +182,7 @@
             }
         }
 
-        origin_autocomplete.addListener('place_changed', function() {
+        origin_autocomplete.addListener('place_changed', function () {
             var place = origin_autocomplete.getPlace();
             if (!place.geometry) {
                 window.alert("Veuillez selectionner une ville proposée");
@@ -194,10 +194,10 @@
             // the other place ID
             origin_place_id = place.place_id;
             route(origin_place_id, destination_place_id, travel_mode,
-                directionsService, directionsDisplay);
+                    directionsService, directionsDisplay);
         });
 
-        destination_autocomplete.addListener('place_changed', function() {
+        destination_autocomplete.addListener('place_changed', function () {
             var place = destination_autocomplete.getPlace();
             if (!place.geometry) {
                 window.alert("Veuillez selectionner une ville proposée");
@@ -209,11 +209,11 @@
             // the other place ID
             destination_place_id = place.place_id;
             route(origin_place_id, destination_place_id, travel_mode,
-                directionsService, directionsDisplay);
+                    directionsService, directionsDisplay);
         });
 
         function route(origin_place_id, destination_place_id, travel_mode,
-            directionsService, directionsDisplay) {
+                directionsService, directionsDisplay) {
             if (!origin_place_id || !destination_place_id) {
                 return;
             }
@@ -225,7 +225,7 @@
                     'placeId': destination_place_id
                 },
                 travelMode: travel_mode
-            }, function(response, status) {
+            }, function (response, status) {
                 if (status === google.maps.DirectionsStatus.OK) {
                     directionsDisplay.setDirections(response);
                 } else {
@@ -285,25 +285,27 @@
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8zSQHYetf1-fRjNQCy7aYDwT4SCR2Xo0&signed_in=true&libraries=places&callback=initMap" async defer></script>
 
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="{{ asset('/css/jquery-ui.min.css') }}">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="{{ asset('/css/jquery-ui.min.css') }}">
 
 <script>
- $(function() {$( "#date" ).datepicker({
-  firstDay: 1,
-  altField: "#date",
-  closeText: 'Fermer',
-  prevText: 'Précédent',
-  nextText: 'Suivant',
-  currentText: 'Aujourd\'hui',
-  monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-  monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-  dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-  dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-  dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-  weekHeader: 'Sem.',
-  dateFormat: 'dd/mm/yy'});}); 
- </script>
+    $(function () {
+        $("#date").datepicker({
+            firstDay: 1,
+            altField: "#date",
+            closeText: 'Fermer',
+            prevText: 'Précédent',
+            nextText: 'Suivant',
+            currentText: 'Aujourd\'hui',
+            monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+            dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+            dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+            dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+            weekHeader: 'Sem.',
+            dateFormat: 'dd/mm/yy'});
+    });
+</script>
 
 @endsection
