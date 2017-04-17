@@ -82,7 +82,7 @@
                         <label for="prixDemandeL">Prix demandé</label>
                     </div>
                     <div class="col-sm-7 margin">
-                        <input type="number" class="form-control input-sm" name="prix" placeholder="exemple : 10" required>
+                        <input type="number" class="form-control input-sm" name="prix" placeholder="exemple : 10" min="0" max="500" required>
                     </div>
                     <div class="col-sm-5 margin">
                         <label for="tailleBagagesL">Taille des bagages</label>
