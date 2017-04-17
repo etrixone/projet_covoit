@@ -2,7 +2,7 @@
 
 <section class="container small-container">
     <h4><strong>Proposez votre trajet</strong></h4>
-    <form method="POST" action="{!! url('proposer_un_trajet') !!}" accept-charset="UTF-8">
+    <form method="POST" action="{{ url('proposer_un_trajet') }}" accept-charset="UTF-8">
         {!! csrf_field() !!}
         <div class="form-horizontal form-proposer">
             <div class="row">
