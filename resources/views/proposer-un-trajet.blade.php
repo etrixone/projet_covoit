@@ -89,7 +89,7 @@
                     </div>
                     <div class="col-sm-7 margin">
                         <select class="form-control input-sm listeD" name="bagage">
-                            <option style="background:url('../../public/images/sac-a-dos.png') no-repeat width:100px; height:100px;">Petit</option>
+                           
                             <option selected>Moyen</option>
                             <option>Grand</option>
                         </select>

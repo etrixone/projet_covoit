@@ -61,7 +61,17 @@
                         </div>
                         <div class="col-sm-6" style="padding-left:20px;">
                             <div class="col-sm-12">
-                                <p>Temps total du trajet : <strong>duree</strong></p>
+                                <p>Temps total du trajet : 
+                  
+                                        @php
+                                        $depart = strtotime(Carbon\Carbon::parse($trajet->TRJ_HEURE_DEPART)->format('H:i'));
+                                        $destination = strtotime(Carbon\Carbon::parse($trajet->TRJ_HEURE_DESTINATION)->format('H:i'));
+                                        $duree = gmdate('H:i', $destination - $depart);
+                                        
+                                        @endphp
+                                    <strong>
+                                        {{ $duree }}
+                                    </strong></p>
                             </div>
                             <div class="col-sm-12">
                                 <p>Places disponibles : <strong>{{ $trajet->TRJ_PLACES }}</strong></p>

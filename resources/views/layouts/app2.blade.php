@@ -9,7 +9,8 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Saliege-Covoit') }}</title>
+        <link rel="icon" href="{!! asset('/images/iconne.ico') !!}"/>
 
         <!-- Styles -->
         <!-- Bootstrap -->
@@ -28,8 +29,8 @@
 window.Laravel = {
 !!json_encode([
         'csrfToken' => csrf_token(),
-]) !!
-        }
+        ]) !!
+}
 ;
         </script>
 
@@ -59,8 +60,8 @@ window.Laravel = {
                     </a>
                     <p class="prenom ">{{ Auth::user()->surname }}</p>
                     <p class="nom ">{{ Auth::user()->name }}</p>
-                        <a  href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();" >
+                    <a  href="{{ route('logout') }}" onclick="event.preventDefault();
+document.getElementById('logout-form').submit();" >
                         <div class="glyphicon glyphicon-off">
                         </div>
                     </a>
