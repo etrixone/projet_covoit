@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 
+   <?php
+	
+		$page = $_SERVER['REQUEST_URI'];
+      	$page = str_replace("/laravel/covoiturage/public", "",$page);
+	
+	?>
+   
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -76,11 +83,11 @@ document.getElementById('logout-form').submit();" >
             <nav class="row ">
                 <div>
                     <ul>
-                        <li class="b1 "><a href="{!! url( 'rechercher_un_trajet') !!} ">Rechercher un trajet</a></li>
-                        <li class="b2 "><a href="{!! url( 'mes_reservations') !!} ">Mes réservations</a></li>
-                        <li class="b3 "><a href="{!! url( 'proposer_un_trajet') !!} ">Proposer un trajet</a></li>
-                        <li class="b4 "><a href="{!! url( 'mes_trajets') !!}">Mes trajets</a></li>
-                        <li class="b5 "><a href="{!! url( 'contact') !!}">Contact</a></li>
+                        <li class="b1 <?php //if($page == "rechercher_un_trajet"){echo 'active';} ?>"><a href="{!! url( 'rechercher_un_trajet') !!} ">Rechercher un trajet</a></li>
+                        <li class="b2 <?php //if($page == "mes_reservations"){echo 'active';} ?>"><a href="{!! url( 'mes_reservations') !!} ">Mes réservations</a></li>
+                        <li class="b3 <?php //if($page == "proposer_un_trajet"){echo 'active';} ?>"><a href="{!! url( 'proposer_un_trajet') !!} ">Proposer un trajet</a></li>
+                        <li class="b4 <?php //if($page == "mes_trajets"){echo 'active';} ?>"><a href="{!! url( 'mes_trajets') !!}">Mes trajets</a></li>
+                        <li class="b5 <?php //if($page == "contact"){echo 'active';} ?>"><a href="{!! url( 'contact') !!}">Contact</a></li>
                     </ul>
                 </div>
             </nav>

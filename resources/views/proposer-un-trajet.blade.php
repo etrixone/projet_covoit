@@ -118,7 +118,7 @@
             <input type="text" id="localityEtape1" name="localityEtape1" class="invisible" />
             <input type="text" id="localityEtape2" name="localityEtape2" class="invisible" />
     </form>
-    <div id="map"></div>
+    <div id="map" style="width:0px; border:0;"></div>
 </section>
 
 @if (count($errors) > 0)
